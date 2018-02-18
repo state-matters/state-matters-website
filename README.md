@@ -1,6 +1,6 @@
 # State Matters
 
-_Contentful CMS + express + react (with create-react-app)_
+_[react (with create-react-app)][1] + [Contentful CMS][2] + [express][3] + [styled components][4]_
 
 ## Setup
 
@@ -16,3 +16,8 @@ _Always work on from a branch based from the develop branch, never master_
 1. Create a PR associted with that issue based on proposed solution.
 1. PR will be merged on approval.
 1. Post commit hook to heroku on master should take care of deploy.
+
+[1]: https://reactjs.org/docs/hello-world.html
+[2]: https://www.contentful.com/developers/docs/references/content-delivery-api/
+[3]: https://expressjs.com/en/4x/api.html
+[4]: https://www.styled-components.com/docs
