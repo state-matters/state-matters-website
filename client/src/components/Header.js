@@ -16,6 +16,7 @@ const Wrapper = styled.header`
   margin: 0 auto;
   height: ${({ theme }) => theme.baseSize * 5}px;
   align-items: center;
+  z-index: 10;
   img {
     width: 100%;
     max-width: ${({ theme }) => theme.baseSize * 5}px;

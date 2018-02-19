@@ -13,10 +13,10 @@ export default injectGlobal`
 
 body {
   position: relative;
-  margin: ${stylesTheme.baseSize / 3}px;
-  padding: ${stylesTheme.baseSize / 2}px;
+  margin: 0;
+  padding: 0;
   background-color: ${stylesTheme.colors.ui.semiLight};
-  border: 6px solid ${stylesTheme.colors.ui.dark};
+  ${"" /* border: 6px solid ${stylesTheme.colors.ui.dark}; */}
   color: ${stylesTheme.colors.ui.dark};
   font-family: ${stylesTheme.fontFamily};
   line-height: 1.5;
@@ -59,7 +59,7 @@ h4,
   width: 100%;
   max-width: ${stylesTheme.breakPoints.xLg}px;
   margin: 0 auto;
-  padding: ${stylesTheme.baseSize}px 0;
+  padding: 0 ${stylesTheme.baseSize}px;
 }
 
 a {
@@ -109,21 +109,21 @@ a:hover:after {
   color: ${stylesTheme.colors.ui.light};
 }
 
-@media (max-width: 480px) {
+@media (min-width: ${stylesTheme.breakPoints.sm}px) {
 }
 
-@media (max-width: 720px) {
+@media (min-width: ${stylesTheme.breakPoints.md}px) {
   h1 {
     font-size: 2.5rem;
   }
 }
 
-@media (max-width: 960px) {
+@media (min-width: ${stylesTheme.breakPoints.lg}px) {
 }
 
-@media (max-width: 1200px) {
+@media (min-width: ${stylesTheme.breakPoints.xLg}px) {
   .container {
-    padding: ${stylesTheme.baseSize}px;
+    padding: 0;
   }
 }
 
