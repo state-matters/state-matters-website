@@ -8,7 +8,6 @@ import dropShadow from "../assets/shadow_pattern.png"
 import { handleSubscribe } from "../ducks/subscriptions"
 
 import SubscriptionForm from "./SubscriptionForm"
-
 import Text from "./Text"
 
 const Hero = styled.section`
@@ -16,8 +15,8 @@ const Hero = styled.section`
   flex-direction: column;
   justify-content: center;
   position: relative;
-  height: 100vh;
-  max-height: var(--lg);
+  height: calc(100vh - ${({ theme }) => theme.baseSize * 2 - 12}px);
+  max-height: ${({ theme }) => theme.breakPoints.lg}px;
   overflow: hidden;
   }
 `
@@ -47,20 +46,7 @@ class Home extends React.Component {
             We’re tired of working up a sweat just figuring out what’s going on
             in our own state - so we’re doing something about it.
           </Text>
-
-          <select name="" id="">
-            <option value="state-1">Illinois</option>
-            <option value="state-2">Michigan</option>
-            <option value="state-3">Wisconsin</option>
-          </select>
         </Hero>
-        <section className="subscribe">
-          <h4>Sign up to recieve your content directly in your inbox!</h4>
-          <SubscriptionForm
-            onSubmit={this.handleSubmit}
-            onChange={this.handleChange}
-          />
-        </section>
       </React.Fragment>
     )
   }
