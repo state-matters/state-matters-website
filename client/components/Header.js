@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-import Logo from "../assets/sm_logo.svg"
+// import Logo from "../assets/sm_logo.svg"
 import SearchBar from "./SearchBar"
 
 const Wrapper = styled.header`
@@ -30,7 +30,7 @@ const Wrapper = styled.header`
 
 const Header = props => (
   <Wrapper>
-    <img src={Logo} alt="State Matters Logo" />
+    {/* <img src={Logo} alt="State Matters Logo" /> */}
     <SearchBar
       className="search-bar"
       placeholder="Search for bills or articles"

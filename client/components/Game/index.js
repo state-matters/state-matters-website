@@ -3,6 +3,7 @@ import styled from "styled-components"
 
 const Wrapper = styled.section`
   padding-top: ${({ theme }) => theme.baseSize * 5}px;
+  padding-left: 24px;
   min-height: 100vh;
   display: flex;
   align-items: center;

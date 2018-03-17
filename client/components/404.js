@@ -9,7 +9,7 @@ const Wrapper = styled.section`
   min-height: calc(100vh - 48px);
 `
 
-const FourOhFour = props => (
+const NotFound = props => (
   <Wrapper>
     <h1>
       We cannot find what<br />you're looking for
@@ -21,4 +21,4 @@ const FourOhFour = props => (
   </Wrapper>
 )
 
-export default FourOhFour
+export default NotFound
