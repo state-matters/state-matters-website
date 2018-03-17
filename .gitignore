@@ -8,6 +8,7 @@
 
 # production
 /public/bundle.js
+/public/state_matters.bundle.js
 
 
 # misc
