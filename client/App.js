@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from "react"
 import { Route, Switch } from "react-router-dom"
 
-import Header from "./Header"
-import Home from "./Home"
-import Bill from "./Bill"
-import Game from "./Game"
-import NotFound from "./404.js"
+import Header from "./components/Header"
+import Home from "./pages/Home"
+import Bill from "./pages/Bills"
+import Game from "./pages/BillIntro"
+import NotFound from "./components/NotFound"
 
 class App extends Component {
   state = {

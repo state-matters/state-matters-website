@@ -13,7 +13,7 @@ var port = process.env.PORT || 8080
 
 var router = express.Router()
 
-if (process.env.PRODUCTION) {
+if (process.env.NODE_ENV === "production") {
   app.use(express.static("public"))
 }
 

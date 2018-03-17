@@ -5,19 +5,31 @@ import Helmet from "react-helmet"
 // import heroImage from "../assets/hero-image.jpg"
 // import dropShadow from "../assets/shadow_pattern.png"
 
-import { handleSubscribe } from "../ducks/subscriptions"
+import { handleSubscribe } from "../../ducks/subscriptions"
 
-import SubscriptionForm from "./SubscriptionForm"
-import Text from "./Text"
+import SubscriptionForm from "../../components/SubscriptionForm"
+import Text from "../../components/Text"
 
 const Hero = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
-  height: calc(100vh - ${({ theme }) => theme.baseSize * 2 - 12}px);
-  max-height: ${({ theme }) => theme.breakPoints.lg}px;
-  overflow: hidden;
+  background-color: ${({ theme }) => theme.colors.ui.dark};
+  height: calc(100vh - 3rem);
+  max-height: ${({ theme }) => theme.breakPoints.xSm};
+  ${"" /* overflow: hidden; */}
+  &:after {
+    content: "";
+    position: absolute;
+    top: 48%;
+    right: 0;
+    border-radius: 50%;
+    background-color: ${({ theme }) => theme.colors.ui.semiLight};
+    height: ${({ theme }) => theme.breakPoints.sm};
+    width: ${({ theme }) => theme.breakPoints.sm};
+    transform: translateX(36%);
+  }
   }
 `
 
@@ -38,15 +50,7 @@ class Home extends React.Component {
     return (
       <React.Fragment>
         <Helmet title="State Matters | Track your state government" />
-        <Hero>
-          <Text type="headline">
-            We're on a mission to<br />unmess state government.
-          </Text>
-          <Text type="subtitle" className="title">
-            We’re tired of working up a sweat just figuring out what’s going on
-            in our own state - so we’re doing something about it.
-          </Text>
-        </Hero>
+        <Hero />
       </React.Fragment>
     )
   }
