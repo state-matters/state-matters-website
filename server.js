@@ -13,6 +13,10 @@ var port = process.env.PORT || 8080
 
 var router = express.Router()
 
+if (process.env.PRODUCTION) {
+  app.use(express.static("public"))
+}
+
 app.use("/api", index)
 
 app.listen(port)
