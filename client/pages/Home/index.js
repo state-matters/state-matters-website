@@ -8,6 +8,7 @@ import { handleSubscribe } from "../../ducks/subscriptions"
 import SubscriptionForm from "../../components/SubscriptionForm"
 import Text from "../../components/Text"
 import FeaturedArticles from "../Articles/FeaturedArticles"
+import BillList from "../Bills/BillList"
 
 const Hero = styled.section`
   display: flex;
@@ -51,6 +52,7 @@ class Home extends React.Component {
       <React.Fragment>
         <Helmet title="State Matters | Track your state government" />
         <Hero />
+        <BillList />
         <FeaturedArticles />
       </React.Fragment>
     )
