@@ -11,7 +11,11 @@
     "server": "nodemon --ignore 'client/**' server.js",
     "client": "webpack-dev-server --mode development --open",
     "dev":
-      "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+      "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "heroku-prebuild":
+      "export NPM_CONFIG_PRODUCTION=false; export NODE_ENV=; NPM_CONFIG_PRODUCTION=false NODE_ENV=development npm install --only=dev --dev",
+    "heroku-postbuild":
+      "export NPM_CONFIG_PRODUCTION=true; export NODE_ENV=production;"
   },
   "keywords": [],
   "author": "",
