@@ -10,22 +10,30 @@
     "build": "webpack --mode production",
     "server": "nodemon --ignore 'client/**' server.js",
     "client": "webpack-dev-server --mode development --open",
-    "dev":
-      "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
-    "heroku-prebuild":
-      "export NPM_CONFIG_PRODUCTION=false; export NODE_ENV=; NPM_CONFIG_PRODUCTION=false NODE_ENV=development npm install --only=dev --dev",
-    "heroku-postbuild":
-      "export NPM_CONFIG_PRODUCTION=true; export NODE_ENV=production; npm run build"
+    "dev": "concurrently --kill-others \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "npm run build"
   },
   "keywords": [],
   "author": "Patrick Krawczykowski <patrick@dreadful.design>",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.17.1",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-decorators": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-constant-elements": "^6.23.0",
+    "babel-plugin-transform-react-inline-elements": "^6.22.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
     "body-parser": "^1.18.2",
     "contentful": "^5.1.0-beta2",
     "cookie-parser": "^1.4.3",
     "express": "^4.16.2",
+    "file-loader": "^1.1.11",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.0.6",
     "markdown-to-jsx": "^6.5.2",
     "morgan": "^1.9.0",
     "nodemon": "^1.14.11",
@@ -37,24 +45,12 @@
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "styled-components": "^3.2.3"
+    "styled-components": "^3.2.3",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.12"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.4",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-decorators": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-plugin-transform-react-constant-elements": "^6.23.0",
-    "babel-plugin-transform-react-inline-elements": "^6.22.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
     "concurrently": "^3.5.1",
-    "file-loader": "^1.1.11",
-    "html-loader": "^0.5.5",
-    "html-webpack-plugin": "^3.0.6",
-    "webpack": "^4.1.1",
-    "webpack-cli": "^2.0.12",
     "webpack-dev-server": "^3.1.1"
   }
 }
