@@ -13,7 +13,7 @@
     "dev":
       "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "heroku-prebuild":
-      "export NPM_CONFIG_PRODUCTION=false; export NODE_ENV=; NPM_CONFIG_PRODUCTION=false NODE_ENV=development npm install --only=dev --dev",
+      "export NPM_CONFIG_PRODUCTION=false; export NODE_ENV=; NPM_CONFIG_PRODUCTION=false NODE_ENV=development npm install --only=dev --dev; npm run build",
     "heroku-postbuild":
       "export NPM_CONFIG_PRODUCTION=true; export NODE_ENV=production;"
   },
