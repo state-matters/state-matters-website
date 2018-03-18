@@ -1,4 +1,3 @@
-// import React from "react"
 import { injectGlobal } from "styled-components"
 import theme from "./theme"
 

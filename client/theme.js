@@ -53,17 +53,3 @@ export default {
     xLg: "120rem"
   }
 }
-
-// --dark: #342c5f;
-// --light: #eeeee1;
-// --primary: #f37e5a;
-// --secondary: #f2d7ca;
-// --accent: #50e3c2;
-
-// --sizing: 24px;
-
-// --x-sm: calc(var(--sizing) * 20);
-// --sm: calc(var(--sizing) * 30);
-// --md: calc(var(--sizing) * 40);
-// --lg: calc(var(--sizing) * 50);
-// --x-lg: calc(var(--sizing) * 60);

@@ -2,8 +2,6 @@ import React from "react"
 import styled from "styled-components"
 import { connect } from "react-redux"
 import Helmet from "react-helmet"
-// import heroImage from "../assets/hero-image.jpg"
-// import dropShadow from "../assets/shadow_pattern.png"
 
 import { handleSubscribe } from "../../ducks/subscriptions"
 
@@ -46,6 +44,7 @@ class Home extends React.Component {
     console.log(this.state.form)
     this.props.handleSubscribe(this.state.form)
   }
+
   render = _ => {
     return (
       <React.Fragment>

@@ -2,9 +2,9 @@ const router = require("express").Router()
 const axios = require("axios")
 
 const BASE_URL = "https://cdn.contentful.com"
-const SPACE_ID = "u9mwf84q9g1x"
+const SPACE_ID = "021ulla0m5co"
 const ACCESS_TOKEN =
-  "0940c4afb72c8a4fbb49a938f3ea591c201cb65c47d611f5c91454569f7777c0"
+  "6bd6e5edf50206eb6e65f7a6feb5959b38facca343395776a2593dd48806b329"
 
 router.route("/").get(async (req, res, next) => {
   const url = `${BASE_URL}/spaces/${SPACE_ID}/entries?access_token=${ACCESS_TOKEN}&content_type=2wKn6yEnZewu2SCCkus4as`
