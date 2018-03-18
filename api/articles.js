@@ -10,7 +10,7 @@ const PREVIEW_ACCESS_TOKEN =
   "709d8f98e56158641d25ba23ceb57029ecc91e0a9a11f35fa6e0f666ffbeb4d0"
 
 router.route("/").get(async (req, res, next) => {
-  const url = `${PREVIEW_BASE_URL}/spaces/${SPACE_ID}/entries?access_token=${PREVIEW_ACCESS_TOKEN}&content_type=article`
+  const url = `${PREVIEW_BASE_URL}/spaces/${SPACE_ID}/entries?select=fields.title,fields.contributor&access_token=${PREVIEW_ACCESS_TOKEN}&content_type=article`
   try {
     console.log(url)
     const response = await axios.get(url)

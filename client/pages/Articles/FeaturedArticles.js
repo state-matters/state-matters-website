@@ -3,12 +3,12 @@ import axios from "axios"
 
 class FeaturedArticles extends React.Component {
   state = {
-    articles: []
+    articles_data: []
   }
   componentDidMount() {
     axios("/api/articles").then(res => {
           document.data=res
-          this.setState({articles: res.data.items})
+          this.setState({articles_data: res.data})
     }
 
 
@@ -17,8 +17,12 @@ class FeaturedArticles extends React.Component {
   render(){
     return(
       <ul>
-        {this.state.articles.map(
-          article => <li> {article.fields.title} </li>
+        {this.state.articles_data.map(
+          article => (
+            <li>
+            {article.items.fields.title}
+            // {article.fields.title}
+            </li>)
         )}
       </ul>
 
