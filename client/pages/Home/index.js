@@ -8,6 +8,7 @@ import { handleSubscribe } from "../../ducks/subscriptions"
 import SubscriptionForm from "../../components/SubscriptionForm"
 import Text from "../../components/Text"
 import FeaturedArticles from "../Articles/FeaturedArticles"
+import BillList from "../Bills/BillList"
 
 const Hero = styled.section`
   display: flex;
@@ -17,7 +18,7 @@ const Hero = styled.section`
   background-color: ${({ theme }) => theme.colors.ui.dark};
   height: calc(100vh - 3rem);
   max-height: ${({ theme }) => theme.breakPoints.xSm};
-  ${"" /* overflow: hidden; */}
+  z-index: -1;
   &:after {
     content: "";
     position: absolute;
@@ -25,8 +26,8 @@ const Hero = styled.section`
     right: 0;
     border-radius: 50%;
     background-color: ${({ theme }) => theme.colors.ui.semiLight};
-    height: ${({ theme }) => theme.breakPoints.sm};
-    width: ${({ theme }) => theme.breakPoints.sm};
+    height: 50rem;
+    width: 50rem;
     transform: translateX(36%);
   }
   }
@@ -51,6 +52,7 @@ class Home extends React.Component {
       <React.Fragment>
         <Helmet title="State Matters | Track your state government" />
         <Hero />
+        <BillList />
         <FeaturedArticles />
       </React.Fragment>
     )

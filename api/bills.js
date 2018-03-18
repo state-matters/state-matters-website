@@ -1,16 +1,25 @@
 const router = require("express").Router()
 const axios = require("axios")
+const contentful = require("contentful")
 
-const BASE_URL = "https://cdn.contentful.com"
-const SPACE_ID = "021ulla0m5co"
-const ACCESS_TOKEN =
-  "6bd6e5edf50206eb6e65f7a6feb5959b38facca343395776a2593dd48806b329"
+const client = contentful.createClient({
+  space: "021ulla0m5co",
+  accessToken:
+    "709d8f98e56158641d25ba23ceb57029ecc91e0a9a11f35fa6e0f666ffbeb4d0",
+  host: "preview.contentful.com"
+})
 
-router.route("/").get(async (req, res, next) => {
-  const url = `${BASE_URL}/spaces/${SPACE_ID}/entries?access_token=${ACCESS_TOKEN}&content_type=2wKn6yEnZewu2SCCkus4as`
+router.get("/", async (req, res, next) => {
   try {
-    const response = await axios.get(url)
-    res.json(response.data)
+    // we're using async functions here. It's a new JS feature.
+    // docs: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
+
+    const response = await client.getEntries({
+      content_type: "bill",
+      // for the index api call only return the title and video url
+      select: ["fields.title", "fields.video"]
+    })
+    res.json(response)
   } catch (error) {
     res.status(500)
     res.json(error)

@@ -16,7 +16,7 @@ class App extends Component {
     return (
       <Fragment>
         <Header />
-        <main className="container">
+        <main>
           <Switch>
             <Route path="/bills/:bill_id" component={Bill} />
             <Route path="/bill-intro" component={Game} />

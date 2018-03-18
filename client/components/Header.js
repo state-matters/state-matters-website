@@ -32,8 +32,8 @@ const StyledHeader = styled.header`
     justify-content: center;
     align-items: flex-end;
     margin-left: 3rem;
-    width: 3rem;
-    height: 4rem;
+    width: 2rem;
+    height: 2rem;
     span {
       display: block;
       margin-bottom: 0.5rem;
@@ -51,7 +51,7 @@ const StyledHeader = styled.header`
 `
 
 const Header = props => (
-  <StyledHeader>
+  <StyledHeader className="container">
     <img src="./assets/sm_logo.svg" alt="State Matters Logo" />
     <button className="btn primary donate">Donate</button>
     <span className="nav-menu">
