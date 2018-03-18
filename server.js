@@ -1,7 +1,8 @@
-var express = require("express")
-var app = express()
-var bodyParser = require("body-parser")
-var logger = require("morgan")
+const { join } = require("path")
+const express = require("express")
+const app = express()
+const bodyParser = require("body-parser")
+const logger = require("morgan")
 
 const index = require("./api/index")
 
