@@ -72,9 +72,9 @@ p {
 
 .container {
   width: 100%;
-  max-width: ${theme.breakPoints.xLg}px;
+  max-width: ${theme.breakPoints.xLg};
   margin: 0 auto;
-  padding: 0 ${theme.baseSize}px;
+  padding: 0 2rem;
 }
 
 a {

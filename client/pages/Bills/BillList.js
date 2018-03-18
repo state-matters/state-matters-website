@@ -2,13 +2,37 @@ import React from "react"
 import styled from "styled-components"
 import axios from "axios"
 
+const StyledBillList = styled.section`
+  padding-top: 10rem;
+`
+
+const StyledBill = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  video {
+    width: 40rem;
+    height: 40rem;
+    object-fit: cover;
+    overflow: hidden;
+  }
+  .video-info {
+    padding: 2rem;
+    max-width: 40rem;
+  }
+`
+
 const BillVideo = ({ bill }) => (
-  <div className="bill-video">
-    <video width="320" height="240">
+  <StyledBill>
+    <div className="video-info">
+      <p className="subtitle">featured videos</p>
+      <p className="title">{bill.fields.title}</p>
+      <p className="subtitle">{bill.fields.video.fields.description}</p>
+    </div>
+    <video controls poster="https://picsum.photos/200/300">
       <source src={bill.fields.video.fields.file.url} />
     </video>
-    <p className="title">{bill.fields.title}</p>
-  </div>
+  </StyledBill>
 )
 
 export default class BillList extends React.Component {
@@ -17,14 +41,13 @@ export default class BillList extends React.Component {
   }
   componentDidMount = _ => {
     axios("/api/bills").then(({ data }) => {
-      console.log(data)
+      // console.log(data)
       this.setState({ bills: data.items })
     })
   }
   render = _ => (
-    <section className="bill-list">
-      hello world
+    <StyledBillList className="container">
       {this.state.bills.map(bill => <BillVideo bill={bill} />)}
-    </section>
+    </StyledBillList>
   )
 }
