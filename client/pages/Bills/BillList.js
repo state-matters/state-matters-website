@@ -22,15 +22,15 @@ const StyledBill = styled.div`
   }
 `
 
-const BillVideo = ({ bill }) => (
+const BillVideo = ({ bill: { fields: { title, video } } }) => (
   <StyledBill>
     <div className="video-info">
       <p className="subtitle">featured videos</p>
-      <p className="title">{bill.fields.title}</p>
-      <p className="subtitle">{bill.fields.video.fields.description}</p>
+      <p className="title">{title}</p>
+      <p className="subtitle">{video.fields.description}</p>
     </div>
     <video controls poster="https://picsum.photos/200/300">
-      <source src={bill.fields.video.fields.file.url} />
+      <source src={video.fields.file.url} />
     </video>
   </StyledBill>
 )

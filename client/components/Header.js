@@ -11,9 +11,6 @@ const StyledHeader = styled.header`
   left: 0;
   right: 0;
   padding: 2rem;
-  width: 100%;
-  max-width: ${({ theme }) => theme.breakPoints.xLg};
-  margin: 0 auto;
   height: 10rem;
   align-items: center;
   z-index: 10;
