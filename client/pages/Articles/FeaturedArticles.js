@@ -8,7 +8,7 @@ class FeaturedArticles extends React.Component {
   componentDidMount() {
     axios("/api/articles").then(res => {
           document.data=res
-          this.setState({articles_data: res.data})
+          this.setState({articles_data: res.data.items})
     }
 
 
@@ -20,8 +20,8 @@ class FeaturedArticles extends React.Component {
         {this.state.articles_data.map(
           article => (
             <li>
-            {article.items.fields.title}
-            // {article.fields.title}
+            {JSON.stringify(article)}
+            {/* {article.fields.title} */}
             </li>)
         )}
       </ul>
