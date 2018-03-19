@@ -1,33 +1,42 @@
 import React from "react"
 import axios from "axios"
+import styled from "styled-components"
+
+const StyledArticle = styled.div``
+
+const Article = ({ article }) => (
+  <StyledArticle>
+    <h2 className="title">{article.fields.title}</h2>
+    {article.fields.contributor && (
+      <div className="author-card">
+        <span
+          className="author-photo"
+          style={{
+            background: `url(balh)`
+          }}
+        />
+        <p>{article.fields.contributor.fields.name}</p>
+      </div>
+    )}
+  </StyledArticle>
+)
 
 class FeaturedArticles extends React.Component {
   state = {
-    articles_data: []
+    article_list: []
   }
   componentDidMount() {
-    axios("/api/articles").then(res => {
-          document.data=res
-          this.setState({articles_data: res.data.items})
-    }
-
-
-    )
+    axios("/api/articles").then(({ data }) => {
+      document.data = data
+      this.setState({ article_list: data.items })
+    })
   }
-  render(){
-    return(
+  render() {
+    return (
       <ul>
-        {this.state.articles_data.map(
-          article => (
-            <li>
-            {JSON.stringify(article)}
-            {/* {article.fields.title} */}
-            </li>)
-        )}
+        {this.state.article_list.map(article => <Article article={article} />)}
       </ul>
-
     )
-
   }
 }
 
