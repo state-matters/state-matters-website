@@ -4,6 +4,7 @@ import axios from "axios"
 import { connect } from "react-redux"
 import { getAllBills, changeSelectedVideo } from "ducks/bills"
 import Loader from "components/Loader"
+import { Grid, Columns } from "components/Grid"
 
 const StyledBillList = styled.section`
   padding-top: 10rem;
@@ -67,22 +68,26 @@ class BillList extends React.Component {
     if (!loaded) return <Loader />
     return (
       <StyledBillList className="container">
-        <p className="subtitle">Track Your Bills</p>
-        <MainVideo bills={bills} selected={selectedId} />
-        <div className="next-up">
-          {idList.map(id => (
-            <div
-              className={`video ${id === selectedId ? "active" : ""}`}
-              key={id}
-              onClick={e => changeSelectedVideo(id)}
-              style={{
-                backgroundImage: `url(${
-                  bills[id].fields.poster.fields.file.url
-                })`
-              }}
-            />
-          ))}
-        </div>
+        <Grid>
+          <Columns span={12}>
+            <p className="subtitle">Track Your Bills</p>
+            <MainVideo bills={bills} selected={selectedId} />
+            <div className="next-up">
+              {idList.map(id => (
+                <div
+                  className={`video ${id === selectedId ? "active" : ""}`}
+                  key={id}
+                  onClick={e => changeSelectedVideo(id)}
+                  style={{
+                    backgroundImage: `url(${
+                      bills[id].fields.poster.fields.file.url
+                    })`
+                  }}
+                />
+              ))}
+            </div>
+          </Columns>
+        </Grid>
       </StyledBillList>
     )
   }
