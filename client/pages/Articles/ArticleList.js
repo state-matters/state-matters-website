@@ -21,7 +21,7 @@ const Article = ({ article }) => (
   </StyledArticle>
 )
 
-class FeaturedArticles extends React.Component {
+class ArticleList extends React.Component {
   state = {
     article_list: []
   }
@@ -40,4 +40,4 @@ class FeaturedArticles extends React.Component {
   }
 }
 
-export default FeaturedArticles
+export default ArticleList
