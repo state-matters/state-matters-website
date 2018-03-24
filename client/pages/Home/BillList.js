@@ -47,6 +47,7 @@ class MainVideo extends React.Component {
     return (
       <div className="main-video">
         <video
+          controls
           id="video"
           ref={node => (this.video = node)}
           poster={bills[selected].fields.poster.fields.file.url}
