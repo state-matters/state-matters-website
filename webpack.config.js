@@ -42,6 +42,9 @@ module.exports = {
     })
   ],
   resolve: {
-    alias: { ducks: path.resolve(__dirname, "client/ducks/") }
+    alias: {
+      ducks: path.resolve(__dirname, "client/ducks/"),
+      components: path.resolve(__dirname, "client/components/")
+    }
   }
 }
