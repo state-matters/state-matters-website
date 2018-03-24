@@ -20,7 +20,7 @@ body {
 
 body {
   position: relative;
-  margin: 0;
+  margin: 0;.skdjflwkjflsjdf
   padding: 0;
   background-color: ${theme.colors.ui.light};
   color: ${theme.colors.ui.dark};
@@ -72,7 +72,7 @@ p {
 
 .container {
   width: 100%;
-  max-width: ${theme.breakPoints.xLg};
+  max-width: ${theme.breakPoints.lg};
   margin: 0 auto;
   padding: 0 2rem;
 }

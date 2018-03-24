@@ -1,6 +1,7 @@
 const router = require("express").Router()
 const axios = require("axios")
 const contentful = require("contentful")
+const { normalize, schema } = require("normalizr")
 
 const client = contentful.createClient({
   space: "021ulla0m5co",
@@ -9,21 +10,37 @@ const client = contentful.createClient({
   host: "preview.contentful.com"
 })
 
-router.get("/", async (req, res, next) => {
-  try {
-    // we're using async functions here. It's a new JS feature.
-    // docs: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
+router
+  .get("/", async (req, res, next) => {
+    try {
+      // we're using async functions here. It's a new JS feature.
+      // docs: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
 
-    const response = await client.getEntries({
-      content_type: "bill",
-      // for the index api call only return the title and video url
-      select: ["fields.title", "fields.video"]
-    })
-    res.json(response)
-  } catch (error) {
-    res.status(500)
-    res.json(error)
-  }
-})
+      const response = await client.getEntries({
+        content_type: "bill",
+        // for the index api call only return the title and video url
+        select: "sys.id,fields.title,fields.video,fields.poster"
+      })
+      console.log(response.items)
+      // Here we normalize the data.
+      const video = new schema.Entity("videos")
+      const bill = new schema.Entity("bills", undefined, {
+        idAttribute: v => v.sys.id
+      })
+      const normalizedData = normalize(response.items, [bill])
+      res.json(normalizedData)
+    } catch (error) {
+      res.status(400)
+      res.json(error)
+    }
+  })
+  .get("/:bill_id", async (req, res, next) => {
+    try {
+      const repsonse = await client.getEntry(req.params.bill_id)
+    } catch (error) {
+      res.status(400)
+      res.json(error)
+    }
+  })
 
 module.exports = router
