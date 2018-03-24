@@ -40,5 +40,8 @@ module.exports = {
       template: "./client/index.html",
       filename: path.join(__dirname, "public/index.html")
     })
-  ]
+  ],
+  resolve: {
+    alias: { ducks: path.resolve(__dirname, "client/ducks/") }
+  }
 }

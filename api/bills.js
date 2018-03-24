@@ -1,6 +1,7 @@
 const router = require("express").Router()
 const axios = require("axios")
 const contentful = require("contentful")
+const { normalize, schema } = require("normalizr")
 
 const client = contentful.createClient({
   space: "021ulla0m5co",
@@ -20,7 +21,14 @@ router
         // for the index api call only return the title and video url
         select: "sys.id,fields.title,fields.video"
       })
-      res.json(response)
+      console.log(response.items)
+      // Here we normalize the data.
+      const video = new schema.Entity("videos")
+      const bill = new schema.Entity("bills", undefined, {
+        idAttribute: v => v.sys.id
+      })
+      const normalizedData = normalize(response.items, [bill])
+      res.json(normalizedData)
     } catch (error) {
       res.status(400)
       res.json(error)

@@ -2,12 +2,12 @@ import React from "react"
 import styled from "styled-components"
 import axios from "axios"
 import { connect } from "react-redux"
-import { getBills } from "../../ducks/bills"
+import { getAllBills } from "ducks/bills"
 
 const StyledBillList = styled.section`
   padding-top: 10rem;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr) 4em;
   .bill-video {
     width: 40rem;
     height: 40rem;
@@ -16,40 +16,46 @@ const StyledBillList = styled.section`
   }
 `
 
-const BillVideo = ({ bill: { fields: { title, video } } }) => (
+const BillVideo = ({ video }) => (
   <video controls poster="https://picsum.photos/200/300" className="bill-video">
     <source src={video.fields.file.url} />
   </video>
 )
 
+const NextVideo = ({ video }) => <div className="next-video" />
+
+const Loader = props => <div className="loader">loading...</div>
+
 class BillList extends React.Component {
   state = {
-    selectedBillIndex: 0
+    selectedBillIndex: this.props.selectedId || undefined
   }
-  componentDidMount = _ => this.props.getBills()
-  render = _ => (
-    <StyledBillList className="container">
-      {Object.keys(this.props.bills).length > 0 && (
-        <React.Fragment>
-          <div className="bill-info">
-            <p className="subtitle">featured videos</p>
-            <p className="title">
-              {this.props.bills[this.state.selectedBillIndex].fields.title}
-            </p>
-          </div>
-          <BillVideo
-            bill={this.props.bills[this.state.selectedBillIndex]}
-            className="bill-list__bill"
-          />
-        </React.Fragment>
-      )}
-    </StyledBillList>
-  )
+  componentDidMount = _ => this.props.getAllBills()
+  render() {
+    const { props: { loaded, selectedId, bills }, state } = this
+
+    if (!loaded) return <Loader />
+    return (
+      <StyledBillList className="container">
+        <div className="bill-info">
+          <p className="subtitle">featured videos</p>
+          <p className="title">{bills[selectedId].fields.title}</p>
+        </div>
+        <BillVideo
+          video={bills[selectedId].fields.video}
+          className="bill-list__bill"
+        />
+        <NextVideo video={{}} />
+      </StyledBillList>
+    )
+  }
 }
 
 export default connect(
-  state => ({
-    bills: state.bills
+  ({ bills: { items, loaded, selectedId } }) => ({
+    loaded,
+    selectedId,
+    bills: items
   }),
-  { getBills }
+  { getAllBills }
 )(BillList)

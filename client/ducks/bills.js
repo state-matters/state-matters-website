@@ -1,35 +1,43 @@
 import axios from "axios"
+import { normalize, schema } from "normalizr"
 
-const PLAY_VIDEO = "state_matters/bills/PLAY_VIDEO"
-const GET_BILLS = "state_matters/bills/GET_BILLS"
-const GET_BILLS_SUCCESS = "state_matters/bills/GET_BILLS_SUCCESS"
-const GET_BILLS_FAIL = "state_matters/bills/GET_BILLS_FAIL"
+export const GET_BILLS = "state_matters/bills/GET_BILLS"
+export const GET_BILLS_SUCCESS = "state_matters/bills/GET_BILLS_SUCCESS"
+export const GET_BILLS_FAIL = "state_matters/bills/GET_BILLS_FAIL"
+export const NEXT_BILL = "state_matters/bills/NEXT_BILL"
 
-const intialState = []
+const intialState = {
+  loaded: false,
+  items: null,
+  selectedId: null
+}
 
 export default function reducer(state = intialState, action) {
   switch (action.type) {
-    case PLAY_VIDEO:
-      return state
     case GET_BILLS_SUCCESS:
+      return { ...state, ...action.payload }
+    case NEXT_BILL:
       return {
         ...state,
-        ...action.payload
+        selectedId: action.payload
       }
     default:
       return state
   }
 }
 
-export const getBills = _ => async dispatch => {
+export const getAllBills = _ => async dispatch => {
   dispatch({ type: GET_BILLS })
-  console.log("get bills")
   try {
-    const { data: { items } } = await axios("/api/bills")
-    console.log(items)
+    const { data: { entities, result } } = await axios("/api/bills")
     dispatch({
       type: GET_BILLS_SUCCESS,
-      payload: items
+      payload: {
+        items: entities.bills,
+        loaded: true,
+        selectedId: result[0],
+        result
+      }
     })
   } catch (err) {
     dispatch({
@@ -39,6 +47,7 @@ export const getBills = _ => async dispatch => {
   }
 }
 
-export const playVideo = _ => ({
-  type: PLAY_VIDEO
+export const nextBill = id => ({
+  type: NEXT_BILL,
+  payload: id
 })

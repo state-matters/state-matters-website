@@ -1,20 +1,12 @@
 {
-  "presets": [
-    [
-      "env",
-      {
-        "targets": {
-          "browsers": ["last 2 Chrome versions"]
-        }
-      }
-    ],
-    "react"
-  ],
+  "presets": ["env", "react", "stage-0"],
   "plugins": [
-    "transform-class-properties",
-    "transform-decorators",
-    "transform-react-constant-elements",
-    "transform-react-inline-elements",
-    "transform-object-rest-spread"
+    [
+      "transform-runtime",
+      {
+        "polyfill": false,
+        "regenerator": true
+      }
+    ]
   ]
 }
