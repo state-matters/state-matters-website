@@ -4,19 +4,20 @@ import { normalize, schema } from "normalizr"
 export const GET_BILLS = "state_matters/bills/GET_BILLS"
 export const GET_BILLS_SUCCESS = "state_matters/bills/GET_BILLS_SUCCESS"
 export const GET_BILLS_FAIL = "state_matters/bills/GET_BILLS_FAIL"
-export const NEXT_BILL = "state_matters/bills/NEXT_BILL"
+export const CHANGE_SELECTION = "state_matters/bills/CHANGE_SELECTION"
 
 const intialState = {
   loaded: false,
   items: null,
-  selectedId: null
+  selectedId: null,
+  idList: []
 }
 
 export default function reducer(state = intialState, action) {
   switch (action.type) {
     case GET_BILLS_SUCCESS:
       return { ...state, ...action.payload }
-    case NEXT_BILL:
+    case CHANGE_SELECTION:
       return {
         ...state,
         selectedId: action.payload
@@ -36,7 +37,7 @@ export const getAllBills = _ => async dispatch => {
         items: entities.bills,
         loaded: true,
         selectedId: result[0],
-        result
+        idList: result
       }
     })
   } catch (err) {
@@ -47,7 +48,7 @@ export const getAllBills = _ => async dispatch => {
   }
 }
 
-export const nextBill = id => ({
-  type: NEXT_BILL,
+export const changeSelectedVideo = id => ({
+  type: CHANGE_SELECTION,
   payload: id
 })
