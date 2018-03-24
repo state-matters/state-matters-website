@@ -19,7 +19,7 @@ router
       const response = await client.getEntries({
         content_type: "bill",
         // for the index api call only return the title and video url
-        select: "sys.id,fields.title,fields.video"
+        select: "sys.id,fields.title,fields.video,fields.poster"
       })
       console.log(response.items)
       // Here we normalize the data.
