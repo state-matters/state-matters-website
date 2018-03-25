@@ -6,6 +6,7 @@ module.exports = {
     contentBase: path.resolve(__dirname, "public"),
     compress: true,
     port: 3000,
+    historyApiFallback: true,
     proxy: {
       "/api": "http://localhost:8080"
     }
@@ -14,6 +15,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "public"),
     filename: "state_matters.bundle.js"
+    // publicPath: path.resolve(__dirname, "public")
   },
   module: {
     rules: [
