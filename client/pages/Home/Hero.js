@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 import { ChevronRight } from "react-feather"
-import { Grid, Columns } from "components/Grid"
+import { Grid, Column } from "components/Grid"
 
 const Wrapper = styled.section`
   position: relative;
@@ -32,14 +32,14 @@ const Wrapper = styled.section`
 export default props => {
   return (
     <Wrapper>
-      <Grid>
-        <Columns span={6} offset={2}>
+      <Grid container>
+        <Column span={8} offset={2}>
           <h2>
             We create video content and briefs on the most pressing political
             issues & laws that affect you.
           </h2>
           <Link to="/about">Learn more about us</Link>
-        </Columns>
+        </Column>
       </Grid>
     </Wrapper>
   )

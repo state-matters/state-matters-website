@@ -1,11 +1,11 @@
 import React from "react"
 import styled from "styled-components"
 import { connect } from "react-redux"
-import Helmet from "react-helmet"
 
 import { handleSubscribe } from "ducks/subscriptions"
 import SubscriptionForm from "components/SubscriptionForm"
 import Text from "components/Text"
+import { Grid, Column } from "components/Grid"
 
 import ArticleList from "./ArticleList"
 import BillList from "./BillList"
@@ -28,9 +28,20 @@ class Home extends React.Component {
   render = _ => {
     return (
       <React.Fragment>
-        <Helmet title="State Matters | Track your state government" />
         <Hero />
         <BillList />
+        <section className="how-it-works">
+          <Grid container>
+            <Column offset={2} span={8}>
+              <h2>State government can be confusing. We've got you covered.</h2>
+              <ul>
+                <li>Contact Us</li>
+                <li>Subscribe to Our Newsletter</li>
+                <li>Dontate</li>
+              </ul>
+            </Column>
+          </Grid>
+        </section>
         <ArticleList />
       </React.Fragment>
     )

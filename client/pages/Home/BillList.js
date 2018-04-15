@@ -4,13 +4,12 @@ import axios from "axios"
 import { connect } from "react-redux"
 import { getAllBills, changeSelectedVideo } from "ducks/bills"
 import Loader from "components/Loader"
-import { Grid, Columns } from "components/Grid"
+import { Grid, Column } from "components/Grid"
 import Video from "components/Video"
 
-const StyledBillList = styled.section`
+const StyledBillList = styled(Grid)`
   padding-top: 10rem;
   margin: 0 auto;
-  max-width: ${({ theme }) => theme.breakPoints.md};
   .bill-video {
     margin-bottom: 2rem;
     box-shadow: 1rem 1rem 0 0 rgba(243, 126, 90, 0.24);
@@ -40,33 +39,31 @@ class BillList extends React.Component {
     } = this
     if (!loaded) return <Loader />
     return (
-      <StyledBillList className="container">
-        <Grid>
-          <Columns span={12}>
-            <p className="subtitle">Track Your Bills</p>
-            <div className="main-video">
-              <Video
-                className="bill-video"
-                poster={bills[selectedId].fields.poster.fields.file.url}
-                url={bills[selectedId].fields.video.fields.file.url}
+      <StyledBillList container>
+        <Column offset={1} span={10}>
+          <p className="subtitle">Track Your Bills</p>
+          <div className="main-video">
+            <Video
+              className="bill-video"
+              poster={bills[selectedId].fields.poster.fields.file.url}
+              url={bills[selectedId].fields.video.fields.file.url}
+            />
+          </div>
+          <div className="next-up">
+            {idList.map(id => (
+              <div
+                className={`video ${id === selectedId ? "active" : ""}`}
+                key={id}
+                onClick={e => changeSelectedVideo(id)}
+                style={{
+                  backgroundImage: `url(${
+                    bills[id].fields.poster.fields.file.url
+                  })`
+                }}
               />
-            </div>
-            <div className="next-up">
-              {idList.map(id => (
-                <div
-                  className={`video ${id === selectedId ? "active" : ""}`}
-                  key={id}
-                  onClick={e => changeSelectedVideo(id)}
-                  style={{
-                    backgroundImage: `url(${
-                      bills[id].fields.poster.fields.file.url
-                    })`
-                  }}
-                />
-              ))}
-            </div>
-          </Columns>
-        </Grid>
+            ))}
+          </div>
+        </Column>
       </StyledBillList>
     )
   }
