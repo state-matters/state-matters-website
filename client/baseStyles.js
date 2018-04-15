@@ -20,11 +20,11 @@ body {
 
 body {
   position: relative;
-  margin: 0;.skdjflwkjflsjdf
+  margin: 0;
   padding: 0;
   background-color: ${theme.colors.ui.light};
   color: ${theme.colors.ui.dark};
-  font-family: ${theme.fontFamily};
+  font-family: "Poppins", Arial, sans-serif;
   font-size: 1.5rem; // 18px
   line-height: 1.33333; // 24px
   overflow-x: hidden;
@@ -34,35 +34,31 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: "Poppins", sans-serif;
+  font-family: "Martel", serif;
 }
 
 h1,
 .hero {
-  font-size: 6rem;
-  font-weight: 900;
+  font-size: 5rem;
+  font-weight: 200;
 }
 
 h2,
 .headline {
-  font-size: 4rem;
-  font-weight: 700;
+  font-size: 3.5rem;
+  font-weight: 300;
 }
 
 h3,
 .title {
   font-size: 3rem;
-  font-weight: 700;
+  font-weight: 300;
 }
 
 h4,
 .subtitle {
-  font-weight: 600;
   font-size: 1.5rem;
-}
-
-p {
-  font-size: 1.5rem;
+  font-weight: 200;
 }
 
 .small {
@@ -72,13 +68,14 @@ p {
 
 .container {
   width: 100%;
-  max-width: ${theme.breakPoints.lg};
+  max-width: 105rem;
   margin: 0 auto;
   padding: 0 2rem;
 }
 
 a {
   position: relative;
+  display: inline-block;
   font-weight: 600;
   color: ${theme.colors.accent.main};
   transition: 200ms;
@@ -131,16 +128,10 @@ a:hover:after {
 @media (min-width: ${theme.breakPoints.sm}) {
 }
 
-@media (min-width: ${theme.breakPoints.md}) {
-  h1 {
-    font-size: 2.5rem;
-  }
-}
-
 @media (min-width: ${theme.breakPoints.lg}) {
 }
 
-@media (min-width: ${theme.breakPoints.xLg}) {
+@media (min-width: 105rem) {
   .container {
     padding: 0;
   }
