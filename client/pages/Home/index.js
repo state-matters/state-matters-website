@@ -3,35 +3,13 @@ import styled from "styled-components"
 import { connect } from "react-redux"
 import Helmet from "react-helmet"
 
-import { handleSubscribe } from "../../ducks/subscriptions"
+import { handleSubscribe } from "ducks/subscriptions"
+import SubscriptionForm from "components/SubscriptionForm"
+import Text from "components/Text"
 
-import SubscriptionForm from "../../components/SubscriptionForm"
-import Text from "../../components/Text"
-import ArticleList from "../Articles/ArticleList"
+import ArticleList from "./ArticleList"
 import BillList from "./BillList"
-
-const Hero = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  background-color: ${({ theme }) => theme.colors.ui.dark};
-  height: calc(100vh - 3rem);
-  max-height: ${({ theme }) => theme.breakPoints.xSm};
-  z-index: -1;
-  &:after {
-    content: "";
-    position: absolute;
-    top: 48%;
-    right: 0;
-    border-radius: 50%;
-    background-color: ${({ theme }) => theme.colors.ui.semiLight};
-    height: 50rem;
-    width: 50rem;
-    transform: translateX(36%);
-  }
-  }
-`
+import Hero from "./Hero"
 
 class Home extends React.Component {
   state = {
