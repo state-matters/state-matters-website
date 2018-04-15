@@ -49,7 +49,7 @@ const StyledHeader = styled.header`
 
 const Header = props => (
   <StyledHeader className="container">
-    <img src="./assets/sm_logo.svg" alt="State Matters Logo" />
+    <img src="./assets/SM-logo.svg" alt="State Matters Logo" />
     <button className="btn primary donate">Donate</button>
     <span className="nav-menu">
       <span />
