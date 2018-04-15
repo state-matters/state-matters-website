@@ -11,10 +11,9 @@ const client = contentful.createClient({
 
 router.get("/", async (req, res, next) => {
   try {
-    const response =  await client.getEntries({
+    const response = await client.getEntries({
       content_type: "article",
-      // for the index we just want title and author
-      select: ["fields.title", "fields.contributor"]
+      select: "sys.id,fields.title,fields.contributor"
     })
     res.json(response)
   } catch (error) {
@@ -22,7 +21,5 @@ router.get("/", async (req, res, next) => {
     res.json(error)
   }
 })
-
-
 
 module.exports = router
