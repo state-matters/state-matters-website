@@ -6,7 +6,7 @@ import { createStore, combineReducers, applyMiddleware } from "redux"
 import thunk from "redux-thunk"
 import { Provider } from "react-redux"
 import { ThemeProvider } from "styled-components"
-import { bills, subscriptions } from "./ducks"
+import { bills, subscriptions, articles } from "./ducks"
 import theme from "./theme"
 import baseStyles from "./baseStyles"
 
@@ -14,7 +14,8 @@ import App from "./App"
 
 const reducers = combineReducers({
   bills,
-  subscriptions
+  subscriptions,
+  articles
 })
 
 const store = createStore(reducers, applyMiddleware(thunk))
