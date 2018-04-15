@@ -1,43 +1,77 @@
 import React from "react"
-import axios from "axios"
+import { connect } from "react-redux"
 import styled from "styled-components"
+import { Grid, Column } from "components/Grid"
+import { getArticles } from "ducks/articles"
 
-const StyledArticle = styled.div``
+const ArticleListWrapper = styled(Grid)`
+  .small-article-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 2rem;
+  }
+  .small-article {
+    grid-column: span 2;
+  }
+`
 
-const Article = ({ article }) => (
-  <StyledArticle>
-    <h2 className="title">{article.fields.title}</h2>
-    {article.fields.contributor && (
-      <div className="author-card">
-        <span
-          className="author-photo"
-          style={{
-            background: `url(balh)`
-          }}
-        />
-        <p>{article.fields.contributor.fields.name}</p>
-      </div>
+const StyledArticle = styled.article`
+  position: relative;
+  .article-image {
+    padding-bottom: 62.5%;
+    background-color: ${({ theme }) => theme.colors.primary.semiDark};
+  }
+`
+
+const Article = ({ article, className }) => (
+  <StyledArticle className={className}>
+    <div className="article-image" />
+    <h4>{article.title}</h4>
+    {article.contributor && (
+      <p className="contributor">{article.contributor.fields.name}</p>
     )}
   </StyledArticle>
 )
 
 class ArticleList extends React.Component {
-  state = {
-    article_list: []
-  }
-  componentDidMount() {
-    axios("/api/articles").then(({ data }) => {
-      document.data = data
-      this.setState({ article_list: data.items })
-    })
-  }
-  render() {
+  componentDidMount = () => this.props.getArticles()
+
+  render = () => {
+    const head = this.props.articles[0]
+    const tail = this.props.articles.slice(1)
+    console.log(head, tail)
     return (
-      <ul>
-        {this.state.article_list.map(article => <Article article={article} />)}
-      </ul>
+      <ArticleListWrapper container>
+        <Column>
+          <h3>Articles</h3>
+        </Column>
+        {this.props.loaded ? (
+          <React.Fragment>
+            <Column span={6}>
+              <Article key={head.sys.id} article={head.fields} />
+            </Column>
+            <Column span={6} className="small-article-grid">
+              {tail.map(article => (
+                <Article
+                  key={article.sys.id}
+                  article={article.fields}
+                  className="small-article"
+                />
+              ))}
+            </Column>
+          </React.Fragment>
+        ) : (
+          <p>loading...</p>
+        )}
+      </ArticleListWrapper>
     )
   }
 }
 
-export default ArticleList
+export default connect(
+  ({ articles: { items, loaded } }) => ({
+    articles: items,
+    loaded
+  }),
+  { getArticles }
+)(ArticleList)
