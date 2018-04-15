@@ -13,8 +13,8 @@ export const Grid = styled.section.attrs({
 `
 
 export const Column = styled.div.attrs({
-  offset: ({ offset }) => (offset ? offset + 1 : 1),
   span: ({ span }) => (span ? span : 12)
 })`
-  grid-column: ${({ span, offset }) => ` ${offset} / span ${span}`};
+  grid-column: ${({ span, offset }) =>
+    offset ? ` ${offset + 1} / span ${span}` : `span ${span}`};
 `
