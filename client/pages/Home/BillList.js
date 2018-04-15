@@ -5,15 +5,13 @@ import { connect } from "react-redux"
 import { getAllBills, changeSelectedVideo } from "ducks/bills"
 import Loader from "components/Loader"
 import { Grid, Columns } from "components/Grid"
+import Video from "components/Video"
 
 const StyledBillList = styled.section`
   padding-top: 10rem;
   margin: 0 auto;
   max-width: ${({ theme }) => theme.breakPoints.md};
   .bill-video {
-    display: block;
-    width: 100%;
-    object-fit: cover;
     margin-bottom: 2rem;
     box-shadow: 1rem 1rem 0 0 rgba(243, 126, 90, 0.24);
   }
@@ -34,32 +32,6 @@ const StyledBillList = styled.section`
   }
 `
 
-class MainVideo extends React.Component {
-  componentDidUpdate = prevProps => {
-    if (prevProps.selected !== this.props.selected) {
-      this.video.load()
-    }
-  }
-  node = null
-  render = _ => {
-    const { bills, selected } = this.props
-    const billVideo = bills[selected].fields.video
-    return (
-      <div className="main-video">
-        <video
-          controls
-          id="video"
-          ref={node => (this.video = node)}
-          poster={bills[selected].fields.poster.fields.file.url}
-          className="bill-video"
-        >
-          <source src={billVideo.fields.file.url} />
-        </video>
-      </div>
-    )
-  }
-}
-
 class BillList extends React.Component {
   componentDidMount = _ => this.props.getAllBills()
   render() {
@@ -72,7 +44,13 @@ class BillList extends React.Component {
         <Grid>
           <Columns span={12}>
             <p className="subtitle">Track Your Bills</p>
-            <MainVideo bills={bills} selected={selectedId} />
+            <div className="main-video">
+              <Video
+                className="bill-video"
+                poster={bills[selectedId].fields.poster.fields.file.url}
+                url={bills[selectedId].fields.video.fields.file.url}
+              />
+            </div>
             <div className="next-up">
               {idList.map(id => (
                 <div

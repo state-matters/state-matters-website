@@ -7,10 +7,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
     "start": "node server.js",
+    "start:dev":
+      "concurrently --kill-others \"npm run server\" \"npm run client\"",
     "build": "webpack --mode production",
     "server": "nodemon --ignore 'client/**' server.js",
     "client": "webpack-dev-server --mode development --open",
-    "dev": "concurrently --kill-others \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "npm run build"
   },
   "keywords": [],
@@ -38,6 +39,7 @@
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-feather": "^1.0.8",
     "react-helmet": "^5.2.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",

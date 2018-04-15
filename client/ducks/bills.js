@@ -1,9 +1,9 @@
 import axios from "axios"
 import { normalize, schema } from "normalizr"
 
-export const GET_BILLS = "state_matters/bills/GET_BILLS"
-export const GET_BILLS_SUCCESS = "state_matters/bills/GET_BILLS_SUCCESS"
-export const GET_BILLS_FAIL = "state_matters/bills/GET_BILLS_FAIL"
+export const GET_ALL_BILLS = "state_matters/bills/GET_BILLS"
+export const GET_ALL_BILLS_SUCCESS = "state_matters/bills/GET_BILLS_SUCCESS"
+export const GET_ALL_BILLS_FAIL = "state_matters/bills/GET_BILLS_FAIL"
 export const CHANGE_SELECTION = "state_matters/bills/CHANGE_SELECTION"
 
 const intialState = {
@@ -15,7 +15,7 @@ const intialState = {
 
 export default function reducer(state = intialState, action) {
   switch (action.type) {
-    case GET_BILLS_SUCCESS:
+    case GET_ALL_BILLS_SUCCESS:
       return { ...state, ...action.payload }
     case CHANGE_SELECTION:
       return {
@@ -28,11 +28,11 @@ export default function reducer(state = intialState, action) {
 }
 
 export const getAllBills = _ => async dispatch => {
-  dispatch({ type: GET_BILLS })
+  dispatch({ type: GET_ALL_BILLS })
   try {
     const { data: { entities, result } } = await axios("/api/bills")
     dispatch({
-      type: GET_BILLS_SUCCESS,
+      type: GET_ALL_BILLS_SUCCESS,
       payload: {
         items: entities.bills,
         loaded: true,
@@ -42,7 +42,7 @@ export const getAllBills = _ => async dispatch => {
     })
   } catch (err) {
     dispatch({
-      type: GET_BILLS_FAIL,
+      type: GET_ALL_BILLS_FAIL,
       payload: err
     })
   }
