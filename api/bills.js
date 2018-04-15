@@ -27,18 +27,17 @@ router
         idAttribute: v => v.sys.id
       })
       const normalizedData = normalize(response.items, [bill])
-      res.json(normalizedData)
+      res.status(200).json(normalizedData)
     } catch (error) {
-      res.status(400)
-      res.json(error)
+      res.status(400).json(error)
     }
   })
   .get("/:bill_id", async (req, res, next) => {
     try {
       const repsonse = await client.getEntry(req.params.bill_id)
+      res.status(200).json(response)
     } catch (error) {
-      res.status(400)
-      res.json(error)
+      res.status(400).json(error)
     }
   })
 
