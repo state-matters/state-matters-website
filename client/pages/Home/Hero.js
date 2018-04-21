@@ -33,7 +33,7 @@ export default props => {
   return (
     <Wrapper>
       <Grid container>
-        <Column span={8} offset={2}>
+        <Column span={8} offset={1}>
           <h2>
             We create video content and briefs on the most pressing political
             issues & laws that affect you.

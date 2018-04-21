@@ -41,7 +41,7 @@ class BillList extends React.Component {
     return (
       <StyledBillList container>
         <Column offset={1} span={10}>
-          <p className="subtitle">Track Your Bills</p>
+          <h4>Featured Videos</h4>
           <div className="main-video">
             <Video
               className="bill-video"

@@ -39,18 +39,17 @@ class ArticleList extends React.Component {
   render = () => {
     const head = this.props.articles[0]
     const tail = this.props.articles.slice(1)
-    console.log(head, tail)
     return (
       <ArticleListWrapper container>
-        <Column>
-          <h3>Articles</h3>
+        <Column offset={1} span={10}>
+          <h4>Featured Articles</h4>
         </Column>
         {this.props.loaded ? (
           <React.Fragment>
-            <Column span={6}>
+            <Column span={5} offset={1}>
               <Article key={head.sys.id} article={head.fields} />
             </Column>
-            <Column span={6} className="small-article-grid">
+            <Column span={5} className="small-article-grid">
               {tail.map(article => (
                 <Article
                   key={article.sys.id}

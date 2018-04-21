@@ -7,9 +7,10 @@ import SubscriptionForm from "components/SubscriptionForm"
 import Text from "components/Text"
 import { Grid, Column } from "components/Grid"
 
-import ArticleList from "./ArticleList"
-import BillList from "./BillList"
 import Hero from "./Hero"
+import BillList from "./BillList"
+import ArticleList from "./ArticleList"
+import LessonList from "./LessonList"
 
 class Home extends React.Component {
   state = {
@@ -21,7 +22,6 @@ class Home extends React.Component {
   }
   handleSubmit = e => {
     e.preventDefault()
-    console.log(this.state.form)
     this.props.handleSubscribe(this.state.form)
   }
 
@@ -43,6 +43,7 @@ class Home extends React.Component {
           </Grid>
         </section>
         <ArticleList />
+        <LessonList />
       </React.Fragment>
     )
   }
