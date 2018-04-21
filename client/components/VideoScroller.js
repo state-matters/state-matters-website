@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
+import { ChevronLeft, ChevronRight } from "react-feather"
 import Video from "./Video"
 import { Grid, Column } from "./Grid"
 
@@ -60,28 +61,36 @@ export default class VideoScroller extends React.Component {
   }
   render = _ => {
     return (
-      <StyledScroller
-        translate={this.state.translate}
-        ref={node => (this.scrollerNode = node)}
-        className={this.props.className}
-      >
-        {this.props.videos.map((video, i) => (
-          <div
-            key={video.url}
-            className="outer-wrapper"
-            onClick={e => this.handleVideoSelect(e, i)}
-            className={
-              i === this.state.selected
-                ? "selected outer-wrapper"
-                : "outer-wrapper"
-            }
-          >
-            <div className="inner-wrapper">
-              <Video className="video" url={video.url} poster={video.poster} />
+      <React.Fragment>
+        <StyledScroller
+          translate={this.state.translate}
+          ref={node => (this.scrollerNode = node)}
+          className={this.props.className}
+        >
+          {this.props.videos.map((video, i) => (
+            <div
+              key={video.url}
+              className="outer-wrapper"
+              onClick={e => this.handleVideoSelect(e, i)}
+              className={
+                i === this.state.selected
+                  ? "selected outer-wrapper"
+                  : "outer-wrapper"
+              }
+            >
+              <div className="inner-wrapper">
+                <Video
+                  className="video"
+                  url={video.url}
+                  poster={video.poster}
+                />
+              </div>
             </div>
-          </div>
-        ))}
-      </StyledScroller>
+          ))}
+        </StyledScroller>
+        {/* <ChevronLeft onClick={e => console.log(this.state.selected - 1)} />
+        <ChevronRight onClick={e => console.log(this.state.selected + 1)} /> */}
+      </React.Fragment>
     )
   }
 }
