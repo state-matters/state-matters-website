@@ -13,9 +13,8 @@ router.get("/", async (req, res, next) => {
   try {
     const lessons = await client.getEntries({
       content_type: "lesson",
-      select: "sys.id,fields.title,fields.video,fields.poster"
+      select: "sys.id,fields.title,fields.video"
     })
-    console.log(lessons)
     res.status(200).json(lessons)
   } catch (err) {
     res.status(400).json({ message: "something went wrong" })

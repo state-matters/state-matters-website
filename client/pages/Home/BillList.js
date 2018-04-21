@@ -8,8 +8,8 @@ import { Grid, Column } from "components/Grid"
 import Video from "components/Video"
 
 const StyledBillList = styled(Grid)`
-  padding-top: 10rem;
-  margin: 0 auto;
+  margin-top: 10rem;
+  margin-bottom: 10rem;
   .bill-video {
     margin-bottom: 2rem;
     box-shadow: 1rem 1rem 0 0 rgba(243, 126, 90, 0.24);
@@ -40,7 +40,7 @@ class BillList extends React.Component {
     if (!loaded) return <Loader />
     return (
       <StyledBillList container>
-        <Column offset={1} span={10}>
+        <Column sm={12}>
           <h4>Featured Videos</h4>
           <div className="main-video">
             <Video

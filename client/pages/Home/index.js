@@ -6,11 +6,26 @@ import { handleSubscribe } from "ducks/subscriptions"
 import SubscriptionForm from "components/SubscriptionForm"
 import Text from "components/Text"
 import { Grid, Column } from "components/Grid"
+import Modal from "components/Modal"
 
 import Hero from "./Hero"
 import BillList from "./BillList"
 import ArticleList from "./ArticleList"
 import LessonList from "./LessonList"
+
+const AboutUs = styled.section`
+  margin-top: 10rem;
+  margin-bottom: 10rem;
+  text-align: center;
+  .links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: space-around;
+  }
+`
 
 class Home extends React.Component {
   state = {
@@ -30,18 +45,21 @@ class Home extends React.Component {
       <React.Fragment>
         <Hero />
         <BillList />
-        <section className="how-it-works">
+        <AboutUs className="how-it-works">
           <Grid container>
-            <Column offset={2} span={8}>
+            <Column mdOffset={2} sm={8}>
               <h2>State government can be confusing. We've got you covered.</h2>
-              <ul>
+              <ul className="links">
                 <li>Contact Us</li>
-                <li>Subscribe to Our Newsletter</li>
+                <Modal
+                  body={props => <h1>Modal Body</h1>}
+                  render={toggle => <li onClick={toggle}>Document Children</li>}
+                />
                 <li>Dontate</li>
               </ul>
             </Column>
           </Grid>
-        </section>
+        </AboutUs>
         <ArticleList />
         <LessonList />
       </React.Fragment>

@@ -5,6 +5,8 @@ import { Grid, Column } from "components/Grid"
 import { getArticles } from "ducks/articles"
 
 const ArticleListWrapper = styled(Grid)`
+  margin-top: 10rem;
+  margin-bottom: 10rem;
   .small-article-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -41,15 +43,15 @@ class ArticleList extends React.Component {
     const tail = this.props.articles.slice(1)
     return (
       <ArticleListWrapper container>
-        <Column offset={1} span={10}>
+        <Column smOffset={1} sm={10}>
           <h4>Featured Articles</h4>
         </Column>
         {this.props.loaded ? (
           <React.Fragment>
-            <Column span={5} offset={1}>
+            <Column md={5} smOffset={1}>
               <Article key={head.sys.id} article={head.fields} />
             </Column>
-            <Column span={5} className="small-article-grid">
+            <Column md={5} className="small-article-grid">
               {tail.map(article => (
                 <Article
                   key={article.sys.id}

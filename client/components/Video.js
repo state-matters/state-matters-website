@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import PropTypes from "prop-types"
 import { PlayCircle, PauseCircle, Maximize } from "react-feather"
 
 const StyledVideo = styled.figure`
@@ -49,6 +50,10 @@ const StyledVideo = styled.figure`
 `
 
 export default class Video extends React.Component {
+  static propsTypes = {
+    poster: PropTypes.string,
+    url: PropTypes.string
+  }
   state = {
     playing: false
   }
