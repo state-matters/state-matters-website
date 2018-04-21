@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import Video from "components/Video"
+import VideoScroller from "components/VideoScroller"
 import { Grid, Column } from "components/Grid"
 import { connect } from "react-redux"
 import { getLessons } from "ducks/lessons"
@@ -12,6 +12,7 @@ import { getLessons } from "ducks/lessons"
 const StyledLessonList = styled.section`
   margin-top: 10rem;
   margin-bottom: 10rem;
+  overflow-x: hidden;
   h4 {
     margin-bottom: 5rem;
   }
@@ -25,26 +26,23 @@ const StyledLessonList = styled.section`
 `
 
 class LessonList extends React.Component {
+  scrollerNode = null
+  state = { selected: 0, translate: 0 }
   componentDidMount = _ => this.props.getLessons()
   render = _ => {
+    const videos = this.props.loaded
+      ? this.props.lessons.map(lesson => ({
+          url: lesson.fields.video.fields.file.url,
+          poster: "https://placehold.it/400x300"
+        }))
+      : []
     return this.props.loaded ? (
-      <StyledLessonList className="container">
-        <h3>Educational Videos</h3>
-        <h4>Understand Your Government</h4>
-        <Grid className="lesson-grid">
-          <Column md={6}>
-            <Video url={this.props.lessons[0].fields.video.fields.file.url} />
-          </Column>
-          <Column md={2} className="small-video">
-            another video
-          </Column>
-          <Column md={2} className="small-video">
-            another video
-          </Column>
-          <Column md={2} className="small-video">
-            another video
-          </Column>
-        </Grid>
+      <StyledLessonList>
+        <div className="container">
+          <h3>Educational Videos</h3>
+          <h4>Understand Your Government</h4>
+        </div>
+        <VideoScroller videos={videos} />
       </StyledLessonList>
     ) : (
       <div>loading...</div>
