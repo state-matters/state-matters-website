@@ -2,10 +2,10 @@ import React from "react"
 import styled from "styled-components"
 import axios from "axios"
 import { connect } from "react-redux"
-import { getAllBills, changeSelectedVideo } from "ducks/bills"
+import { getAllBills } from "ducks/bills"
 import Loader from "components/Loader"
 import { Grid, Column } from "components/Grid"
-import Video from "components/Video"
+import VideoScroller from "components/VideoScroller"
 
 const StyledBillList = styled(Grid)`
   margin-top: 10rem;
@@ -37,32 +37,18 @@ class BillList extends React.Component {
     const {
       props: { loaded, selectedId, bills, idList, changeSelectedVideo }
     } = this
+    const videos = loaded
+      ? bills.map(bill => ({
+          url: bill.fields.video.fields.file.url,
+          poster: bill.fields.poster.fields.file.url
+        }))
+      : []
     if (!loaded) return <Loader />
     return (
       <StyledBillList container>
         <Column sm={12}>
-          <h4>Featured Videos</h4>
-          <div className="main-video">
-            <Video
-              className="bill-video"
-              poster={bills[selectedId].fields.poster.fields.file.url}
-              url={bills[selectedId].fields.video.fields.file.url}
-            />
-          </div>
-          <div className="next-up">
-            {idList.map(id => (
-              <div
-                className={`video ${id === selectedId ? "active" : ""}`}
-                key={id}
-                onClick={e => changeSelectedVideo(id)}
-                style={{
-                  backgroundImage: `url(${
-                    bills[id].fields.poster.fields.file.url
-                  })`
-                }}
-              />
-            ))}
-          </div>
+          <h3>Featured Videos</h3>
+          <VideoScroller videos={videos} />
         </Column>
       </StyledBillList>
     )
@@ -70,11 +56,9 @@ class BillList extends React.Component {
 }
 
 export default connect(
-  ({ bills: { items, loaded, selectedId, idList } }) => ({
+  ({ bills: { items, loaded } }) => ({
     loaded,
-    selectedId,
-    bills: items,
-    idList
+    bills: items
   }),
-  { getAllBills, changeSelectedVideo }
+  { getAllBills }
 )(BillList)

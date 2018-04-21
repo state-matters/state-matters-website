@@ -42,7 +42,7 @@ class LessonList extends React.Component {
           <h3>Educational Videos</h3>
           <h4>Understand Your Government</h4>
         </div>
-        <VideoScroller videos={videos} />
+        <VideoScroller className="container" videos={videos} />
       </StyledLessonList>
     ) : (
       <div>loading...</div>

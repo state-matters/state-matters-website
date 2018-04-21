@@ -61,9 +61,9 @@ export default class VideoScroller extends React.Component {
   render = _ => {
     return (
       <StyledScroller
-        className="container"
         translate={this.state.translate}
         ref={node => (this.scrollerNode = node)}
+        className={this.props.className}
       >
         {this.props.videos.map((video, i) => (
           <div

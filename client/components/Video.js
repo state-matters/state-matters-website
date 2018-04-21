@@ -46,9 +46,8 @@ export default class Video extends React.Component {
         <StyledVideo
           className={this.props.className}
           background={this.props.poster}
-          onClick={toggle}
         >
-          <Play className="play-btn" size={48} />
+          <Play className="play-btn" size={48} onClick={toggle} />
         </StyledVideo>
       )}
     />

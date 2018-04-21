@@ -36,7 +36,8 @@ export default class Modal extends React.Component {
   state = { show: false }
   componentDidMount = _ => document.body.appendChild(this.modalNode)
   componentWillUnmount = _ => document.body.removeChild(this.modalNode)
-  toggleModal = _ => {
+  toggleModal = e => {
+    e.stopPropagation()
     this.setState(state => {
       if (!state.show) document.body.style.overflowY = "hidden"
       else document.body.style.overflowY = "initial"

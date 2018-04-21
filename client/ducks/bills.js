@@ -29,14 +29,14 @@ export default function reducer(state = intialState, action) {
 export const getAllBills = _ => async dispatch => {
   dispatch({ type: GET_BILLS })
   try {
-    const { data: { entities, result } } = await axios("/api/bills")
+    const {
+      data: { items }
+    } = await axios("/api/bills")
     dispatch({
       type: GET_BILLS_SUCCESS,
       payload: {
-        items: entities.bills,
-        loaded: true,
-        selectedId: result[0],
-        idList: result
+        items,
+        loaded: true
       }
     })
   } catch (err) {
