@@ -6,7 +6,7 @@ _[Contentful CMS][2] + [express][3] + [styled components][4]_
 
 1.  Clone the repo locally `git clone https://github.com/state-matters/state-matters-website.git`
 1.  Install server & client deps `npm install && cd client && yarn`
-1.  Get a development server(s) started `npm run dev`
+1.  Get a development server(s) started `npm run start:dev`
 
 ## Contributing
 
