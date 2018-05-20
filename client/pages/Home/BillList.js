@@ -6,28 +6,13 @@ import { getAllBills } from "ducks/bills"
 import Loader from "components/Loader"
 import { Grid, Column } from "components/Grid"
 import VideoScroller from "components/VideoScroller"
+import theme from "theme"
 
-const StyledBillList = styled(Grid)`
+const StyledBillList = styled.section`
   margin-top: 10rem;
   margin-bottom: 10rem;
-  .bill-video {
+  .bill-list__title {
     margin-bottom: 2rem;
-    box-shadow: 1rem 1rem 0 0 rgba(243, 126, 90, 0.24);
-  }
-  .next-up {
-    display: flex;
-    .video {
-      margin-right: 2rem;
-      background-size: cover;
-      background-repeat: no-repeat;
-      border: 0.25rem solid transparent;
-      box-shadow: 1rem 1rem 0 0 rgba(243, 126, 90, 0.24);
-      height: 7.5rem;
-      width: 15rem;
-      &.active {
-        border: 0.25rem solid ${({ theme }) => theme.colors.primary.main};
-      }
-    }
   }
 `
 
@@ -35,21 +20,29 @@ class BillList extends React.Component {
   componentDidMount = _ => this.props.getAllBills()
   render() {
     const {
-      props: { loaded, selectedId, bills, idList, changeSelectedVideo }
+      props: { loaded, bills }
     } = this
     const videos = loaded
       ? bills.map(bill => ({
           url: bill.fields.video.fields.file.url,
-          poster: bill.fields.poster.fields.file.url
+          poster: bill.fields.poster.fields.file.url,
+          title: bill.fields.title
         }))
       : []
     if (!loaded) return <Loader />
     return (
-      <StyledBillList container>
-        <Column sm={12}>
-          <h3>Featured Videos</h3>
-          <VideoScroller videos={videos} />
-        </Column>
+      <StyledBillList className="bill-list container">
+        <h3 className="bill-list__title">Featured Videos</h3>
+        <Grid>
+          {/* <Column sm={4} className="bill-list-info card">
+            <h3>The Big House Bill</h3>
+            <h4>HB 66</h4>
+            <span className="status">Status: In Committee</span>
+          </Column> */}
+          <Column sm={12}>
+            <VideoScroller videos={videos} />
+          </Column>
+        </Grid>
       </StyledBillList>
     )
   }

@@ -52,7 +52,7 @@ class Home extends React.Component {
               <ul className="links">
                 <li>Contact Us</li>
                 <Modal
-                  body={props => <h1>Modal Body</h1>}
+                  body={<h1>Modal Body</h1>}
                   render={toggle => <li onClick={toggle}>Document Children</li>}
                 />
                 <li>Dontate</li>

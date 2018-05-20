@@ -1,47 +1,32 @@
 export default {
-  // colors generated from https://palx.jxnblk.com/f37e5a
   colors: {
-    ui: {
-      dark: "#272727",
-      semiDark: "#948681",
-      main: "#beb0ab",
-      semiLight: "#F8EBE4",
-      light: "#FAFBFB"
-    },
     primary: {
-      dark: "#723b2a",
-      semiDark: "#c06347",
-      main: "#f37e5a",
-      semiLight: "#faccbd",
-      light: "#fdefeb"
+      100: "#FCDFD6",
+      300: "#F9BEAC",
+      500: "#F37E5A",
+      700: "#7A3F2D",
+      900: "#3D2017"
     },
-    accent: {
-      dark: "#2b7461",
-      semiDark: "#47c1a0",
-      main: "#F37E5A",
-      semiLight: "#bdfae9",
-      light: "#ebfdf8"
+    secondary: {
+      100: "#EAFBF1",
+      300: "#D5F8E4",
+      500: "#ACF1C9",
+      700: "#567965",
+      900: "#2B3C32"
     },
-    success: {
-      dark: "#2b7461",
-      semiDark: "#47c1a0",
-      main: "#5af3ca",
-      semiLight: "#bdfae9",
-      light: "#ebfdf8"
+    tertiary: {
+      100: "#CCCAD7",
+      300: "#9995AF",
+      500: "#342C5F",
+      700: "#1A1630",
+      900: "#0D0B18"
     },
-    alert: {
-      dark: "",
-      semiDark: "",
-      main: "#f35a83",
-      semiLight: "",
-      light: ""
-    },
-    warning: {
-      dark: "",
-      semiDark: "",
-      main: "#f3ca5a",
-      semiLight: "",
-      light: ""
+    grey: {
+      100: "#FCF8F7",
+      300: "#F8F1EF",
+      500: "#F2E3DF",
+      700: "#797270",
+      900: "#201D1D"
     }
   },
   fontFamily: `"Poppins", Helvetica, sans-serif`,

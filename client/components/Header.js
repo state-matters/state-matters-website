@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import theme from "theme"
 
 // import Logo from "../assets/sm_logo.svg"
 import SearchBar from "./SearchBar"
@@ -20,7 +21,7 @@ const StyledHeader = styled.header`
     margin-right: auto;
   }
   .search-bar {
-    width: ${({ theme }) => theme.breakPoints.sm};
+    width: ${theme.breakPoints.sm};
     margin-left: 2rem;
   }
   .nav-menu {
@@ -36,7 +37,7 @@ const StyledHeader = styled.header`
       margin-bottom: 0.5rem;
       width: 100%;
       height: 2px;
-      background-color: ${({ theme }) => theme.colors.ui.light};
+      background-color: ${theme.colors.grey["100"]};
     }
     span:nth-of-type(2) {
       width: 80%;

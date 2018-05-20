@@ -2,14 +2,15 @@ import React from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 import { ChevronRight } from "react-feather"
+import theme from "theme"
 import { Grid, Column } from "components/Grid"
 
 const Wrapper = styled.section`
   position: relative;
   padding-top: 15rem;
   padding-bottom: 2rem;
-  background-color: ${({ theme }) => theme.colors.ui.dark};
-  color: ${({ theme }) => theme.colors.ui.light};
+  background-color: ${theme.colors.grey["900"]}};
+  color: ${theme.colors.grey["100"]};
   z-index: -1;
   .grid {
     height: 100%;
@@ -22,7 +23,7 @@ const Wrapper = styled.section`
     top: 48%;
     right: 0;
     border-radius: 50%;
-    background-color: ${({ theme }) => theme.colors.ui.semiLight};
+    background-color: ${theme.colors.primary["100"]};
     height: 50rem;
     width: 50rem;
     transform: translateX(36%);

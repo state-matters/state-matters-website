@@ -9,6 +9,7 @@ const StyledVideo = styled.figure`
   margin: 0;
   background-image: url(${({ background }) => background});
   background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
   .play-btn {
     position: absolute;
@@ -47,7 +48,14 @@ export default class Video extends React.Component {
           className={this.props.className}
           background={this.props.poster}
         >
-          <Play className="play-btn" size={48} onClick={toggle} color="white" />
+          {this.props.playButton && (
+            <Play
+              className="play-btn"
+              size={48}
+              onClick={toggle}
+              color="white"
+            />
+          )}
         </StyledVideo>
       )}
     />

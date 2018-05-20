@@ -45,6 +45,7 @@ module.exports = {
   ],
   resolve: {
     alias: {
+      theme$: path.resolve(__dirname, "client/theme.js"),
       ducks: path.resolve(__dirname, "client/ducks/"),
       components: path.resolve(__dirname, "client/components/")
     }

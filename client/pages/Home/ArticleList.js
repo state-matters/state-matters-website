@@ -1,6 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import styled from "styled-components"
+import theme from "theme"
 import { Grid, Column } from "components/Grid"
 import { getArticles } from "ducks/articles"
 
@@ -21,7 +22,7 @@ const StyledArticle = styled.article`
   position: relative;
   .article-image {
     padding-bottom: 62.5%;
-    background-color: ${({ theme }) => theme.colors.primary.semiDark};
+    background-color: ${theme.colors.primary["700"]};
   }
 `
 

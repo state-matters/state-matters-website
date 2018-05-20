@@ -2,6 +2,7 @@ import React from "react"
 import { createPortal } from "react-dom"
 import styled from "styled-components"
 import { X } from "react-feather"
+import theme from "theme"
 
 const StyledModal = styled.div`
   position: fixed;
@@ -17,7 +18,7 @@ const StyledModal = styled.div`
   background: rgba(0, 0, 0, 0.6);
   .body {
     position: relative;
-    background-color: ${({ theme }) => theme.colors.ui.light};
+    background-color: ${theme.colors.grey["100"]};
     padding: 1rem;
     border-radius: 4px;
     width: 100%;

@@ -33,7 +33,8 @@ class LessonList extends React.Component {
     const videos = this.props.loaded
       ? this.props.lessons.map(lesson => ({
           url: lesson.fields.video.fields.file.url,
-          poster: "https://placehold.it/400x300"
+          poster: "https://placehold.it/400x300",
+          title: lesson.fields.title
         }))
       : []
     return this.props.loaded ? (

@@ -1,5 +1,5 @@
 import { injectGlobal } from "styled-components"
-import theme from "./theme"
+import theme from "theme"
 
 export default injectGlobal`
 *,
@@ -22,12 +22,16 @@ body {
   position: relative;
   margin: 0;
   padding: 0;
-  background-color: ${theme.colors.ui.light};
-  color: ${theme.colors.ui.dark};
+  background-color: ${theme.colors.grey["300"]};
+  color: ${theme.colors.grey["900"]};
   font-family: "Poppins", Arial, sans-serif;
   font-size: 1.5rem; // 18px
   line-height: 1.33333; // 24px
   overflow-x: hidden;
+}
+
+h1, h2, h3, h4 , h5, p {
+  margin: 0;
 }
 
 h1,
@@ -77,13 +81,13 @@ a {
   position: relative;
   display: inline-block;
   font-weight: 600;
-  color: ${theme.colors.accent.main};
+  color: ${theme.colors.primary["500"]};
   transition: 200ms;
   text-decoration: none;
 }
 
 a:hover {
-  color: var(--dark);
+  color: ${theme.colors.grey["900"]};
 }
 
 a:after {
@@ -93,7 +97,7 @@ a:after {
   left: 6px;
   height: 6px;
   width: calc(100% - 6px);
-  background-color: ${theme.colors.accent.main};
+  background-color: ${theme.colors.primary["500"]};
   opacity: 0.6;
   transition: 200ms;
   z-index: -1;
@@ -105,24 +109,30 @@ a:hover:after {
 
 .btn {
   padding: 1rem 2rem;
-  border: 4px solid ${theme.colors.ui.dark};
+  border: 4px solid ${theme.colors.grey["900"]};
   border-radius: 2px;
   background-color: transparent;
-  color: ${theme.colors.ui.dark};
+  color: ${theme.colors.grey["900"]};
   cursor: pointer;
   font-size: 0.75em;
   font-weight: 500;
   transition: 200ms;
   &.primary {
-    border: 2px solid ${theme.colors.accent.main};
-    background-color: ${theme.colors.accent.main};
-    color: ${theme.colors.ui.light};
+    border: 2px solid ${theme.colors.primary["500"]};
+    background-color: ${theme.colors.primary["500"]};
+    color: ${theme.colors.grey["100"]};
   }
 }
 
+.card {
+  background: ${theme.colors.grey["100"]};
+  padding: 1rem;
+  box-shadow: 0 12px 12px -12px rgba(0,0,0,0.12);
+}
+
 .btn:hover {
-  background-color: ${theme.colors.ui.dark};
-  color: ${theme.colors.ui.light};
+  background-color: ${theme.colors.grey["900"]}};
+  color: ${theme.colors.grey["100"]}};
 }
 
 @media (min-width: ${theme.breakPoints.sm}) {
