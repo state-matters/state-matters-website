@@ -16,7 +16,8 @@ router
       const bills = await client.getEntries({
         content_type: "bill",
         // for the index api call only return the title and video url
-        select: "sys.id,fields.title,fields.video,fields.poster"
+        select:
+          "sys.id,fields.title,fields.billNumber,fields.video,fields.poster"
       })
       res.status(200).json(bills)
     } catch (error) {
