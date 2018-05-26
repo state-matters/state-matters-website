@@ -7,7 +7,7 @@ export const CHANGE_SELECTION = "state_matters/bills/CHANGE_SELECTION"
 
 const intialState = {
   loaded: false,
-  items: null,
+  items: [],
   selectedId: null,
   idList: []
 }
