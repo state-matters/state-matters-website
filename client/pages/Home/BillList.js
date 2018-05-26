@@ -1,12 +1,10 @@
 import React from "react"
-import styled from "styled-components"
-import axios from "axios"
+import styled, { ThemeProvider } from "styled-components"
 import { connect } from "react-redux"
 import { getAllBills } from "ducks/bills"
 import Loader from "components/Loader"
-import { Grid, Column } from "components/Grid"
-import VideoScroller from "components/VideoScroller"
-import theme from "theme"
+import Video from "components/Video"
+import Slider from "components/Slider"
 
 const StyledBillList = styled.section`
   margin-top: 10rem;
@@ -17,32 +15,38 @@ const StyledBillList = styled.section`
 `
 
 class BillList extends React.Component {
-  componentDidMount = _ => this.props.getAllBills()
-  render() {
-    const {
-      props: { loaded, bills }
-    } = this
-    const videos = loaded
-      ? bills.map(bill => ({
+  state = {
+    videos: []
+  }
+  componentDidMount = _ =>
+    this.props.getAllBills().then(_ =>
+      this.setState({
+        videos: this.props.bills.map(bill => ({
           url: bill.fields.video.fields.file.url,
           poster: bill.fields.poster.fields.file.url,
-          title: bill.fields.title
+          title: bill.fields.title,
+          billNumber: bill.fields.billNumber
         }))
-      : []
+      })
+    )
+  render() {
+    const {
+      props: { loaded },
+      state: { videos }
+    } = this
     if (!loaded) return <Loader />
     return (
-      <StyledBillList className="bill-list container">
+      <StyledBillList className="bill-list">
         <h3 className="bill-list__title">Featured Videos</h3>
-        <Grid>
-          {/* <Column sm={4} className="bill-list-info card">
-            <h3>The Big House Bill</h3>
-            <h4>HB 66</h4>
-            <span className="status">Status: In Committee</span>
-          </Column> */}
-          <Column sm={12}>
-            <VideoScroller videos={videos} />
-          </Column>
-        </Grid>
+        <Slider>
+          {videos.map(video => (
+            <Slider.Slide className="bill-video" key={video.url}>
+              <h2>{video.billNumber}</h2>
+              <p>{video.title}</p>
+              <Video url={video.url} poster={video.poster} />
+            </Slider.Slide>
+          ))}
+        </Slider>
       </StyledBillList>
     )
   }
