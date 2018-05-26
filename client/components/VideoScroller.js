@@ -23,8 +23,6 @@ import { Grid, Column } from "./Grid"
 // )
 ////
 
-const StyledScroller = styled.div``
-
 class Scroller extends React.Component {
   scrollClick = (e, i) => {
     const target = e.currentTarget
