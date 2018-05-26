@@ -11,6 +11,7 @@ const StyledVideo = styled.figure`
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  padding-bottom: 100%;
   .play-btn {
     position: absolute;
     top: 50%;
