@@ -22,7 +22,7 @@ body {
   position: relative;
   margin: 0;
   padding: 0;
-  background-color: ${theme.colors.grey["300"]};
+  background-color: ${theme.colors.grey["100"]};
   color: ${theme.colors.grey["900"]};
   font-family: "Poppins", Arial, sans-serif;
   font-size: 1.5rem; // 18px
@@ -43,19 +43,19 @@ h4 {
 
 h1,
 .hero {
-  font-size: 5rem;
+  font-size: 3rem;
   font-weight: 200;
 }
 
 h2,
 .headline {
-  font-size: 3.5rem;
+  font-size: 2rem;
   font-weight: 300;
 }
 
 h3,
 .title {
-  font-size: 3rem;
+  font-size: 1.5rem;
   font-weight: 300;
 }
 
@@ -136,6 +136,34 @@ a:hover:after {
 }
 
 @media (min-width: ${theme.breakPoints.sm}) {
+  h1,
+.hero {
+  font-size: 5rem;
+  font-weight: 200;
+}
+
+h2,
+.headline {
+  font-size: 3.5rem;
+  font-weight: 300;
+}
+
+h3,
+.title {
+  font-size: 3rem;
+  font-weight: 300;
+}
+
+h4,
+.subtitle {
+  font-size: 1.5rem;
+  font-weight: 200;
+}
+
+.small {
+  font-size: 1rem;
+  line-height: 2;
+}
 }
 
 @media (min-width: ${theme.breakPoints.lg}) {
