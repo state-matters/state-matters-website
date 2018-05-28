@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import theme from "theme"
 
 const getTag = props => {
   switch (props.type) {
@@ -21,8 +22,8 @@ const getTag = props => {
 }
 
 const Text = styled(getTag)`
-  color: ${({ theme }) => theme.colors.ui.dark};
-  font-family: ${({ theme }) => theme.fontFamily};
+  color: ${theme.colors.grey["900"]};
+  font-family: ${theme.fontFamily};
 `
 
 export default Text
