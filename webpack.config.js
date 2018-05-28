@@ -14,8 +14,8 @@ module.exports = {
   entry: "./client/index.js",
   output: {
     path: path.resolve(__dirname, "public"),
-    filename: "state_matters.bundle.js"
-    // publicPath: path.resolve(__dirname, "public")
+    filename: "state_matters.bundle.js",
+    publicPath: "/"
   },
   module: {
     rules: [
