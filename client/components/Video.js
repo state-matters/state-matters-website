@@ -7,7 +7,8 @@ import Modal from "./Modal"
 const StyledVideo = styled.figure`
   position: relative;
   margin: 0;
-  background-image: url(${({ background }) => background});
+  background-image: linear-gradient(rgba(0, 0, 0, 0.48), rgba(0, 0, 0, 0.48)),
+    url(${({ background }) => background});
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
