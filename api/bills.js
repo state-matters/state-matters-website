@@ -17,7 +17,7 @@ router
         content_type: "bill",
         // for the index api call only return the title and video url
         select:
-          "sys.id,fields.title,fields.billNumber,fields.video,fields.poster"
+          "sys.id,fields.title,fields.billNumber,fields.video,fields.poster,fields.status"
       })
       res.status(200).json(bills)
     } catch (error) {
