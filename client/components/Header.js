@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import { Button } from "components/TouchTarget"
 import theme from "theme"
 
 // import Logo from "../assets/sm_logo.svg"
@@ -51,7 +52,7 @@ const StyledHeader = styled.header`
 const Header = props => (
   <StyledHeader className="container">
     <img src="./assets/SM-logo.svg" alt="State Matters Logo" />
-    <button className="btn primary donate">Donate</button>
+    <Button className="primary donate">Donate</Button>
     <span className="nav-menu">
       <span />
       <span />
