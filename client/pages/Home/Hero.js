@@ -1,7 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { Link } from "react-router-dom"
-import { ChevronRight } from "react-feather"
+import { BlockLink } from "components/TouchTarget"
 import theme from "theme"
 import { Grid, Column } from "components/Grid"
 
@@ -11,7 +10,6 @@ const Wrapper = styled.section`
   padding-bottom: 2rem;
   background-color: ${theme.colors.grey["900"]}};
   color: ${theme.colors.grey["100"]};
-  z-index: -1;
   .grid {
     height: 100%;
     align-items: center;
@@ -44,11 +42,11 @@ export default props => {
     <Wrapper>
       <Grid container>
         <Column md={8} mdOffset={1}>
-          <h2>
+          <h1 className="hero">
             We create video content and briefs on the most pressing political
             issues & laws that affect you.
-          </h2>
-          <Link to="/about">Learn more about us</Link>
+          </h1>
+          <BlockLink to="/about">Learn more about us</BlockLink>
         </Column>
       </Grid>
     </Wrapper>
