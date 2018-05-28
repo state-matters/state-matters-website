@@ -1,6 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import { BrowserRouter as Router } from "react-router-dom"
+import { BrowserRouter as Router, withRouter } from "react-router-dom"
 import registerServiceWorker from "./registerServiceWorker"
 import { createStore, combineReducers, applyMiddleware } from "redux"
 import thunk from "redux-thunk"
@@ -19,10 +19,23 @@ const reducers = combineReducers({
 
 const store = createStore(reducers, applyMiddleware(thunk))
 
+const ScrollToTop = withRouter(
+  class extends React.Component {
+    componentDidUpdate = prevProps => {
+      if (this.props.location !== prevProps.location) {
+        window.scrollTo(0, 0)
+      }
+    }
+    render = _ => this.props.children
+  }
+)
+
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <App />
+      <ScrollToTop>
+        <App />
+      </ScrollToTop>
     </Router>
   </Provider>,
   document.getElementById("root")
