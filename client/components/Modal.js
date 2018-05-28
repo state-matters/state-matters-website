@@ -9,13 +9,13 @@ const StyledModal = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10;
   top: 0;
   bottom: 0;
   left: 0;
-  right: 0;
   padding: 1rem;
   background: rgba(0, 0, 0, 0.6);
+  z-index: 10;
+  width: 100%;
   .body {
     position: relative;
     background-color: ${theme.colors.grey["100"]};
@@ -35,7 +35,11 @@ const StyledModal = styled.div`
 export default class Modal extends React.Component {
   modalNode = document.createElement("div")
   state = { show: false }
-  componentDidMount = _ => document.body.appendChild(this.modalNode)
+  componentDidMount = _ => {
+    this.modalNode.style.width = "100%"
+    this.modalNode.style.position = "relative"
+    document.body.appendChild(this.modalNode)
+  }
   componentWillUnmount = _ => document.body.removeChild(this.modalNode)
   toggleModal = e => {
     e.stopPropagation()
