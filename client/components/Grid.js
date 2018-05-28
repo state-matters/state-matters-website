@@ -1,6 +1,8 @@
 import React from "react"
 import styled from "styled-components"
 
+// TODO: doc this grid
+
 export const Grid = styled.section.attrs({
   className: ({ className, container }) =>
     container

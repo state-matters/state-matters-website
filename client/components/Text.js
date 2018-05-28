@@ -11,6 +11,8 @@ const getTag = props => {
       return <h3 {...props}>{props.children}</h3>
     case "subtitle":
       return <h4 {...props}>{props.children}</h4>
+    case "eyebrow":
+      return <h4 {...props}>{props.children}</h4>
     case "body":
       return <p {...props}>{props.children}</p>
     default:
