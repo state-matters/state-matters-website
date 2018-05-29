@@ -23,7 +23,7 @@ const ScrollToTop = withRouter(
   class extends React.Component {
     componentDidUpdate = prevProps => {
       if (this.props.location !== prevProps.location) {
-        window.scrollTo(0, 0)
+        window.scroll(0, 0)
       }
     }
     render = _ => this.props.children
