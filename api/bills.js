@@ -24,7 +24,7 @@ router
       res.status(400).json(error)
     }
   })
-  .get("/:bill_id", async (req, res, next) => {
+  .get("/:bill_id", async (req, res) => {
     try {
       const repsonse = await client.getEntry(req.params.bill_id)
       res.status(200).json(response)

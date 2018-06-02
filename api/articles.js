@@ -13,7 +13,7 @@ router.get("/", async (req, res, next) => {
   try {
     const response = await client.getEntries({
       content_type: "article",
-      select: "sys.id,fields.title,fields.contributor"
+      select: "sys.id,fields.title,fields.contributor,fields.photo"
     })
     res.json(response)
   } catch (error) {
