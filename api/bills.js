@@ -13,22 +13,31 @@ const client = contentful.createClient({
 router
   .get("/", async (req, res, next) => {
     try {
-      const bills = await client.getEntries({
+      const response = await client.getEntries({
         content_type: "bill",
-        // for the index api call only return the title and video url
         select:
           "sys.id,fields.title,fields.billNumber,fields.video,fields.poster,fields.status"
       })
-      res.status(200).json(bills)
+      const billSchema = new schema.Entity("bills", undefined, {
+        idAttribute: v => v.sys.id
+      })
+      const billListSchema = new schema.Array(billSchema)
+      const bills = normalize(response.items, billListSchema)
+      console.log(bills.entities.bills)
+      res.status(200).json(bills.entities.bills)
     } catch (error) {
+      console.log(error)
       res.status(400).json(error)
     }
   })
   .get("/:bill_id", async (req, res) => {
     try {
-      const repsonse = await client.getEntry(req.params.bill_id)
+      console.log(req.params.bill_id)
+      const response = await client.getEntry(req.params.bill_id)
+      console.log(response)
       res.status(200).json(response)
     } catch (error) {
+      console.log(error)
       res.status(400).json(error)
     }
   })

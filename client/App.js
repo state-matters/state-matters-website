@@ -9,11 +9,10 @@ import Bill from "./pages/Bills"
 import Game from "./pages/BillIntro"
 import NotFound from "./components/NotFound"
 
-
 export default props => (
   <Fragment>
     <Header />
-    <main>
+    <main style={{ paddingTop: "1px" }}>
       <Switch>
         <Route path="/about" component={About} />
         <Route path="/bills/:bill_id" component={Bill} />

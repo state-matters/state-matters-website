@@ -7,13 +7,15 @@ import Modal from "./Modal"
 const StyledVideo = styled.figure`
   position: relative;
   margin: 0;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.48), rgba(0, 0, 0, 0.48)),
-    url(${({ background }) => background});
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  padding-bottom: 100%;
-  .play-btn {
+  .video__inner {
+    padding-bottom: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.48), rgba(0, 0, 0, 0.48)),
+      url(${({ background }) => background});
+  }
+  .video__play-btn {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -50,14 +52,16 @@ export default class Video extends React.Component {
           className={this.props.className}
           background={this.props.poster}
         >
-          {this.props.playButton && (
-            <Play
-              className="play-btn"
-              size={48}
-              onClick={toggle}
-              color="white"
-            />
-          )}
+          <div className="video__inner">
+            {this.props.playButton && (
+              <Play
+                className="video__play-btn"
+                size={48}
+                onClick={toggle}
+                color="white"
+              />
+            )}
+          </div>
         </StyledVideo>
       )}
     />

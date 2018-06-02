@@ -25,17 +25,16 @@ const StyledLessonList = styled.section`
 class LessonList extends React.Component {
   scrollerNode = null
   state = { selected: 0, translate: 0, videos: [] }
-  componentDidMount = _ =>
-    this.props.getLessons().then(_ => {
-      this.setState(state => ({
-        videos: this.props.lessons.map(lesson => ({
-          id: lesson.sys.id,
-          url: lesson.fields.video.fields.file.url,
-          poster: lesson.fields.poster,
-          title: lesson.fields.title
-        }))
+  setVideos = _ =>
+    this.setState({
+      videos: this.props.lessons.map(lesson => ({
+        id: lesson.sys.id,
+        url: lesson.fields.video.fields.file.url,
+        poster: lesson.fields.poster,
+        title: lesson.fields.title
       }))
     })
+  componentDidMount = _ => this.props.getLessons().then(this.setVideos)
   render = _ => {
     const { videos } = this.state
     if (!this.props.loaded) return <div>loading...</div>
@@ -44,7 +43,7 @@ class LessonList extends React.Component {
         <div className="container">
           <h4>Educational Videos</h4>
         </div>
-        <Slider>
+        <Slider basis={33} activeBasis={80}>
           {videos.map(video => (
             <Slider.Slide className="lesson-video" key={video.id}>
               <div className="container">

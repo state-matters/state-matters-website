@@ -1,3 +1,4 @@
+import React from "react"
 import { Link as RouterLink } from "react-router-dom"
 import styled from "styled-components"
 import theme from "theme"
@@ -43,7 +44,11 @@ export const BlockLink = styled(RouterLink)`
   }
 `
 
-export const Button = styled.button`
+export const Button = styled(({ children, ...props }) => {
+  if (props.to) return <RouterLink {...props}>{children}</RouterLink>
+  return <button {...props}>{children}</button>
+})`
+  display: inline-block;
   padding: 1rem 2rem;
   border: 4px solid ${theme.colors.grey["900"]};
   border-radius: 2px;

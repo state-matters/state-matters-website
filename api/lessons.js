@@ -14,7 +14,6 @@ const config =
         host: "preview.contentful.com"
       }
 
-console.log(config, process.env.NODE_ENV)
 const client = contentful.createClient(config)
 
 router

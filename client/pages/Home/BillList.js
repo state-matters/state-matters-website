@@ -9,14 +9,45 @@ import Video from "components/Video"
 import Slider from "components/Slider"
 
 const StyledBillList = styled.section`
-  margin-top: 10rem;
-  margin-bottom: 10rem;
-  .bill-list__title {
-    margin-bottom: 2rem;
+  margin: 10rem 0;
+  padding: 0;
+  .bills__title {
+    margin: 0 2rem;
   }
-  .links {
+  .bill {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    @media (min-width: ${theme.breakPoints.sm}) {
+      flex-direction: row;
+    }
+  }
+  .bill__copy {
+    margin: 0 2rem 2rem;
+    align-self: center;
+  }
+  .bill__status {
+    margin-top: 1rem;
+    color: ${theme.colors.primary["500"]};
+  }
+  .bill__link {
     margin-top: 2rem;
-    text-align: center;
+  }
+  .bill__video {
+    flex-basis: 100%;
+  }
+  @media (min-width: ${theme.breakPoints.sm}) {
+    margin: 10rem auto;
+    padding: initial;
+    .bills__title {
+      margin: 0 0 2rem 0;
+    }
+    .bill__copy {
+      margin: 0 2rem 0 0;
+    }
+    .bill__video {
+      flex-basis: 75%;
+    }
   }
 `
 
@@ -25,18 +56,20 @@ class BillList extends React.Component {
     videos: []
   }
   componentDidMount = _ =>
-    this.props.getAllBills().then(_ =>
+    this.props.getAllBills().then(_ => {
+      console.log(this.props.bills)
+
       this.setState({
-        videos: this.props.bills.map(bill => ({
-          id: bill.sys.id,
-          url: bill.fields.video.fields.file.url,
-          poster: bill.fields.poster.fields.file.url,
-          title: bill.fields.title,
-          billNumber: bill.fields.billNumber,
-          status: bill.fields.status.fields.status_text
+        videos: Object.keys(this.props.bills).map(billId => ({
+          id: billId,
+          url: this.props.bills[billId].fields.video.fields.file.url,
+          poster: this.props.bills[billId].fields.poster.fields.file.url,
+          title: this.props.bills[billId].fields.title,
+          billNumber: this.props.bills[billId].fields.billNumber,
+          status: this.props.bills[billId].fields.status.fields.status_text
         }))
       })
-    )
+    })
   render() {
     const {
       props: { loaded },
@@ -44,26 +77,29 @@ class BillList extends React.Component {
     } = this
     if (!loaded) return <Loader />
     return (
-      <StyledBillList className="bill-list">
-        <h4 className="bill-list__title container">Featured Videos</h4>
-        <Slider>
+      <StyledBillList className="bill-list container">
+        <h4 className="bills__title">Featured Videos</h4>
+        <Slider basis={33} activeBasis={80}>
           {videos.map(video => (
-            <Slider.Slide className="bill-video" key={video.url}>
-              <div className="container">
+            <Slider.Slide className="bill" key={video.url} basis={33}>
+              <div className="bill__copy">
                 <h2>{video.billNumber}</h2>
                 <p>{video.title}</p>
-                <p className="subtitle">Status: {video.status}</p>
-              </div>
-              <Video playButton url={video.url} poster={video.poster} />
-              <div className="links">
+                <p className="bill__status">Status: {video.status}</p>
                 <BlockLink
-                  className="read-more"
+                  className="bill__link"
                   color={theme.colors.grey["900"]}
                   to={`/bills/${video.id}`}
                 >
                   Read The Brief
                 </BlockLink>
               </div>
+              <Video
+                className="bill__video"
+                playButton
+                url={video.url}
+                poster={video.poster}
+              />
             </Slider.Slide>
           ))}
         </Slider>
