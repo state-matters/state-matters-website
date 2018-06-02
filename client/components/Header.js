@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import { Link } from "react-router-dom"
 import { Button } from "components/TouchTarget"
 import theme from "theme"
 
@@ -16,10 +17,12 @@ const StyledHeader = styled.header`
   height: 10rem;
   align-items: center;
   z-index: 10;
-  img {
-    width: 100%;
-    max-width: 10rem;
+  .logo-link {
     margin-right: auto;
+    max-width: 10rem;
+  }
+  .logo-link img {
+    width: 100%;
   }
   .search-bar {
     width: ${theme.breakPoints.sm};
@@ -51,7 +54,9 @@ const StyledHeader = styled.header`
 
 const Header = props => (
   <StyledHeader className="container">
-    <img src="./assets/SM-logo.svg" alt="State Matters Logo" />
+    <Link to="/" className="logo-link">
+      <img src="/assets/SM-logo.svg" alt="State Matters Logo" />
+    </Link>
     <Button className="primary donate">Donate</Button>
     <span className="nav-menu">
       <span />

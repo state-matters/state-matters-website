@@ -3,8 +3,6 @@ import styled from "styled-components"
 import { connect } from "react-redux"
 
 import { handleSubscribe } from "ducks/subscriptions"
-import SubscriptionForm from "components/SubscriptionForm"
-import Text from "components/Text"
 import { Grid, Column } from "components/Grid"
 import Modal from "components/Modal"
 

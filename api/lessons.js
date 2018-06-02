@@ -2,12 +2,17 @@ const router = require("express").Router()
 const axios = require("axios")
 const contentful = require("contentful")
 
-const client = contentful.createClient({
-  space: "021ulla0m5co",
-  accessToken:
-    "709d8f98e56158641d25ba23ceb57029ecc91e0a9a11f35fa6e0f666ffbeb4d0",
-  host: "preview.contentful.com"
-})
+const config = (process.env.NODE_ENV = "production"
+  ? {
+      space: "021ulla0m5co",
+      accessToken: process.env.PROD_API_KEY
+    }
+  : {
+      space: "021ulla0m5co",
+      accessToken: process.env.DEV_API_KEY,
+      host: "preview.contentful.com"
+    })
+const client = contentful.createClient(config)
 
 router.get("/", async (req, res, next) => {
   try {
