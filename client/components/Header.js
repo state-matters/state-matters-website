@@ -1,5 +1,8 @@
 import React from "react"
 import styled from "styled-components"
+import { Link } from "react-router-dom"
+import { Button } from "components/TouchTarget"
+import theme from "theme"
 
 // import Logo from "../assets/sm_logo.svg"
 import SearchBar from "./SearchBar"
@@ -14,13 +17,15 @@ const StyledHeader = styled.header`
   height: 10rem;
   align-items: center;
   z-index: 10;
-  img {
-    width: 100%;
-    max-width: 10rem;
+  .logo-link {
     margin-right: auto;
+    max-width: 10rem;
+  }
+  .logo-link img {
+    width: 100%;
   }
   .search-bar {
-    width: ${({ theme }) => theme.breakPoints.sm};
+    width: ${theme.breakPoints.sm};
     margin-left: 2rem;
   }
   .nav-menu {
@@ -36,7 +41,7 @@ const StyledHeader = styled.header`
       margin-bottom: 0.5rem;
       width: 100%;
       height: 2px;
-      background-color: ${({ theme }) => theme.colors.ui.light};
+      background-color: ${theme.colors.grey["100"]};
     }
     span:nth-of-type(2) {
       width: 80%;
@@ -49,8 +54,10 @@ const StyledHeader = styled.header`
 
 const Header = props => (
   <StyledHeader className="container">
-    <img src="./assets/SM-logo.svg" alt="State Matters Logo" />
-    <button className="btn primary donate">Donate</button>
+    <Link to="/" className="logo-link">
+      <img src="/assets/SM-logo.svg" alt="State Matters Logo" />
+    </Link>
+    <Button className="primary donate">Donate</Button>
     <span className="nav-menu">
       <span />
       <span />

@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import theme from "theme"
 
 const getTag = props => {
   switch (props.type) {
@@ -11,6 +12,8 @@ const getTag = props => {
       return <h3 {...props}>{props.children}</h3>
     case "subtitle":
       return <h4 {...props}>{props.children}</h4>
+    case "eyebrow":
+      return <h4 {...props}>{props.children}</h4>
     case "body":
       return <p {...props}>{props.children}</p>
     default:
@@ -19,8 +22,8 @@ const getTag = props => {
 }
 
 const Text = styled(getTag)`
-  color: ${({ theme }) => theme.colors.ui.dark};
-  font-family: ${({ theme }) => theme.fontFamily};
+  color: ${theme.colors.grey["900"]};
+  font-family: ${theme.fontFamily};
 `
 
 export default Text

@@ -1,6 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import styled from "styled-components"
+import theme from "theme"
 import { Grid, Column } from "components/Grid"
 import { getArticles } from "ducks/articles"
 
@@ -21,12 +22,22 @@ const StyledArticle = styled.article`
   position: relative;
   .article-image {
     padding-bottom: 62.5%;
-    background-color: ${({ theme }) => theme.colors.primary.semiDark};
+    background-image: url(${props => props.photo}),
+      linear-gradient(
+        ${theme.colors.primary["500"]},
+        ${theme.colors.primary["500"]}
+      );
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 `
 
 const Article = ({ article, className }) => (
-  <StyledArticle className={className}>
+  <StyledArticle
+    className={className}
+    photo={article.photo ? article.photo.fields.file.url : "no-photo"}
+  >
     <div className="article-image" />
     <h4>{article.title}</h4>
     {article.contributor && (

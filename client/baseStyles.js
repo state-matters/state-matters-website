@@ -1,5 +1,5 @@
 import { injectGlobal } from "styled-components"
-import theme from "./theme"
+import theme from "theme"
 
 export default injectGlobal`
 *,
@@ -22,22 +22,73 @@ body {
   position: relative;
   margin: 0;
   padding: 0;
-  background-color: ${theme.colors.ui.light};
-  color: ${theme.colors.ui.dark};
+  background-color: ${theme.colors.grey["100"]};
+  color: ${theme.colors.grey["900"]};
   font-family: "Poppins", Arial, sans-serif;
   font-size: 1.5rem; // 18px
   line-height: 1.33333; // 24px
   overflow-x: hidden;
 }
 
+h1, h2, h3, h4 , h5, p {
+  margin: 0;
+}
+
 h1,
 h2,
-h3,
-h4 {
+h3 {
   font-family: "Martel", serif;
 }
 
 h1,
+.hero {
+  font-size: 3.5rem;
+  font-weight: 200;
+}
+
+h2,
+.headline {
+  font-size: 3rem;
+  font-weight: 300;
+}
+
+h3,
+.title {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+h4,
+.subtitle {
+  font-size: 1.5rem;
+  font-weight: 200;
+}
+
+.small {
+  font-size: 1rem;
+  line-height: 2;
+}
+
+.container {
+  width: 100%;
+  max-width: 105rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.card {
+  background: ${theme.colors.grey["100"]};
+  padding: 1rem;
+  box-shadow: 0 12px 12px -12px rgba(0,0,0,0.12);
+}
+
+.btn:hover {
+  background-color: ${theme.colors.grey["900"]}};
+  color: ${theme.colors.grey["100"]}};
+}
+
+@media (min-width: ${theme.breakPoints.sm}) {
+  h1,
 .hero {
   font-size: 5rem;
   font-weight: 200;
@@ -65,67 +116,6 @@ h4,
   font-size: 1rem;
   line-height: 2;
 }
-
-.container {
-  width: 100%;
-  max-width: 105rem;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-a {
-  position: relative;
-  display: inline-block;
-  font-weight: 600;
-  color: ${theme.colors.accent.main};
-  transition: 200ms;
-  text-decoration: none;
-}
-
-a:hover {
-  color: var(--dark);
-}
-
-a:after {
-  position: absolute;
-  content: "";
-  bottom: 0;
-  left: 6px;
-  height: 6px;
-  width: calc(100% - 6px);
-  background-color: ${theme.colors.accent.main};
-  opacity: 0.6;
-  transition: 200ms;
-  z-index: -1;
-}
-
-a:hover:after {
-  height: 100%;
-}
-
-.btn {
-  padding: 1rem 2rem;
-  border: 4px solid ${theme.colors.ui.dark};
-  border-radius: 2px;
-  background-color: transparent;
-  color: ${theme.colors.ui.dark};
-  cursor: pointer;
-  font-size: 0.75em;
-  font-weight: 500;
-  transition: 200ms;
-  &.primary {
-    border: 2px solid ${theme.colors.accent.main};
-    background-color: ${theme.colors.accent.main};
-    color: ${theme.colors.ui.light};
-  }
-}
-
-.btn:hover {
-  background-color: ${theme.colors.ui.dark};
-  color: ${theme.colors.ui.light};
-}
-
-@media (min-width: ${theme.breakPoints.sm}) {
 }
 
 @media (min-width: ${theme.breakPoints.lg}) {

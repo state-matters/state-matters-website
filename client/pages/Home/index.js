@@ -2,9 +2,8 @@ import React from "react"
 import styled from "styled-components"
 import { connect } from "react-redux"
 
+import theme from "theme"
 import { handleSubscribe } from "ducks/subscriptions"
-import SubscriptionForm from "components/SubscriptionForm"
-import Text from "components/Text"
 import { Grid, Column } from "components/Grid"
 import Modal from "components/Modal"
 
@@ -19,11 +18,15 @@ const AboutUs = styled.section`
   text-align: center;
   .links {
     display: flex;
+    flex-direction: column;
     align-items: center;
     list-style: none;
     margin: 0;
     padding: 0;
     justify-content: space-around;
+    @media (min-width: ${theme.breakPoints.sm}) {
+      flex-direction: row;
+    }
   }
 `
 
@@ -52,7 +55,7 @@ class Home extends React.Component {
               <ul className="links">
                 <li>Contact Us</li>
                 <Modal
-                  body={props => <h1>Modal Body</h1>}
+                  body={<h1>Modal Body</h1>}
                   render={toggle => <li onClick={toggle}>Document Children</li>}
                 />
                 <li>Dontate</li>
