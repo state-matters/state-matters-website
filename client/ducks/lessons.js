@@ -23,7 +23,11 @@ const intialState = {
 export default function reducer(state = intialState, action) {
   switch (action.type) {
     case GET_LESSONS_SUCCESS:
-      return { ...state, ...action.payload }
+      return {
+        ...state,
+        loaded: true,
+        items: { ...state.items, ...action.payload }
+      }
     case CHANGE_SELECTION:
       return {
         ...state,
@@ -41,15 +45,10 @@ export default function reducer(state = intialState, action) {
 export const getLessons = _ => async dispatch => {
   dispatch({ type: GET_LESSONS })
   try {
-    const {
-      data: { items }
-    } = await axios("/api/lessons")
+    const { data } = await axios("/api/lessons")
     dispatch({
       type: GET_LESSONS_SUCCESS,
-      payload: {
-        items,
-        loaded: true
-      }
+      payload: data
     })
   } catch (err) {
     dispatch({

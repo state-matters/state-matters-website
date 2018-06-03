@@ -25,16 +25,17 @@ const StyledLessonList = styled.section`
 class LessonList extends React.Component {
   scrollerNode = null
   state = { selected: 0, translate: 0, videos: [] }
-  setVideos = _ =>
-    this.setState({
-      videos: this.props.lessons.map(lesson => ({
-        id: lesson.sys.id,
-        url: lesson.fields.video.fields.file.url,
-        poster: lesson.fields.poster,
-        title: lesson.fields.title
-      }))
-    })
-  componentDidMount = _ => this.props.getLessons().then(this.setVideos)
+  componentDidMount = _ =>
+    this.props.getLessons().then(() =>
+      this.setState({
+        videos: Object.keys(this.props.lessons).map(lessonId => ({
+          id: lessonId,
+          url: this.props.lessons[lessonId].fields.video.fields.file.url,
+          poster: this.props.lessons[lessonId].fields.poster,
+          title: this.props.lessons[lessonId].fields.title
+        }))
+      })
+    )
   render = _ => {
     const { videos } = this.state
     if (!this.props.loaded) return <div>loading...</div>

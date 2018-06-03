@@ -1,6 +1,7 @@
 const router = require("express").Router()
 const axios = require("axios")
 const contentful = require("contentful")
+const { normalize, schema } = require("normalizr")
 
 const config =
   process.env.NODE_ENV === "production"
@@ -19,13 +20,20 @@ const client = contentful.createClient(config)
 router
   .get("/", async (req, res, next) => {
     try {
-      const lessons = await client.getEntries({
+      const { items } = await client.getEntries({
         content_type: "lesson",
         select: "sys.id,fields.title,fields.video,fields.poster"
       })
+      const lessonSchema = new schema.Entity("lessons", undefined, {
+        idAttribute: v => v.sys.id
+      })
+      const lessonListSchema = new schema.Array(lessonSchema)
+      const {
+        entities: { lessons }
+      } = normalize(items, lessonListSchema)
       res.status(200).json(lessons)
-    } catch (err) {
-      res.status(400).json({ message: "something went wrong" })
+    } catch (error) {
+      res.status(400).json(error)
     }
   })
   .get("/:lesson_id", async (req, res) => {

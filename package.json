@@ -32,7 +32,7 @@
     "file-loader": "^1.1.11",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.0.6",
-    "markdown-to-jsx": "^6.5.2",
+    "markdown-to-jsx": "^6.6.6",
     "morgan": "^1.9.0",
     "nodemon": "^1.14.11",
     "normalizr": "^3.2.4",

@@ -32,13 +32,15 @@ const StyledModal = styled.div`
   }
 `
 
+const modalRoot = document.getElementById("modal-root")
+
 export default class Modal extends React.Component {
-  modalNode = document.createElement("div")
+  modalNode = document.createElement("aside")
   state = { show: false }
   componentDidMount = _ => {
     this.modalNode.style.width = "100%"
     this.modalNode.style.position = "relative"
-    document.body.appendChild(this.modalNode)
+    modalRoot.appendChild(this.modalNode)
   }
   componentWillUnmount = _ => document.body.removeChild(this.modalNode)
   toggleModal = e => {

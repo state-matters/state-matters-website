@@ -56,9 +56,7 @@ class BillList extends React.Component {
     videos: []
   }
   componentDidMount = _ =>
-    this.props.getAllBills().then(_ => {
-      console.log(this.props.bills)
-
+    this.props.getAllBills().then(() => {
       this.setState({
         videos: Object.keys(this.props.bills).map(billId => ({
           id: billId,

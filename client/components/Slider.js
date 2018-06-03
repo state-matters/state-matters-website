@@ -18,11 +18,16 @@ const SliderWrapper = styled.section`
     flex-basis: 100%;
     width: 100%;
     &:first-of-type {
-      flex-basis: ${props =>
-        props.activeBasis ? `${props.activeBasis}%` : "100%"};
-      width: ${props => (props.activeBasis ? `${props.activeBasis}%` : "100%")};
+      flex-basis: 100%;
+      width: 100%;
     }
     @media (min-width: ${theme.breakPoints.sm}) {
+      &:first-of-type {
+        flex-basis: ${props =>
+          props.activeBasis ? `${props.activeBasis}%` : "100%"};
+        width: ${props =>
+          props.activeBasis ? `${props.activeBasis}%` : "100%"};
+      }
       flex-basis: ${props => (props.basis ? `${props.basis}%` : "100%")};
       width: ${props => (props.basis ? `${props.basis}%` : "100%")};
     }

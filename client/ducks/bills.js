@@ -16,13 +16,23 @@ const intialState = {
 export default function reducer(state = intialState, action) {
   switch (action.type) {
     case GET_BILLS_SUCCESS:
-      return { ...state, ...action.payload }
+      return {
+        ...state,
+        loaded: true,
+        items: {
+          ...state.items,
+          ...action.payload
+        }
+      }
     case GET_BILL_SUCCESS:
       return {
         ...state,
         items: {
           ...state.items,
-          [action.payload.id]: { ...action.payload.data }
+          [action.payload.id]: {
+            ...state.items[action.payload.id],
+            ...action.payload.data
+          }
         }
       }
     case CHANGE_SELECTION:
@@ -41,10 +51,7 @@ export const getAllBills = _ => async dispatch => {
     const { data } = await axios("/api/bills")
     dispatch({
       type: GET_BILLS_SUCCESS,
-      payload: {
-        items: data,
-        loaded: true
-      }
+      payload: data
     })
   } catch (err) {
     dispatch({

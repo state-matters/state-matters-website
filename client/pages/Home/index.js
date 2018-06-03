@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { connect } from "react-redux"
 
+import theme from "theme"
 import { handleSubscribe } from "ducks/subscriptions"
 import { Grid, Column } from "components/Grid"
 import Modal from "components/Modal"
@@ -17,11 +18,15 @@ const AboutUs = styled.section`
   text-align: center;
   .links {
     display: flex;
+    flex-direction: column;
     align-items: center;
     list-style: none;
     margin: 0;
     padding: 0;
     justify-content: space-around;
+    @media (min-width: ${theme.breakPoints.sm}) {
+      flex-direction: row;
+    }
   }
 `
 
