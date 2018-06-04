@@ -16,7 +16,7 @@ const NotFound = props => (
     </h1>
     <h3>
       Perhaps you'd like to go <a href="#">back to the page</a> you came from or
-      go <a href="#">home</a>.
+      go <a href="/">home</a>.
     </h3>
   </Wrapper>
 )

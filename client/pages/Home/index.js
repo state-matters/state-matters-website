@@ -5,6 +5,7 @@ import { connect } from "react-redux"
 import theme from "theme"
 import { handleSubscribe } from "ducks/subscriptions"
 import { Grid, Column } from "components/Grid"
+import { BlockLink } from "components/TouchTarget"
 import Modal from "components/Modal"
 
 import Hero from "./Hero"
@@ -16,12 +17,11 @@ const AboutUs = styled.section`
   margin-top: 10rem;
   margin-bottom: 10rem;
   text-align: center;
-  .links {
+  .home__links {
     display: flex;
     flex-direction: column;
     align-items: center;
-    list-style: none;
-    margin: 0;
+    margin: 2rem 0 0;
     padding: 0;
     justify-content: space-around;
     @media (min-width: ${theme.breakPoints.sm}) {
@@ -52,14 +52,23 @@ class Home extends React.Component {
           <Grid container>
             <Column mdOffset={2} sm={8}>
               <h2>State government can be confusing. We've got you covered.</h2>
-              <ul className="links">
-                <li>Contact Us</li>
+              <div className="home__links">
+                <BlockLink color={theme.colors.grey["700"]} to="/about">
+                  Contact Us
+                </BlockLink>
                 <Modal
                   body={<h1>Modal Body</h1>}
-                  render={toggle => <li onClick={toggle}>Document Children</li>}
+                  render={toggle => (
+                    <BlockLink
+                      color={theme.colors.grey["700"]}
+                      onClick={toggle}
+                    >
+                      Subscribe to Our Newsletter
+                    </BlockLink>
+                  )}
                 />
-                <li>Dontate</li>
-              </ul>
+                <BlockLink color={theme.colors.grey["700"]}>Dontate</BlockLink>
+              </div>
             </Column>
           </Grid>
         </AboutUs>

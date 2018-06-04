@@ -4,6 +4,7 @@ import { connect } from "react-redux"
 import Markdown from "markdown-to-jsx"
 import { getBill } from "ducks/bills"
 import { BlockLink } from "components/TouchTarget"
+import Loader from "components/Loader"
 import theme from "theme"
 
 const StyledBillPage = styled.section`
@@ -28,7 +29,7 @@ class Bill extends React.Component {
       .getBill(this.props.match.params.bill_id)
       .then(_ => this.setState({ loaded: true }))
   render = _ => {
-    if (!this.state.loaded) return <div>...loading</div>
+    if (!this.state.loaded) return <Loader />
     const { fields } = this.props.bill
     return (
       <StyledBillPage className="container">
