@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import styled from "styled-components"
 import theme from "theme"
 import { Grid, Column } from "components/Grid"
+import Loader from "components/Loader"
 import { getArticles } from "ducks/articles"
 
 const ArticleListWrapper = styled(Grid)`
@@ -51,28 +52,16 @@ const Article = ({ article, className }) => {
 }
 
 class ArticleList extends React.Component {
-  state = {
-    head: {},
-    tail: [],
-    loaded: false
-  }
-  componentDidMount = () =>
-    this.props.getArticles().then(() =>
-      this.setState(state => {
-        const array = Object.values(this.props.articles)
-        const head = array[0]
-        const tail = array.slice(1)
-        return {
-          loaded: true,
-          head,
-          tail
-        }
-      })
-    )
+  componentDidMount = () => this.props.getArticles()
 
   render = () => {
-    const { head, tail } = this.state
-    if (!this.state.loaded) return <p>...loading</p>
+    const { articles, loaded } = this.props
+    const articlesArray = Object.values(articles)
+    // first article
+    const head = articlesArray[0]
+    // copy because slice mutates articlesArray.
+    const tail = [...articlesArray.slice(1)]
+    if (!loaded) return <Loader />
     return (
       <ArticleListWrapper container>
         <Column smOffset={1} sm={10}>
