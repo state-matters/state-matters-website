@@ -4,6 +4,7 @@ import styled from "styled-components"
 import theme from "theme"
 import { Grid, Column } from "components/Grid"
 import Loader from "components/Loader"
+import { BlockLink } from "components/TouchTarget"
 import { getArticles } from "ducks/articles"
 
 const ArticleListWrapper = styled(Grid)`
@@ -43,10 +44,11 @@ const Article = ({ article, className }) => {
       }
     >
       <div className="article-image" />
-      <h4>{article.title}</h4>
+      <h4>{article.fields.title}</h4>
       {article.fields.contributor && (
         <p className="contributor">{article.fields.contributor.fields.name}</p>
       )}
+      <BlockLink to={`/articles/${article.sys.id}`}>read more</BlockLink>
     </StyledArticle>
   )
 }
