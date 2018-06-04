@@ -1,12 +1,13 @@
 import axios from "axios"
 
-export const GET_BILLS = "state_matters/bills/GET_BILLS"
+export const GET_BILLS_INDEX = "state_matters/bills/GET_BILLS_INDEX"
+export const GET_BILLS_INDEX_SUCCESS =
+  "state_matters/bills/GET_BILLS_INDEX_SUCCESS"
+export const GET_BILLS_INDEX_FAIL = "state_matters/bills/GET_BILLS_INDEX_FAIL"
+
 export const GET_BILL = "state_matters/bills/GET_BILL"
 export const GET_BILL_SUCCESS = "state_matters/bills/GET_BILL_SUCCESS"
 export const GET_BILL_FAIL = "state_matters/bills/GET_BILL_FAIL"
-export const GET_BILLS_SUCCESS = "state_matters/bills/GET_BILLS_SUCCESS"
-export const GET_BILLS_FAIL = "state_matters/bills/GET_BILLS_FAIL"
-export const CHANGE_SELECTION = "state_matters/bills/CHANGE_SELECTION"
 
 const intialState = {
   loaded: false,
@@ -15,7 +16,7 @@ const intialState = {
 
 export default function reducer(state = intialState, action) {
   switch (action.type) {
-    case GET_BILLS_SUCCESS:
+    case GET_BILLS_INDEX_SUCCESS:
       return {
         ...state,
         loaded: true,
@@ -35,29 +36,18 @@ export default function reducer(state = intialState, action) {
           }
         }
       }
-    case CHANGE_SELECTION:
-      return {
-        ...state,
-        selectedId: action.payload
-      }
     default:
       return state
   }
 }
 
 export const getAllBills = _ => async dispatch => {
-  dispatch({ type: GET_BILLS })
+  dispatch({ type: GET_BILLS_INDEX })
   try {
     const { data } = await axios("/api/bills")
-    dispatch({
-      type: GET_BILLS_SUCCESS,
-      payload: data
-    })
-  } catch (err) {
-    dispatch({
-      type: GET_BILLS_FAIL,
-      payload: err
-    })
+    dispatch({ type: GET_BILLS_INDEX_SUCCESS, payload: data })
+  } catch (error) {
+    dispatch({ type: GET_BILLS_INDEX_FAIL, payload: error })
   }
 }
 

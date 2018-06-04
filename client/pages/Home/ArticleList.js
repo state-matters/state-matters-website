@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import styled from "styled-components"
 import theme from "theme"
 import { Grid, Column } from "components/Grid"
+import Loader from "components/Loader"
 import { getArticles } from "ducks/articles"
 
 const ArticleListWrapper = styled(Grid)`
@@ -33,48 +34,51 @@ const StyledArticle = styled.article`
   }
 `
 
-const Article = ({ article, className }) => (
-  <StyledArticle
-    className={className}
-    photo={article.photo ? article.photo.fields.file.url : "no-photo"}
-  >
-    <div className="article-image" />
-    <h4>{article.title}</h4>
-    {article.contributor && (
-      <p className="contributor">{article.contributor.fields.name}</p>
-    )}
-  </StyledArticle>
-)
+const Article = ({ article, className }) => {
+  return (
+    <StyledArticle
+      className={className}
+      photo={
+        article.fields.photo ? article.fields.photo.fields.file.url : "no-photo"
+      }
+    >
+      <div className="article-image" />
+      <h4>{article.title}</h4>
+      {article.fields.contributor && (
+        <p className="contributor">{article.fields.contributor.fields.name}</p>
+      )}
+    </StyledArticle>
+  )
+}
 
 class ArticleList extends React.Component {
   componentDidMount = () => this.props.getArticles()
 
   render = () => {
-    const head = this.props.articles[0]
-    const tail = this.props.articles.slice(1)
+    const { articles, loaded } = this.props
+    const articlesArray = Object.values(articles)
+    // first article
+    const head = articlesArray[0]
+    // copy because slice mutates articlesArray.
+    const tail = [...articlesArray.slice(1)]
+    if (!loaded) return <Loader />
     return (
       <ArticleListWrapper container>
         <Column smOffset={1} sm={10}>
           <h4>Featured Articles</h4>
         </Column>
-        {this.props.loaded ? (
-          <React.Fragment>
-            <Column md={5} smOffset={1}>
-              <Article key={head.sys.id} article={head.fields} />
-            </Column>
-            <Column md={5} className="small-article-grid">
-              {tail.map(article => (
-                <Article
-                  key={article.sys.id}
-                  article={article.fields}
-                  className="small-article"
-                />
-              ))}
-            </Column>
-          </React.Fragment>
-        ) : (
-          <p>loading...</p>
-        )}
+        <Column md={5} smOffset={1}>
+          <Article article={head} />
+        </Column>
+        <Column md={5} className="small-article-grid">
+          {tail.map(article => (
+            <Article
+              key={article.sys.id}
+              article={article}
+              className="small-article"
+            />
+          ))}
+        </Column>
       </ArticleListWrapper>
     )
   }

@@ -14,6 +14,9 @@ const Wrapper = styled.section`
     height: 100%;
     align-items: center;
   }
+  .hero__link {
+    margin-top: 2rem;
+  }
   &:after {
     display: none;
     content: "";
@@ -46,7 +49,9 @@ export default props => {
             We create video content and briefs on the most pressing political
             issues & laws that affect you.
           </h1>
-          <BlockLink to="/about">Learn more about us</BlockLink>
+          <BlockLink className="hero__link" to="/about">
+            Learn more about us
+          </BlockLink>
         </Column>
       </Grid>
     </Wrapper>
