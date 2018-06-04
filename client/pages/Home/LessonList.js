@@ -8,18 +8,22 @@ import Loader from "components/Loader"
 import { BlockLink } from "components/TouchTarget"
 import { getLessons } from "ducks/lessons"
 
-// TODO
-// 1. create api endpoint
-// 2. consume  api endpoint
-
 const StyledLessonList = styled.section`
-  margin-top: 10rem;
-  margin-bottom: 10rem;
+  margin: 10rem 0;
   overflow-x: hidden;
+  .inner-list {
+    align-items: center;
+  }
   .lesson__title,
   .lesson__video,
   .lesson__link {
     margin-top: 2rem;
+  }
+  .lesson:not(:first-of-type) .lesson__title {
+    display: none;
+  }
+  @media (min-width: ${theme.breakPoints.sm}) {
+    margin: 10rem auto;
   }
 `
 
@@ -30,15 +34,15 @@ class LessonList extends React.Component {
     const { lessons, loaded } = this.props
     if (!loaded) return <Loader />
     return (
-      <StyledLessonList>
-        <div className="container">
+      <StyledLessonList className="container">
+        <div>
           <h4>Educational Videos</h4>
         </div>
-        <Slider basis={33} activeBasis={80}>
+        <Slider basis={33} activeBasis={70}>
           {Object.values(lessons).map(({ sys, fields }) => (
-            <Slider.Slide className="lesson-video" key={sys.id}>
+            <Slider.Slide className="lesson" key={sys.id}>
               <div className="container">
-                <h2 className="lesson__title">{fields.title}</h2>
+                <h3 className="lesson__title">{fields.title}</h3>
               </div>
               <Video
                 className="lesson__video"
