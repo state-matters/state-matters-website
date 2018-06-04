@@ -52,42 +52,28 @@ const StyledBillList = styled.section`
 `
 
 class BillList extends React.Component {
-  state = {
-    videos: []
-  }
-  componentDidMount = _ =>
-    this.props.getAllBills().then(() => {
-      this.setState({
-        videos: Object.keys(this.props.bills).map(billId => ({
-          id: billId,
-          url: this.props.bills[billId].fields.video.fields.file.url,
-          poster: this.props.bills[billId].fields.poster.fields.file.url,
-          title: this.props.bills[billId].fields.title,
-          billNumber: this.props.bills[billId].fields.billNumber,
-          status: this.props.bills[billId].fields.status.fields.status_text
-        }))
-      })
-    })
+  componentDidMount = _ => this.props.getAllBills()
   render() {
     const {
-      props: { loaded },
-      state: { videos }
+      props: { loaded, bills }
     } = this
     if (!loaded) return <Loader />
     return (
       <StyledBillList className="bill-list container">
         <h4 className="bills__title">Featured Videos</h4>
         <Slider basis={33} activeBasis={80}>
-          {videos.map(video => (
-            <Slider.Slide className="bill" key={video.url} basis={33}>
+          {Object.values(bills).map(bill => (
+            <Slider.Slide className="bill" key={bill.sys.id} basis={33}>
               <div className="bill__copy">
-                <h2>{video.billNumber}</h2>
-                <p>{video.title}</p>
-                <p className="bill__status">Status: {video.status}</p>
+                <h2>{bill.fields.billNumber}</h2>
+                <p>{bill.fields.title}</p>
+                <p className="bill__status">
+                  Status: {bill.fields.status.fields.status_text}
+                </p>
                 <BlockLink
                   className="bill__link"
                   color={theme.colors.grey["900"]}
-                  to={`/bills/${video.id}`}
+                  to={`/bills/${bill.sys.id}`}
                 >
                   Read The Brief
                 </BlockLink>
@@ -95,8 +81,8 @@ class BillList extends React.Component {
               <Video
                 className="bill__video"
                 playButton
-                url={video.url}
-                poster={video.poster}
+                url={bill.fields.video.fields.file.url}
+                poster={bill.fields.poster.fields.file.url}
               />
             </Slider.Slide>
           ))}

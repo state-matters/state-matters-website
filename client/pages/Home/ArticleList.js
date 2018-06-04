@@ -33,48 +33,63 @@ const StyledArticle = styled.article`
   }
 `
 
-const Article = ({ article, className }) => (
-  <StyledArticle
-    className={className}
-    photo={article.photo ? article.photo.fields.file.url : "no-photo"}
-  >
-    <div className="article-image" />
-    <h4>{article.title}</h4>
-    {article.contributor && (
-      <p className="contributor">{article.contributor.fields.name}</p>
-    )}
-  </StyledArticle>
-)
+const Article = ({ article, className }) => {
+  return (
+    <StyledArticle
+      className={className}
+      photo={
+        article.fields.photo ? article.fields.photo.fields.file.url : "no-photo"
+      }
+    >
+      <div className="article-image" />
+      <h4>{article.title}</h4>
+      {article.fields.contributor && (
+        <p className="contributor">{article.fields.contributor.fields.name}</p>
+      )}
+    </StyledArticle>
+  )
+}
 
 class ArticleList extends React.Component {
-  componentDidMount = () => this.props.getArticles()
+  state = {
+    head: {},
+    tail: [],
+    loaded: false
+  }
+  componentDidMount = () =>
+    this.props.getArticles().then(() =>
+      this.setState(state => {
+        const array = Object.values(this.props.articles)
+        const head = array[0]
+        const tail = array.slice(1)
+        return {
+          loaded: true,
+          head,
+          tail
+        }
+      })
+    )
 
   render = () => {
-    const head = this.props.articles[0]
-    const tail = this.props.articles.slice(1)
+    const { head, tail } = this.state
+    if (!this.state.loaded) return <p>...loading</p>
     return (
       <ArticleListWrapper container>
         <Column smOffset={1} sm={10}>
           <h4>Featured Articles</h4>
         </Column>
-        {this.props.loaded ? (
-          <React.Fragment>
-            <Column md={5} smOffset={1}>
-              <Article key={head.sys.id} article={head.fields} />
-            </Column>
-            <Column md={5} className="small-article-grid">
-              {tail.map(article => (
-                <Article
-                  key={article.sys.id}
-                  article={article.fields}
-                  className="small-article"
-                />
-              ))}
-            </Column>
-          </React.Fragment>
-        ) : (
-          <p>loading...</p>
-        )}
+        <Column md={5} smOffset={1}>
+          <Article article={head} />
+        </Column>
+        <Column md={5} className="small-article-grid">
+          {tail.map(article => (
+            <Article
+              key={article.sys.id}
+              article={article}
+              className="small-article"
+            />
+          ))}
+        </Column>
       </ArticleListWrapper>
     )
   }

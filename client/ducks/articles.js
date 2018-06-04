@@ -6,8 +6,8 @@ const GET_ARTICLES_SUCCESS = "state_matters/articles/GET_ARTICLES_SUCCESS"
 const GET_ARTICLES_FAIL = "state_matters/articles/GET_ARTICLES_FAIL"
 
 const initalState = {
-  items: [],
-  loaded: false
+  loaded: false,
+  items: {}
 }
 
 // reducer
@@ -19,7 +19,10 @@ export default (state = initalState, action) => {
       return {
         ...state,
         loaded: true,
-        items: action.payload
+        items: {
+          ...state.items,
+          ...action.payload
+        }
       }
 
     default:
@@ -31,8 +34,8 @@ export default (state = initalState, action) => {
 export const getArticles = _ => async dispatch => {
   dispatch({ type: GET_ARTICLES })
   try {
-    const response = await axios("/api/articles")
-    dispatch({ type: GET_ARTICLES_SUCCESS, payload: response.data.items })
+    const { data } = await axios("/api/articles")
+    dispatch({ type: GET_ARTICLES_SUCCESS, payload: data })
   } catch (err) {
     dispatch({ type: GET_ARTICLES_FAIL, payload: err })
   }

@@ -1,6 +1,6 @@
 const router = require("express").Router()
-const axios = require("axios")
 const contentful = require("contentful")
+const { normalize, schema } = require("normalizr")
 
 const client = contentful.createClient({
   space: "021ulla0m5co",
@@ -11,11 +11,18 @@ const client = contentful.createClient({
 
 router.get("/", async (req, res, next) => {
   try {
-    const response = await client.getEntries({
+    const { items } = await client.getEntries({
       content_type: "article",
       select: "sys.id,fields.title,fields.contributor,fields.photo"
     })
-    res.json(response)
+    const articleSchema = new schema.Entity("articles", undefined, {
+      idAttribute: lesson => lesson.sys.id
+    })
+    const articleListSchema = new schema.Array(articleSchema)
+    const {
+      entities: { articles }
+    } = normalize(items, articleListSchema)
+    res.json(articles)
   } catch (error) {
     res.status(500)
     res.json(error)
