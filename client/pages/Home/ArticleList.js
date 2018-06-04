@@ -4,6 +4,7 @@ import styled from "styled-components"
 import theme from "theme"
 import { Grid, Column } from "components/Grid"
 import Loader from "components/Loader"
+import { BlockLink } from "components/TouchTarget"
 import { getArticles } from "ducks/articles"
 
 const ArticleListWrapper = styled(Grid)`
@@ -21,7 +22,7 @@ const ArticleListWrapper = styled(Grid)`
 
 const StyledArticle = styled.article`
   position: relative;
-  .article-image {
+  .article__image {
     padding-bottom: 62.5%;
     background-image: url(${props => props.photo}),
       linear-gradient(
@@ -31,6 +32,15 @@ const StyledArticle = styled.article`
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+  }
+  .article__title {
+    margin-top: 2rem;
+  }
+  .article__contributor {
+    margin-top: 1rem;
+  }
+  .article__link {
+    margin-top: 1rem;
   }
 `
 
@@ -42,11 +52,20 @@ const Article = ({ article, className }) => {
         article.fields.photo ? article.fields.photo.fields.file.url : "no-photo"
       }
     >
-      <div className="article-image" />
-      <h4>{article.title}</h4>
+      <div className="article__image" />
+      <h4 className="article__title">{article.fields.title}</h4>
       {article.fields.contributor && (
-        <p className="contributor">{article.fields.contributor.fields.name}</p>
+        <p className="article__contributor">
+          {article.fields.contributor.fields.name}
+        </p>
       )}
+      <BlockLink
+        className="article__link"
+        to={`/articles/${article.sys.id}`}
+        color={theme.colors.grey["900"]}
+      >
+        Read more.
+      </BlockLink>
     </StyledArticle>
   )
 }

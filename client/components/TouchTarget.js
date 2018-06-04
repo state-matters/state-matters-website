@@ -3,7 +3,10 @@ import { Link as RouterLink } from "react-router-dom"
 import styled from "styled-components"
 import theme from "theme"
 
-export const BlockLink = styled(RouterLink)`
+export const BlockLink = styled(({ children, ...props }) => {
+  if (props.to) return <RouterLink {...props}>{children}</RouterLink>
+  else return <a {...props}>{children}</a>
+})`
   position: relative;
   display: inline-block;
   padding-right: 2rem;
