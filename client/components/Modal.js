@@ -42,7 +42,7 @@ export default class Modal extends React.Component {
     this.modalNode.style.position = "relative"
     modalRoot.appendChild(this.modalNode)
   }
-  componentWillUnmount = _ => document.body.removeChild(this.modalNode)
+  componentWillUnmount = _ => modalRoot.removeChild(this.modalNode)
   toggleModal = e => {
     e.stopPropagation()
     this.setState(state => {
