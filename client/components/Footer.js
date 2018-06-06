@@ -43,24 +43,20 @@ export default () => (
   <StyledFooter>
     <div className="left">
       <div className="content">
-        <a href="/"><h2>StateMatters.org</h2></a>
-
+        <h2>statematter.org</h2>
         <h4>Chicago, IL</h4>
         <ul>
           <li>
-             <a href="/about"><h3>About</h3></a>
+            <h3>About</h3>
           </li>
-          {/*
-            <li>
+          <li>
             <h3>Submit</h3>
           </li>
           <li>
             <h3>Careers</h3>
           </li>
-          */
-          }
           <li>
-            <a href="/articles"><h3>Articles</h3></a>
+            <h3>Blog</h3>
           </li>
         </ul>
       </div>
@@ -71,15 +67,10 @@ export default () => (
         <h3>to understand state government</h3>
         <ul>
           <li>
-          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-            <input type="hidden" name="cmd" defaultValue="_s-xclick" />
-            <input type="hidden" name="hosted_button_id" defaultValue="7TN8BEBTJMZXQ" />
-            <input type="submit" name="submit" defaultValue="Donate." />
-          </form>
             <BlockLink to="http://paypal.com/">donate</BlockLink>
           </li>
           <li>
-            <BlockLink to="/subscribe">subscribe to our newsletter</BlockLink>
+            <BlockLink to="/subscribe">subscribe to our news letter</BlockLink>
           </li>
           <li>
             <BlockLink to="/about">contact us</BlockLink>

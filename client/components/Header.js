@@ -57,11 +57,7 @@ const Header = props => (
     <Link to="/" className="logo-link">
       <img src="/assets/SM-logo.svg" alt="State Matters Logo" />
     </Link>
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-      <input type="hidden" name="cmd" defaultValue="_s-xclick" />
-      <input type="hidden" name="hosted_button_id" defaultValue="7TN8BEBTJMZXQ" />
-      <Button type="submit" name="submit" defaultValue="Donate." className="primary donate" >Donate </Button>
-    </form>
+    <Button className="primary donate">Donate</Button>
     <span className="nav-menu">
       <span />
       <span />
