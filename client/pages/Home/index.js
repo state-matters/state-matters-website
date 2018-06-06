@@ -51,7 +51,7 @@ class Home extends React.Component {
         <AboutUs className="how-it-works">
           <Grid container>
             <Column mdOffset={2} sm={8}>
-              <h2>State government can be confusing. We've got you covered.</h2>
+              <h2>{"State government can be confusing. We've got you covered."}</h2>
               <div className="home__links">
                 <BlockLink color={theme.colors.grey["700"]} to="/about">
                   Contact Us
@@ -67,7 +67,7 @@ class Home extends React.Component {
                     </BlockLink>
                   )}
                 />
-                <BlockLink color={theme.colors.grey["700"]}>Dontate</BlockLink>
+                <BlockLink color={theme.colors.grey["700"]}>Donate</BlockLink>
               </div>
             </Column>
           </Grid>
