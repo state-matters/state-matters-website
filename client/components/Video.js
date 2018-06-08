@@ -34,19 +34,44 @@ export default class Video extends React.Component {
     poster: PropTypes.string,
     url: PropTypes.string
   }
+  video = null
+  state = {
+    playing: false
+  }
+  render = _ => (
+    <Modal
+      body={
 
-    render = _ => {
-      return <ReactPlayer
-        url={this.props.url}
-        config={
-          { file:
-            { attributes:
-              { poster: this.props.poster
-              }
-            } }
-          }
-          controls
-        />
-    }
+          <ReactPlayer
+          url={this.props.url}
+          config={
+            { file:
+              { attributes:
+                { poster: this.props.poster
+                }
+              } }
+            }
+            controls
+          />
 
+      }
+      render={toggle => (
+        <StyledVideo
+          className={this.props.className}
+          background={this.props.poster}
+        >
+          <div className="video__inner">
+            {this.props.playButton && (
+              <Play
+                className="video__play-btn"
+                size={48}
+                onClick={toggle}
+                color="white"
+              />
+            )}
+          </div>
+        </StyledVideo>
+      )}
+    />
+  )
 }
