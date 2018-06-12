@@ -73,7 +73,6 @@ h4,
   width: 100%;
   max-width: 105rem;
   margin: 0 auto;
-  padding: 0 2rem;
 }
 
 .card {

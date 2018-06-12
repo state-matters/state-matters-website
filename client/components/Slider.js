@@ -15,13 +15,17 @@ const StyledScroller = styled.section`
     transition: transform 300ms;
   }
   .item {
-    flex: 0 0 calc(33.34% - 2rem);
-    min-width: calc(100vw - 2rem);
+    flex: 0 0 100%;
+    min-width: 100vw;
     &:not(:last-of-type) {
-      margin-right: 2rem;
+      margin-right: 0;
     }
     @media (min-width: 40rem) {
-      min-width: 30rem;
+      flex: 0 0 ${({ basis = 30 }) => `${basis}rem`};
+      min-width: ${({ basis = 30 }) => `${basis}rem`};
+      &:not(:last-of-type) {
+        margin-right: 2rem;
+      }
     }
   }
 `

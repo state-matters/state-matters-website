@@ -14,7 +14,17 @@ const StyledLessonList = styled.section`
   .inner-list {
     align-items: center;
   }
-  .lesson__title,
+  .lesson {
+    position: relative;
+  }
+  .lesson__title {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    color: white;
+    z-index: 2;
+  }
   .lesson__video,
   .lesson__link {
     margin-top: 2rem;
@@ -34,34 +44,32 @@ class LessonList extends React.Component {
     const { lessons, loaded } = this.props
     if (!loaded) return <Loader />
     return (
-      <StyledLessonList className="container">
-        <div>
+      <StyledLessonList>
+        <div className="container">
           <h4>Educational Videos</h4>
         </div>
-        <Slider basis={33} activeBasis={70}>
+        <Slider basis={33}>
           {Object.values(lessons).map(({ sys, fields }) => (
             <div className="lesson" key={sys.id}>
-              <div className="container">
-                <h3 className="lesson__title">{fields.title}</h3>
-              </div>
+              <h3 className="lesson__title">{fields.title}</h3>
               <Video
                 className="lesson__video"
                 playButton
                 url={fields.video.fields.file.url}
                 poster={fields.poster.fields.file.url}
               />
-              <div className="container">
-                <BlockLink
-                  className="lesson__link"
-                  color={theme.colors.grey["900"]}
-                  to={`/lessons/${sys.id}`}
-                >
-                  Learn you some good.
-                </BlockLink>
-              </div>
             </div>
           ))}
         </Slider>
+        <div className="container">
+          <BlockLink
+            className="lesson__link"
+            color={theme.colors.grey["900"]}
+            to={`/lessons`}
+          >
+            Learn more about your state government.
+          </BlockLink>
+        </div>
       </StyledLessonList>
     )
   }
