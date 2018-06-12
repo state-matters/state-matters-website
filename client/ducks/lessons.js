@@ -72,7 +72,6 @@ export const getLesson = id => async dispatch => {
   dispatch({ type: GET_LESSON })
   try {
     const { data } = await axios(`/api/lessons/${id}`)
-    console.log(data)
     dispatch({
       type: GET_LESSON_SUCCESS,
       payload: {
