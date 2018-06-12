@@ -3,7 +3,7 @@ import styled from "styled-components"
 import PropTypes from "prop-types"
 import { Play } from "react-feather"
 import Modal from "./Modal"
-import ReactPlayer from 'react-player'
+
 
 const StyledVideo = styled.figure`
   position: relative;
@@ -41,19 +41,12 @@ export default class Video extends React.Component {
   render = _ => (
     <Modal
       body={
-
-          <ReactPlayer
-          url={this.props.url}
-          config={
-            { file:
-              { attributes:
-                { poster: this.props.poster
-                }
-              } }
-            }
-            controls
-          />
-
+        <VideoModal
+          controls
+          src={this.props.url}
+          poster={this.props.poster}
+          ref={node => (this.video = node)}
+        />
       }
       render={toggle => (
         <StyledVideo
