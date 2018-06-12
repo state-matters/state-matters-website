@@ -2,10 +2,10 @@ import React from "react"
 import styled from "styled-components"
 import { connect } from "react-redux"
 import theme from "theme"
+import { Link } from "react-router-dom"
 import Slider from "components/Slider"
 import Video from "components/Video"
 import Loader from "components/Loader"
-import { BlockLink } from "components/TouchTarget"
 import { getLessons } from "ducks/lessons"
 
 const StyledLessonList = styled.section`
@@ -24,6 +24,7 @@ const StyledLessonList = styled.section`
     right: 1rem;
     color: white;
     z-index: 2;
+    text-decoration: none;
   }
   .lesson__video,
   .lesson__link {
@@ -51,7 +52,9 @@ class LessonList extends React.Component {
         <Slider basis={33}>
           {Object.values(lessons).map(({ sys, fields }) => (
             <div className="lesson" key={sys.id}>
-              <h3 className="lesson__title">{fields.title}</h3>
+              <Link className="lesson__title" to={`/lessons/${sys.id}`}>
+                <h3>{fields.title}</h3>
+              </Link>
               <Video
                 className="lesson__video"
                 playButton
@@ -61,15 +64,6 @@ class LessonList extends React.Component {
             </div>
           ))}
         </Slider>
-        <div className="container">
-          <BlockLink
-            className="lesson__link"
-            color={theme.colors.grey["900"]}
-            to={`/lessons`}
-          >
-            Learn more about your state government.
-          </BlockLink>
-        </div>
       </StyledLessonList>
     )
   }
