@@ -61,30 +61,16 @@ class BillList extends React.Component {
     return (
       <StyledBillList className="bill-list container">
         <h4 className="bills__title">Featured Videos</h4>
-        <Slider basis={33} activeBasis={80}>
+        <Slider>
           {Object.values(bills).map(bill => (
-            <Slider.Slide className="bill" key={bill.sys.id} basis={33}>
-              <div className="bill__copy">
-                <h2>{bill.fields.billNumber}</h2>
-                <p>{bill.fields.title}</p>
-                <p className="bill__status">
-                  Status: {bill.fields.status.fields.status_text}
-                </p>
-                <BlockLink
-                  className="bill__link"
-                  color={theme.colors.grey["900"]}
-                  to={`/bills/${bill.sys.id}`}
-                >
-                  Read The Brief
-                </BlockLink>
-              </div>
+            <div className="bill" key={bill.sys.id}>
               <Video
                 className="bill__video"
                 playButton
                 url={bill.fields.video.fields.file.url}
                 poster={bill.fields.poster.fields.file.url}
               />
-            </Slider.Slide>
+            </div>
           ))}
         </Slider>
       </StyledBillList>

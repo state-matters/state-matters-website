@@ -40,7 +40,7 @@ class LessonList extends React.Component {
         </div>
         <Slider basis={33} activeBasis={70}>
           {Object.values(lessons).map(({ sys, fields }) => (
-            <Slider.Slide className="lesson" key={sys.id}>
+            <div className="lesson" key={sys.id}>
               <div className="container">
                 <h3 className="lesson__title">{fields.title}</h3>
               </div>
@@ -59,7 +59,7 @@ class LessonList extends React.Component {
                   Learn you some good.
                 </BlockLink>
               </div>
-            </Slider.Slide>
+            </div>
           ))}
         </Slider>
       </StyledLessonList>
