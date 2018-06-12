@@ -4,14 +4,18 @@ import axios from "axios"
 // constants
 ////
 
-export const GET_LESSONS = "state_matters/lessons/GET_LESSONS"
-export const GET_LESSONS_SUCCESS = "state_matters/lessons/GET_LESSONS_SUCCESS"
-export const GET_LESSONS_FAIL = "state_matters/lessons/GET_LESSONS_FAIL"
+export const GET_LESSONS_INDEX = "state_matters/lessons/GET_LESSONS"
+export const GET_LESSONS_INDEX_SUCCESS =
+  "state_matters/lessons/GET_LESSONS_SUCCESS"
+export const GET_LESSONS_INDEX_FAIL = "state_matters/lessons/GET_LESSONS_FAIL"
+export const GET_LESSON = "state_matters/lessons/GET_LESSON"
+export const GET_LESSON_SUCCESS = "state_matters/lessons/GET_LESSON_SUCCESS"
+export const GET_LESSON_FAIL = "state_matters/lessons/GET_LESSON_FAIL"
 export const CHANGE_SELECTION = "state_matters/lessons/CHANGE_SELECTION"
 
 const intialState = {
   loaded: false,
-  items: null,
+  items: {},
   selectedId: null,
   idList: []
 }
@@ -22,16 +26,22 @@ const intialState = {
 
 export default function reducer(state = intialState, action) {
   switch (action.type) {
-    case GET_LESSONS_SUCCESS:
+    case GET_LESSONS_INDEX_SUCCESS:
       return {
         ...state,
         loaded: true,
         items: { ...state.items, ...action.payload }
       }
-    case CHANGE_SELECTION:
+    case GET_LESSON_SUCCESS:
       return {
         ...state,
-        selectedId: action.payload
+        items: {
+          ...state.items,
+          [action.payload.id]: {
+            ...state.items[action.payload.id],
+            ...action.payload.data
+          }
+        }
       }
     default:
       return state
@@ -43,18 +53,34 @@ export default function reducer(state = intialState, action) {
 ////
 
 export const getLessons = _ => async dispatch => {
-  dispatch({ type: GET_LESSONS })
+  dispatch({ type: GET_LESSONS_INDEX })
   try {
     const { data } = await axios("/api/lessons")
     dispatch({
-      type: GET_LESSONS_SUCCESS,
+      type: GET_LESSONS_INDEX_SUCCESS,
       payload: data
     })
   } catch (err) {
     dispatch({
-      type: GET_LESSONS_FAIL,
+      type: GET_LESSONS_INDEX_FAIL,
       payload: err
     })
+  }
+}
+
+export const getLesson = id => async dispatch => {
+  dispatch({ type: GET_LESSON })
+  try {
+    const { data } = await axios(`/api/lessons/${id}`)
+    dispatch({
+      type: GET_LESSON_SUCCESS,
+      payload: {
+        data,
+        id
+      }
+    })
+  } catch (error) {
+    dispatch({ type: GET_LESSON_FAIL, payload: error })
   }
 }
 
