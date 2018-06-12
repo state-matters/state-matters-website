@@ -1,12 +1,12 @@
 # State Matters
 
-_[Contentful CMS][2] + [express][3] + [styled components][4]_
+_[Contentful CMS][2] + [express][3] + [react][5] + [styled components][4]_
 
 ## Setup
 
 1.  Clone the repo locally `git clone https://github.com/state-matters/state-matters-website.git`
 1.  Install dependencies `npm install`
-1.  Get a development server(s) started `npm start:dev`
+1.  Get a development server(s) started `npm run start:dev`
 
 ## Contributing
 
@@ -20,3 +20,4 @@ _Always work on from a branch based from the develop branch, never master_
 [2]: https://www.contentful.com/developers/docs/references/content-delivery-api/
 [3]: https://expressjs.com/en/4x/api.html
 [4]: https://www.styled-components.com/docs
+[5]: https://reactjs.org/
