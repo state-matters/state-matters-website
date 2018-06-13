@@ -1,29 +1,37 @@
 import React from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
+import debounce from "lodash.debounce"
+import { CSSTransition } from "react-transition-group"
 import { Button } from "components/TouchTarget"
 import { Grid, Column } from "components/Grid"
 import { BlockLink } from "components/TouchTarget"
 import theme from "theme"
 
 const StyledHeader = styled.header`
-  display: flex;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding: 2rem;
-  height: 10rem;
-  align-items: center;
-  background-color: ${({ open }) =>
-    open ? theme.colors.grey["900"] : "transparent"};
-  z-index: 10;
-  .logo-link {
-    margin-right: auto;
-    max-width: 10rem;
-  }
-  .logo-link img {
+  position: relative;
+  width: 100%;
+  .header__bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 2rem;
     width: 100%;
+    z-index: 3;
+    .container {
+      display: flex;
+      align-items: center;
+    }
+    .logo-link {
+      position: relative;
+      margin-right: auto;
+      max-width: 10rem;
+      opacity: ${({ open }) => (open ? 0 : 1)};
+      pointer-events: ${({ open }) => (open ? "none" : "intial")};
+    }
+    .logo-link img {
+      width: 100%;
+    }
   }
   .nav-menu {
     display: flex;
@@ -34,11 +42,27 @@ const StyledHeader = styled.header`
     padding: 2rem;
     background-color: ${theme.colors.grey["900"]};
     color: ${theme.colors.grey["100"]};
-    transform: translateY(${({ open }) => (open ? "0" : "-120%")});
-    transition: 200ms;
     min-height: 75vh;
     width: 100%;
-    z-index: 8;
+    z-index: 2;
+  }
+  .nav-menu-enter {
+    opacity: 0.01;
+    transform: translateY(-120%);
+  }
+  .nav-menu-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: 400ms;
+  }
+  .nav-menu-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .nav-menu-exit-active {
+    opacity: 0.01;
+    transform: translateY(-120%);
+    transition: 400ms;
   }
   .nav-menu__button {
     position: relative;
@@ -47,15 +71,19 @@ const StyledHeader = styled.header`
     justify-content: center;
     align-items: flex-end;
     margin-left: 3rem;
-    width: 2rem;
+    cursor: pointer;
     height: 2rem;
-    z-index: 9;
+    width: 2rem;
+    &:hover span:nth-of-type(1n) {
+      width: 100%;
+    }
     span {
       display: block;
       margin-bottom: 0.5rem;
-      width: 100%;
       height: 2px;
       background-color: ${theme.colors.grey["100"]};
+      transition: 200ms;
+      width: 100%;
     }
     span:nth-of-type(2) {
       width: 80%;
@@ -65,17 +93,28 @@ const StyledHeader = styled.header`
     }
   }
   .nav-menu__screen {
-    display: ${({ open }) => (open ? "block" : "none")};
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     background-color: ${theme.colors.grey["900"]};
-    opacity: ${({ open }) => (open ? 0.6 : 0)};
-    transition: 200ms;
-    transition-delay: 100ms;
-    z-index: 7;
+    z-index: 1;
+    opacity: 0.6;
+  }
+  .nav-menu__screen-enter {
+    opacity: 0.01;
+  }
+  .nav-menu__screen-enter-active {
+    opacity: 0.6;
+    transition: 400ms;
+  }
+  .nav-menu__screen-exit {
+    opacity: 0.6;
+  }
+  .nav-menu__screen-exit-active {
+    opacity: 0.01;
+    transition: 400ms;
   }
   .nav-menu__list {
     margin: 0;
@@ -90,6 +129,64 @@ const StyledHeader = styled.header`
     }
   }
 `
+
+class Header extends React.Component {
+  state = { open: false }
+  toggleMenu = () =>
+    this.setState(state => {
+      if (!state.open) document.body.classList.add("no-scroll")
+      else document.body.classList.remove("no-scroll")
+      return { open: !state.open }
+    })
+  componentDidMount = () => {
+    document.addEventListener(
+      "scroll",
+      debounce(() => {
+        console.log("Scrolling")
+      }, 5)
+    )
+  }
+  render = () => {
+    const { open } = this.state
+    return (
+      <StyledHeader open={open}>
+        <HeaderBar open={open} toggleMenu={this.toggleMenu} />
+        <CSSTransition
+          classNames="nav-menu__screen"
+          timeout={400}
+          in={open}
+          unmountOnExit
+        >
+          <div className="nav-menu__screen" />
+        </CSSTransition>
+        <CSSTransition
+          in={open}
+          timeout={400}
+          classNames="nav-menu"
+          unmountOnExit
+        >
+          <NavMenu />
+        </CSSTransition>
+      </StyledHeader>
+    )
+  }
+}
+
+const HeaderBar = ({ open, toggleMenu }) => (
+  <div className="header__bar">
+    <div className="container">
+      <Link to="/" className="logo-link">
+        <img src="/assets/SM-logo.svg" alt="State Matters Logo" />
+      </Link>
+      {!open && <DonateButton />}
+      <span className="nav-menu__button" onClick={toggleMenu}>
+        <span />
+        <span />
+        <span />
+      </span>
+    </div>
+  </div>
+)
 
 const DonateButton = () => (
   <form
@@ -110,80 +207,59 @@ const DonateButton = () => (
   </form>
 )
 
-class Header extends React.Component {
-  state = { open: false }
-  toggleMenu = () => {
-    console.log("toggle")
-    this.setState(state => ({ open: !state.open }))
-  }
-  render = () => {
-    return (
-      <StyledHeader className="container" open={this.state.open}>
-        <Link to="/" className="logo-link">
-          <img src="/assets/SM-logo.svg" alt="State Matters Logo" />
-        </Link>
-        {!this.state.open && <DonateButton />}
-        <span className="nav-menu__button" onClick={this.toggleMenu}>
-          <span />
-          <span />
-          <span />
-        </span>
-        <div className="nav-menu__screen" />
-        <div className="nav-menu">
-          <Grid container>
-            <Column sm={12}>
-              <h3>Statematters.org</h3>
-              <h4>Chicago, IL</h4>
-            </Column>
-            <Column sm={3}>
-              <ul className="nav-menu__list">
-                <li>
-                  <h2>About</h2>
-                </li>
-                <li>
-                  <h2>The Team</h2>
-                </li>
-                <li>
-                  <h2>Careers</h2>
-                </li>
-                <li>
-                  <h2>Submit</h2>
-                </li>
-              </ul>
-            </Column>
-            <Column sm={4}>
-              <ul className="nav-menu__list">
-                <li>
-                  <h2>Bill Videos</h2>
-                </li>
-                <li>
-                  <h2>Educational Videos</h2>
-                </li>
-                <li>
-                  <h2>Articles</h2>
-                </li>
-              </ul>
-            </Column>
-            <Column sm={5}>
-              <ul className="nav-menu__list">
-                <li>
-                  <BlockLink className="block-link">Donate</BlockLink>
-                </li>
-                <li>
-                  <BlockLink className="block-link">
-                    Subscribe to Our Newsletter
-                  </BlockLink>
-                </li>
-                <li>
-                  <BlockLink className="block-link">Contact Us</BlockLink>
-                </li>
-              </ul>
-            </Column>
-          </Grid>
-        </div>
-      </StyledHeader>
-    )
-  }
-}
+const NavMenu = props => (
+  <div className="nav-menu">
+    <Grid container>
+      <Column sm={12}>
+        <h3>Statematters.org</h3>
+        <h4>Chicago, IL</h4>
+      </Column>
+      <Column sm={3}>
+        <ul className="nav-menu__list">
+          <li>
+            <h2>About</h2>
+          </li>
+          <li>
+            <h2>The Team</h2>
+          </li>
+          <li>
+            <h2>Careers</h2>
+          </li>
+          <li>
+            <h2>Submit</h2>
+          </li>
+        </ul>
+      </Column>
+      <Column sm={4}>
+        <ul className="nav-menu__list">
+          <li>
+            <h2>Bill Videos</h2>
+          </li>
+          <li>
+            <h2>Educational Videos</h2>
+          </li>
+          <li>
+            <h2>Articles</h2>
+          </li>
+        </ul>
+      </Column>
+      <Column sm={5}>
+        <ul className="nav-menu__list">
+          <li>
+            <BlockLink className="block-link">Donate</BlockLink>
+          </li>
+          <li>
+            <BlockLink className="block-link">
+              Subscribe to Our Newsletter
+            </BlockLink>
+          </li>
+          <li>
+            <BlockLink className="block-link">Contact Us</BlockLink>
+          </li>
+        </ul>
+      </Column>
+    </Grid>
+  </div>
+)
 
 export default Header
