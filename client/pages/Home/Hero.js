@@ -14,6 +14,10 @@ const Wrapper = styled.section`
     height: 100%;
     align-items: center;
   }
+  .hero {
+    font-family: "Poppins", sans-serif;
+    font-size: 3rem;
+  }
   .hero__link {
     margin-top: 2rem;
   }
@@ -44,7 +48,7 @@ export default props => {
   return (
     <Wrapper>
       <Grid container>
-        <Column md={8} mdOffset={1}>
+        <Column md={7} mdOffset={1}>
           <h1 className="hero">
             We create video content and briefs on the most pressing political
             issues & laws that affect you.
