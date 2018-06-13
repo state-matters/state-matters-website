@@ -37,9 +37,14 @@ router
     }
   })
   .get("/:lesson_id", async (req, res) => {
+    if (!req.params.lesson_id)
+      return res.status(422).json({ message: "no id attached" })
     try {
-      const lesson = await client.getEntry(req.params.lesson_id)
-      res.status(200).json(lesson)
+      const { items } = await client.getEntries({
+        "sys.id": req.params.lesson_id
+      })
+      console.log(items[0])
+      res.status(200).json(items[0])
     } catch (error) {
       res.status(400).json(error)
     }

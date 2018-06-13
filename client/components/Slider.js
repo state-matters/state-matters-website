@@ -36,11 +36,17 @@ export default class extends React.Component {
     left: 0,
     elementWidth: 0
   }
-  componentDidMount = () =>
+  componentDidMount = () => {
+    const element = this.container.firstChild
+    const margin = parseInt(window.getComputedStyle(element).marginRight)
+    console.log(margin)
+    const elementWidth = Math.round(
+      element.getBoundingClientRect().width + margin
+    )
     this.setState({
-      elementWidth:
-        Math.round(this.container.firstChild.getBoundingClientRect().width) + 24
+      elementWidth
     })
+  }
   handleSwipe = (e, dx) =>
     this.setState(state => {
       if (dx < 0) {

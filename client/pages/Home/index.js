@@ -53,21 +53,21 @@ class Home extends React.Component {
             <Column mdOffset={2} sm={8}>
               <h2>{"State government can be confusing. We've got you covered."}</h2>
               <div className="home__links">
-                <BlockLink color={theme.colors.grey["700"]} to="/about">
+                <BlockLink color={theme.colors.grey["900"]} to="/about">
                   Contact Us
                 </BlockLink>
                 <Modal
                   body={<h1>Modal Body</h1>}
                   render={toggle => (
                     <BlockLink
-                      color={theme.colors.grey["700"]}
+                      color={theme.colors.grey["900"]}
                       onClick={toggle}
                     >
                       Subscribe to Our Newsletter
                     </BlockLink>
                   )}
                 />
-                <BlockLink color={theme.colors.grey["700"]}>Donate</BlockLink>
+                <BlockLink color={theme.colors.grey["900"]}>Donate</BlockLink>
               </div>
             </Column>
           </Grid>
