@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { Link } from "react-router-dom"
 import { Button } from "components/TouchTarget"
 import { Grid, Column } from "components/Grid"
+import { BlockLink } from "components/TouchTarget"
 import theme from "theme"
 
 const StyledHeader = styled.header`
@@ -33,7 +34,7 @@ const StyledHeader = styled.header`
     padding: 2rem;
     background-color: ${theme.colors.grey["900"]};
     color: ${theme.colors.grey["100"]};
-    transform: translateY(${({ open }) => (open ? "0" : "-100%")});
+    transform: translateY(${({ open }) => (open ? "0" : "-120%")});
     transition: 200ms;
     min-height: 75vh;
     width: 100%;
@@ -75,6 +76,18 @@ const StyledHeader = styled.header`
     transition: 200ms;
     transition-delay: 100ms;
     z-index: 7;
+  }
+  .nav-menu__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+      color: ${theme.colors.grey["500"]};
+      margin-top: 2rem;
+      .block-link {
+        margin-top: 1rem;
+      }
+    }
   }
 `
 
@@ -123,7 +136,7 @@ class Header extends React.Component {
               <h4>Chicago, IL</h4>
             </Column>
             <Column sm={3}>
-              <ul>
+              <ul className="nav-menu__list">
                 <li>
                   <h2>About</h2>
                 </li>
@@ -138,8 +151,34 @@ class Header extends React.Component {
                 </li>
               </ul>
             </Column>
-            <Column sm={4}>list two</Column>
-            <Column sm={5}>list three</Column>
+            <Column sm={4}>
+              <ul className="nav-menu__list">
+                <li>
+                  <h2>Bill Videos</h2>
+                </li>
+                <li>
+                  <h2>Educational Videos</h2>
+                </li>
+                <li>
+                  <h2>Articles</h2>
+                </li>
+              </ul>
+            </Column>
+            <Column sm={5}>
+              <ul className="nav-menu__list">
+                <li>
+                  <BlockLink className="block-link">Donate</BlockLink>
+                </li>
+                <li>
+                  <BlockLink className="block-link">
+                    Subscribe to Our Newsletter
+                  </BlockLink>
+                </li>
+                <li>
+                  <BlockLink className="block-link">Contact Us</BlockLink>
+                </li>
+              </ul>
+            </Column>
           </Grid>
         </div>
       </StyledHeader>
