@@ -17,6 +17,8 @@ const StyledHeader = styled.header`
     left: 0;
     padding: 2rem;
     width: 100%;
+    background-color: ${({ open }) =>
+      open ? "transparent" : theme.colors.grey["900"]};
     z-index: 3;
     .container {
       display: flex;
@@ -39,12 +41,17 @@ const StyledHeader = styled.header`
     position: fixed;
     top: 0;
     left: 0;
-    padding: 2rem;
+    padding: 10rem 2rem 2rem;
     background-color: ${theme.colors.grey["900"]};
     color: ${theme.colors.grey["100"]};
     min-height: 75vh;
+    height: 100%;
+    overflow: auto;
     width: 100%;
     z-index: 2;
+    @media (min-width: ${theme.breakPoints.sm}) {
+      height: auto;
+    }
   }
   .nav-menu-enter {
     opacity: 0.01;
@@ -138,14 +145,6 @@ class Header extends React.Component {
       else document.body.classList.remove("no-scroll")
       return { open: !state.open }
     })
-  componentDidMount = () => {
-    document.addEventListener(
-      "scroll",
-      debounce(() => {
-        console.log("Scrolling")
-      }, 5)
-    )
-  }
   render = () => {
     const { open } = this.state
     return (
