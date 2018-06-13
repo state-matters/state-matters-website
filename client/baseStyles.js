@@ -37,7 +37,7 @@ h1, h2, h3, h4 , h5, p {
 h1,
 h2,
 h3 {
-  font-family: "Martel", serif;
+  font-family: "Martel Light", serif;
 }
 
 h1,
@@ -48,7 +48,7 @@ h1,
 
 h2,
 .headline {
-  font-size: 3rem;
+  font-size: 2.7rem;
   font-weight: 300;
 }
 
@@ -93,7 +93,6 @@ h4,
   font-weight: 200;
 }
 
-h2,
 .headline {
   font-size: 3.5rem;
   font-weight: 300;
