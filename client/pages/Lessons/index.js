@@ -43,7 +43,7 @@ class Lesson extends React.Component {
     if (!loaded) return <Loader />
     return (
       <StyledLesson container>
-        <Column sm={8}>
+        <Column sm={8} smOffset={2}>
           <h1>{lesson.fields.title}</h1>
           <Video
             ratio={66.66}
