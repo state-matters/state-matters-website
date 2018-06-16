@@ -36,24 +36,28 @@ const StyledArticle = styled(Grid)`
   }
   margin-bottom: 5rem;
   img {
-    max-width: 100%;
+    max-width: 840px;
   }
   h1,
   h2 {
     margin-top: 2rem;
+    font-size: 22px;
+    font-family: "Poppins", serif;
+    font-weight: 500;
+
   }
   p {
-    margin-top: 4rem;
-    font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+    margin-top: 3rem;
+    margin-bottom:20px;
     letter-spacing: 0.01rem;
     font-weight: 400;
     font-style: normal;
-    font-size: 21px;
+    font-size: 16px;
     line-height: 1.58;
     letter-spacing: -0.003em;
   }
   .article__content {
-    max-width: 740px;
+    max-width: 640px;
     padding-left: 20px;
     padding-right: 20px;
     margin: 0 auto;

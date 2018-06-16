@@ -8,7 +8,7 @@ const StyledVideo = styled.figure`
   position: relative;
   margin: 0;
   .video__inner {
-    padding-bottom: 100%;
+    padding-bottom: ${({ ratio = 100 }) => `${ratio}%`};
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -37,33 +37,33 @@ export default class Video extends React.Component {
   state = {
     playing: false
   }
-  render = _ => (
-    <Modal
-      body={
-        <VideoModal
-          controls
-          src={this.props.url}
-          poster={this.props.poster}
-          ref={node => (this.video = node)}
-        />
-      }
-      render={toggle => (
-        <StyledVideo
-          className={this.props.className}
-          background={this.props.poster}
-        >
-          <div className="video__inner">
-            {this.props.playButton && (
-              <Play
-                className="video__play-btn"
-                size={48}
-                onClick={toggle}
-                color="white"
-              />
-            )}
-          </div>
-        </StyledVideo>
-      )}
-    />
-  )
+  render = _ => {
+    const { poster, url, ...props } = this.props
+    return (
+      <Modal
+        body={
+          <VideoModal
+            controls
+            src={this.props.url}
+            poster={this.props.poster}
+            ref={node => (this.video = node)}
+          />
+        }
+        render={toggle => (
+          <StyledVideo {...props} background={this.props.poster}>
+            <div className="video__inner">
+              {this.props.playButton && (
+                <Play
+                  className="video__play-btn"
+                  size={48}
+                  onClick={toggle}
+                  color="white"
+                />
+              )}
+            </div>
+          </StyledVideo>
+        )}
+      />
+    )
+  }
 }
