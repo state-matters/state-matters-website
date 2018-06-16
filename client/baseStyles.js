@@ -45,25 +45,26 @@ h3 {
 
 h1,
 .hero {
-  font-size: 3.5rem;
+  font-size: 5rem;
   font-weight: 200;
 }
 
 h2,
 .headline {
-  font-size: 3rem;
-  font-weight: 300;
+  font-size: 3.5rem;
+  font-weight: 200;
+  color: ${theme.colors.grey["500"]};
 }
 
 h3,
 .title {
-  font-size: 1.5rem;
+  font-size: 3rem;
   font-weight: 300;
 }
 
 h4,
 .subtitle {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 500;
 }
 
