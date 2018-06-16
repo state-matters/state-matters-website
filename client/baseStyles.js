@@ -64,7 +64,7 @@ h3,
 h4,
 .subtitle {
   font-size: 1.5rem;
-  font-weight: 200;
+  font-weight: 500;
 }
 
 .small {
@@ -93,25 +93,21 @@ h4,
   h1,
 .hero {
   font-size: 5rem;
-  font-weight: 200;
 }
 
 h2,
 .headline {
   font-size: 3.5rem;
-  font-weight: 300;
 }
 
 h3,
 .title {
   font-size: 3rem;
-  font-weight: 300;
 }
 
 h4,
 .subtitle {
-  font-size: 1.5rem;
-  font-weight: 200;
+  font-size: 2rem;
 }
 
 .small {
