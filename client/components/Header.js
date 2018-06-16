@@ -223,7 +223,7 @@ const NavMenu = props => (
   <div className="nav-menu">
     <Grid container>
       <Column sm={12}>
-        <h3>StateMatters.org</h3>
+        <h3><MenuLink to="/">StateMatters.org</MenuLink></h3>
         <h4>Chicago, IL</h4>
       </Column>
       <Column sm={3}>
