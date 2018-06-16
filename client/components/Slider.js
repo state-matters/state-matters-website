@@ -39,7 +39,6 @@ export default class extends React.Component {
   componentDidMount = () => {
     const element = this.container.firstChild
     const margin = parseInt(window.getComputedStyle(element).marginRight)
-    console.log(margin)
     const elementWidth = Math.round(
       element.getBoundingClientRect().width + margin
     )

@@ -29,6 +29,9 @@ body {
   line-height: 1.33333; // 24px
   overflow-x: hidden;
 }
+body.no-scroll {
+  overflow: hidden;
+}
 
 h1, h2, h3, h4 , h5, p {
   margin: 0;
