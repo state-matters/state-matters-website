@@ -46,6 +46,7 @@ class Lesson extends React.Component {
         <Column sm={8} smOffset={2}>
           <h1>{lesson.fields.title}</h1>
           <Video
+            playButton
             ratio={66.66}
             url={lesson.fields.video.fields.file.url}
             poster={lesson.fields.poster.fields.file.url}
