@@ -121,10 +121,10 @@ export default () => (
 
           </li>
           <li>
-            <BlockLink to="/subscribe">subscribe to our newsletter</BlockLink>
+            <BlockLink to="/subscribe">Subscribe to Our Newsletter</BlockLink>
           </li>
           <li>
-            <BlockLink to="/about">contact us</BlockLink>
+            <BlockLink to="/about">Contact Us</BlockLink>
           </li>
         </ul>
       </div>
