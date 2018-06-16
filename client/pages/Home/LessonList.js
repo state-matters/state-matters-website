@@ -47,7 +47,7 @@ class LessonList extends React.Component {
     return (
       <StyledLessonList>
         <div className="container">
-          <h4>Educational Videos</h4>
+          <h4>Illinois Government 101</h4>
         </div>
         <Slider basis={33}>
           {Object.values(lessons).map(({ sys, fields }) => (
