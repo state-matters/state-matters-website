@@ -50,8 +50,8 @@ export default props => {
       <Grid container>
         <Column md={7} mdOffset={1}>
           <h1 className="hero">
-            We create video content and briefs on the most pressing political
-            issues & laws that affect you.
+            We clarify Illinois government with short videos & helpful summaries on the issues 
+              that matter to you!
           </h1>
           <BlockLink className="hero__link" to="/about">
             Learn more about us
