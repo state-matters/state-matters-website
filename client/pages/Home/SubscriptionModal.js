@@ -30,7 +30,7 @@ const SubscribeModal = styled.div`
     width: 100%;
   }
   .subscribed {
-    margin: 5rem 0;
+    margin: 5rem 1rem;
   }
 `
 
