@@ -9,6 +9,7 @@ import Bill from "./pages/Bills"
 import Articles from "./pages/Articles/index"
 import ArticleShow from "./pages/Articles/Show"
 import Lesson from "./pages/Lessons"
+import LessonList from "./pages/Home/LessonList"
 import Game from "./pages/BillIntro"
 import NotFound from "components/NotFound"
 
@@ -21,6 +22,7 @@ export default () => (
         <Route path="/articles/:article_id" component={ArticleShow} />
         <Route path="/articles" component={Articles} />
         <Route path="/lessons/:lesson_id" component={Lesson} />
+        <Route path="/lessons" component={LessonList} />
         <Route path="/bill-intro" component={Game} />
         <Route path="/about" component={About} />
         <Route exact path="/" component={Home} />

@@ -47,7 +47,8 @@ class Home extends React.Component {
     return (
       <React.Fragment>
         <Hero />
-        <BillList />
+                <LessonList />
+        {/* <BillList /> */}
         <AboutUs className="how-it-works">
           <Grid container>
             <Column mdOffset={2} sm={8}>
@@ -73,7 +74,7 @@ class Home extends React.Component {
           </Grid>
         </AboutUs>
         <ArticleList />
-        <LessonList />
+
       </React.Fragment>
     )
   }
