@@ -1,32 +1,32 @@
 const router = require("express").Router()
 const axios = require("axios")
 
-router
-  .route("/")
-  .all((req, res, next) => next())
-  .post(async (req, res, next) => {
-    const { email, first_name, last_name } = req.body
-    const subscribeConfig = {
-      method: "post",
-      url: "https://api.mailchimp.com/3.0/lists/<list_id>/members",
-      data: {
-        email_address: email,
-        status: "subscribed",
-        merge_fields: {
-          FNAME: first_name,
-          LNAME: last_name
-        }
+router.route("/").post(async (req, res) => {
+  const { email, first_name, last_name } = req.body
+  const apiKey = "8677f31301728f2c5c7abcf6befc4b59-us17"
+  const subscribeConfig = {
+    method: "post",
+    url: "https://us17.api.mailchimp.com/3.0/lists/ea066b0443/members",
+    auth: {
+      username: "anything",
+      password: apiKey
+    },
+    data: JSON.stringify({
+      email_address: email,
+      status: "subscribed",
+      merge_fields: {
+        FNAME: first_name,
+        LNAME: last_name
       }
-    }
-    const getSubsUrl = "https://api.mailchimp.com/3.0/lists/<list_id>"
-    try {
-      const subcriptionRepsonse = await axios(subscribeConfig)
-      const subscribed = await axios(getSubsUrl)
-      res.json({ success: true, members: subscribed.data.stats.member_count })
-    } catch (error) {
-      res.status(500)
-      res.json(error)
-    }
-  })
+    })
+  }
+  try {
+    const { data } = await axios(subscribeConfig)
+    return res.status(200).json({ email: data.email_address })
+  } catch (error) {
+    const { data } = error.response
+    return res.status(data.status).json({ message: data.detail })
+  }
+})
 
 module.exports = router
