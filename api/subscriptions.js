@@ -3,13 +3,12 @@ const axios = require("axios")
 
 router.route("/").post(async (req, res) => {
   const { email, first_name, last_name } = req.body
-  const apiKey = "8677f31301728f2c5c7abcf6befc4b59-us17"
   const subscribeConfig = {
     method: "post",
     url: "https://us17.api.mailchimp.com/3.0/lists/ea066b0443/members",
     auth: {
       username: "anything",
-      password: apiKey
+      password: process.env.MAIL_API_KEY
     },
     data: JSON.stringify({
       email_address: email,
