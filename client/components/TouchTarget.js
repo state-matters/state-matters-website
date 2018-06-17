@@ -3,54 +3,46 @@ import { Link as RouterLink } from "react-router-dom"
 import styled from "styled-components"
 import theme from "theme"
 
-export const BlockLink = styled(({ children, ...props }) => {
+const getLinkTag = ({ children, ...props }) => {
   if (props.to) return <RouterLink {...props}>{children}</RouterLink>
   else return <a {...props}>{children}</a>
-})`
+}
+
+export const BlockLink = styled(getLinkTag)`
   position: relative;
   display: inline-block;
   padding-right: 2rem;
   padding-left: 0;
+  font-size: 1.5rem;
   font-weight: 900;
   color: ${props => props.color || theme.colors.grey["100"]};
   text-decoration: none;
   letter-spacing: 1px;
   transition: transform 300ms;
-  &:before,
+  cursor: pointer;
   &:after {
     content: "";
     position: absolute;
-    width: 1rem;
+    width: 0.75rem;
     height: 1rem;
     background-color: ${theme.colors.primary["500"]};
     top: 50%;
-    transform: translateY(-50%);
-    transition: opacity 300ms;
-    clip-path: polygon(100% 50%, 0 0, 0 100%);
-  }
-  &:before {
-    left: 0;
-    opacity: 0;
-  }
-  &:after {
     right: 0;
+    transform: translate3d(0, -50%, 0);
+    clip-path: polygon(100% 50%, 0 0, 0 100%);
+    transition: 200ms;
   }
-  &:hover {
-    transform: translateX(1rem);
-    padding-left: 2rem;
-    &:before {
-      opacity: 1;
-    }
-    &:after {
-      opacity: 0;
-    }
+  &:hover:after {
+    transform: translate3d(0.5rem, -50%, 0);
   }
 `
 
-export const Button = styled(({ children, ...props }) => {
+const getButtonTag = ({ children, ...props }) => {
   if (props.to) return <RouterLink {...props}>{children}</RouterLink>
   return <button {...props}>{children}</button>
-})`
+}
+
+export const Button = styled(getButtonTag)`
   display: inline-block;
   padding: 1rem 2rem;
   border: 4px solid ${theme.colors.grey["900"]};

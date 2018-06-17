@@ -4,7 +4,7 @@ import styled from "styled-components"
 import theme from "theme"
 import { Grid, Column } from "components/Grid"
 import Loader from "components/Loader"
-import { BlockLink } from "components/TouchTarget"
+import { Link } from "react-router-dom"
 import { getArticles } from "ducks/articles"
 
 const ArticleListWrapper = styled(Grid)`
@@ -52,20 +52,15 @@ const Article = ({ article, className }) => {
         article.fields.photo ? article.fields.photo.fields.file.url : "no-photo"
       }
     >
-      <div className="article__image" />
+      <Link to={`/articles/${article.sys.id}`}>
+        <div className="article__image" />
+      </Link>
       <h4 className="article__title">{article.fields.title}</h4>
       {article.fields.contributor && (
         <p className="article__contributor">
           {article.fields.contributor.fields.name}
         </p>
       )}
-      <BlockLink
-        className="article__link"
-        to={`/articles/${article.sys.id}`}
-        color={theme.colors.grey["900"]}
-      >
-        Read more.
-      </BlockLink>
     </StyledArticle>
   )
 }
