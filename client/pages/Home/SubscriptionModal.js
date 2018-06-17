@@ -1,6 +1,7 @@
 import React, { Fragment } from "react"
 import styled from "styled-components"
 import theme from "theme"
+import { Button } from "components/TouchTarget"
 
 const SubscribeModal = styled.div`
   .subscribe__form {
