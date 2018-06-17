@@ -1,10 +1,8 @@
 import React from "react"
 import styled from "styled-components"
-import { Link } from "react-router-dom"
-import debounce from "lodash.debounce"
+import { Link, withRouter } from "react-router-dom"
 import { CSSTransition } from "react-transition-group"
 import { Button } from "components/TouchTarget"
-// import { Link } from "components/TouchTarget"
 import { Grid, Column } from "components/Grid"
 import { BlockLink } from "components/TouchTarget"
 import theme from "theme"
@@ -133,22 +131,21 @@ const StyledHeader = styled.header`
       margin-top: 2rem;
       .block-link {
         margin-top: 1rem;
-
       }
     }
   }
 `
 
 const MenuLink = styled(Link)`
-color: ${theme.colors.grey["500"]};
-font-family: "Martel", serif;
-font-size: 3rem;
-font-weight: 300;
-&:hover {
-  color: ${theme.colors.primary["500"]};
-};
-text-decoration: none;
-`;
+  color: ${theme.colors.grey["500"]};
+  font-family: "Martel", serif;
+  font-size: 3rem;
+  font-weight: 300;
+  &:hover {
+    color: ${theme.colors.primary["500"]};
+  }
+  text-decoration: none;
+`
 
 class Header extends React.Component {
   state = { open: false }
@@ -158,6 +155,12 @@ class Header extends React.Component {
       else document.body.classList.remove("no-scroll")
       return { open: !state.open }
     })
+  componentDidUpdate = prev => {
+    if (this.props.location !== prev.location) {
+      document.body.classList.remove("no-scroll")
+      this.setState({ open: false })
+    }
+  }
   render = () => {
     const { open } = this.state
     return (
@@ -219,11 +222,13 @@ const DonateButton = () => (
   </form>
 )
 
-const NavMenu = props => (
+const NavMenu = () => (
   <div className="nav-menu">
     <Grid container>
       <Column sm={12}>
-        <h3><MenuLink to="/">StateMatters.org</MenuLink></h3>
+        <h3>
+          <MenuLink to="/">StateMatters.org</MenuLink>
+        </h3>
         <h4>Chicago, IL</h4>
       </Column>
       <Column sm={3}>
@@ -237,36 +242,6 @@ const NavMenu = props => (
           <li>
             <MenuLink to="/articles">Articles</MenuLink>
           </li>
-          {/*
-            <li>
-              <h2>The Team</h2>
-            </li>
-            <li>
-              <h2>Careers</h2>
-            </li>
-            <li>
-              <h2>Submit</h2>
-            </li>
-            */
-          }
-
-        </ul>
-      </Column>
-      <Column sm={4}>
-        <ul className="nav-menu__list">
-          {/*
-            <li>
-              <h2>Bill Videos</h2>
-            </li>
-
-
-          <li>
-            <MenuLink to="/lessons">Educational Videos</MenuLink>
-          </li>
-          <li>
-            <MenuLink to="/articles">Articles</MenuLink>
-          </li>
-          */}
         </ul>
       </Column>
       <Column sm={5}>
@@ -288,4 +263,4 @@ const NavMenu = props => (
   </div>
 )
 
-export default Header
+export default withRouter(Header)
