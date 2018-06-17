@@ -1,112 +1,112 @@
-import React from "react";
-import { connect } from "react-redux";
-import Markdown from "markdown-to-jsx";
-import styled from "styled-components";
-import theme from "theme";
-import { getArticle } from "ducks/articles";
-import Loader from "components/Loader";
-import { Grid, Column } from "components/Grid";
+import React from "react"
+import { connect } from "react-redux"
+import Markdown from "markdown-to-jsx"
+import styled from "styled-components"
+import theme from "theme"
+import { getArticle } from "ducks/articles"
+import Loader from "components/Loader"
+import { Grid, Column } from "components/Grid"
+import { BlockLink } from "components/TouchTarget"
 
 const StyledArticle = styled(Grid)`
-  padding-top: 10rem;
-  .article__hero_image {
-    padding-bottom: 62.5%;
-    width: 100%;
-    background-image: url(${props => props.article_hero_image}),
-      linear-gradient(
-        ${theme.colors.primary["500"]},
-        ${theme.colors.primary["500"]}
-      );
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  padding: 10rem 1rem;
+  min-height: 100vh;
+  .article__hero-image {
+    max-width: 100%;
   }
-  .author__image {
-    width: 60px;
-    height: 60px;
-    border-radius: 100%;
-    background-image: url(${props => props.author_image}),
-      linear-gradient(
-        ${theme.colors.primary["500"]},
-        ${theme.colors.primary["500"]}
-      );
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  .article__body {
+    margin-bottom: 2rem;
+    h2,
+    h3,
+    h4 {
+      margin-top: 4rem;
+    }
+    p {
+      margin-top: 2rem;
+      line-height: 2;
+    }
+    img {
+      max-width: 100%;
+    }
   }
-  margin-bottom: 5rem;
-  img {
-    max-width: 840px;
+  .contributor {
+    display: flex;
+    align-items: center;
   }
-  h1,
-  h2 {
-    margin-top: 2rem;
-    font-size: 22px;
-    font-family: "Poppins", serif;
-    font-weight: 500;
-
+  .contributor__info {
+    flex: 1;
+    line-height: 2;
   }
-  p {
-    margin-top: 3rem;
-    margin-bottom:20px;
-    letter-spacing: 0.01rem;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 16px;
-    line-height: 1.58;
-    letter-spacing: -0.003em;
+  .contributor__image {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 2.5rem;
+    margin-right: 1rem;
+    box-shadow: 0 12px 12px -6px rgba(0, 0, 0, 0.12);
   }
-  .article__content {
-    max-width: 640px;
-    padding-left: 20px;
-    padding-right: 20px;
-    margin: 0 auto;
+  @media (min-width: ${theme.breakPoints.sm}) {
+    padding: 10rem 0;
   }
-`;
+`
 
 class Article extends React.Component {
-  state = { loaded: false };
+  state = { loaded: false }
   componentDidMount = () =>
     this.props
       .getArticle(this.props.match.params.article_id)
-      .then(() => this.setState({ loaded: true }));
+      .then(() => this.setState({ loaded: true }))
   render = () => {
-    const { loaded } = this.state;
-    const { article } = this.props;
-    if (!loaded) return <Loader />;
+    const { loaded } = this.state
+    if (!loaded)
+      return (
+        <StyledArticle>
+          <Column>
+            <Loader />
+          </Column>
+        </StyledArticle>
+      )
+    const {
+      article: {
+        fields: { contributor, photo, title, body }
+      }
+    } = this.props
     return (
-      <StyledArticle
-        container
-        article_hero_image={
-          article.fields.photo
-            ? article.fields.photo.fields.file.url
-            : "no-photo"
-        }
-        author_image={
-          article.fields.contributor.fields.photo.fields.file.url
-            ? article.fields.contributor.fields.photo.fields.file.url
-            : "no-photo"
-        }
-      >
-        <Column>
-          <div className="article__hero_image" />
+      <StyledArticle container>
+        <Column smOffset={1} sm={11}>
+          <BlockLink color="black" to="/">
+            Back
+          </BlockLink>
         </Column>
-
-        <Column>
-          <div className="article__content">
-            <h1 className="article__title">{article.fields.title}</h1>
-            <Markdown>{article.fields.body}</Markdown>
-            <Column>
-              <h4> About the Author: </h4>
-              <div className="author__image" />
-                {article.fields.contributor.fields.name}
-                <Column>{article.fields.contributor.fields.bio}</Column>      
-            </Column>
-          </div>
+        <Column smOffset={1} sm={8}>
+          <h1>{title}</h1>
+          {photo && (
+            <img
+              className="article__hero-image"
+              src={photo.fields.file.url}
+              alt="hero image"
+            />
+          )}
+          <Markdown className="article__body">{body}</Markdown>
+          {contributor && (
+            <React.Fragment>
+              <p>About the author: </p>
+              <div className="contributor">
+                <img
+                  className="contributor__image"
+                  src={contributor.fields.photo.fields.file.url}
+                  alt={`${contributor.fields.name}'s photo`}
+                />
+                <div className="contributor__info">
+                  <p className="name">{contributor.fields.name}</p>
+                  <p className="bio">{contributor.fields.bio}</p>
+                </div>
+              </div>
+            </React.Fragment>
+          )}
         </Column>
       </StyledArticle>
-    );
-  };
+    )
+  }
 }
 
 export default connect(
@@ -114,4 +114,4 @@ export default connect(
     article: items[ownProps.match.params.article_id]
   }),
   { getArticle }
-)(Article);
+)(Article)
