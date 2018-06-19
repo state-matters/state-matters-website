@@ -1,7 +1,8 @@
 import React, { Fragment } from "react"
 import styled from "styled-components"
 import theme from "theme"
-import { Button } from "components/TouchTarget"
+import Modal from "components/Modal"
+import { Button, BlockLink } from "components/TouchTarget"
 
 const SubscribeModal = styled.div`
   .subscribe__form {
@@ -35,7 +36,7 @@ const SubscribeModal = styled.div`
   }
 `
 
-export default props => (
+const SubscriptionBody = props => (
   <SubscribeModal>
     {props.subscribed ? (
       <h3 className="subscribed">Thanks for subscribing!</h3>
@@ -73,3 +74,44 @@ export default props => (
     )}
   </SubscribeModal>
 )
+
+class SubscriptionModal extends React.Component {
+  state = {
+    form: {
+      first_name: "",
+      last_name: "",
+      email: ""
+    }
+  }
+  handleSubmit = e => {
+    e.preventDefault()
+    this.props.handleSubscribe(this.state.form)
+  }
+  onChange = (field, e) => {
+    const value = e.target.value
+    this.setState(state => ({ form: { ...state.form, [field]: value } }))
+  }
+  render = () => {
+    return (
+      <Modal
+        body={
+          <SubscriptionBody
+            subscribed={this.props.subscribed}
+            handleSubmit={this.handleSubmit}
+            onChange={this.onChange}
+          />
+        }
+        render={toggle => (
+          <BlockLink
+            color={this.props.color || theme.colors.grey["700"]}
+            onClick={toggle}
+          >
+            Subscribe to Our Newsletter
+          </BlockLink>
+        )}
+      />
+    )
+  }
+}
+
+export default SubscriptionModal

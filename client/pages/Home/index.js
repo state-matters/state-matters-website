@@ -5,15 +5,13 @@ import { connect } from "react-redux"
 import theme from "theme"
 import { handleSubscribe } from "ducks/subscriptions"
 import { Grid, Column } from "components/Grid"
-import { BlockLink, Button } from "components/TouchTarget"
-import Modal from "components/Modal"
-import Input from "components/Input"
+import { BlockLink } from "components/TouchTarget"
+import SubscriptionModal from "components/SubscriptionModal"
 
 import Hero from "./Hero"
 // import BillList from "./BillList"
 import ArticleList from "./ArticleList"
 import LessonList from "./LessonList"
-import SubscriptionBody from "./SubscriptionModal"
 
 const AboutUs = styled.section`
   margin-top: 10rem;
@@ -33,24 +31,6 @@ const AboutUs = styled.section`
 `
 
 class Home extends React.Component {
-  state = {
-    form: {
-      first_name: "",
-      last_name: "",
-      email: ""
-    }
-  }
-  handleSubmit = e => {
-    e.preventDefault()
-    console.log(this.state.form)
-    this.props.handleSubscribe(this.state.form)
-  }
-
-  onChange = (field, e) => {
-    const value = e.target.value
-    this.setState(state => ({ form: { ...state.form, [field]: value } }))
-  }
-
   render = _ => {
     return (
       <React.Fragment>
@@ -67,23 +47,7 @@ class Home extends React.Component {
                 <BlockLink color={theme.colors.grey["700"]} to="/about">
                   Contact Us
                 </BlockLink>
-                <Modal
-                  body={
-                    <SubscriptionBody
-                      subscribed={this.props.subscribed}
-                      handleSubmit={this.handleSubmit}
-                      onChange={this.onChange}
-                    />
-                  }
-                  render={toggle => (
-                    <BlockLink
-                      color={theme.colors.grey["700"]}
-                      onClick={toggle}
-                    >
-                      Subscribe to Our Newsletter
-                    </BlockLink>
-                  )}
-                />
+                <SubscriptionModal />
                 <BlockLink color={theme.colors.grey["700"]}>Donate</BlockLink>
               </div>
             </Column>

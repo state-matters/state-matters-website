@@ -1,8 +1,8 @@
 import React from "react"
 import styled from "styled-components"
-import axios from "axios"
 import theme from "theme"
-import { BlockLink, Link, Button } from "components/TouchTarget"
+import { BlockLink, Link } from "components/TouchTarget"
+import SubcriptionModal from "components/SubscriptionModal"
 
 const StyledFooter = styled.footer`
   display: grid;
@@ -120,9 +120,7 @@ export default class Footer extends React.Component {
                 </form>
               </li>
               <li>
-                <BlockLink to="/subscribe">
-                  Subscribe to Our Newsletter
-                </BlockLink>
+                <SubcriptionModal color="white" />
               </li>
               <li>
                 <BlockLink to="/about">Contact Us</BlockLink>
