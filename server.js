@@ -10,7 +10,7 @@ const app = express()
 const index = require("./api/index")
 const port = process.env.PORT || 8080
 
-if (proces.env.NODE_ENV !== "production") app.use(logger("dev"))
+if (process.env.NODE_ENV !== "production") app.use(logger("dev"))
 app.use(helmet())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
