@@ -43,7 +43,6 @@ router
       const { items } = await client.getEntries({
         "sys.id": req.params.lesson_id
       })
-      console.log(items[0])
       res.status(200).json(items[0])
     } catch (error) {
       res.status(400).json(error)

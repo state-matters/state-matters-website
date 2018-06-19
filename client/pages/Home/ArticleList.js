@@ -24,11 +24,8 @@ const StyledArticle = styled.article`
   position: relative;
   .article__image {
     padding-bottom: 62.5%;
-    background-image: url(${props => props.photo}),
-      linear-gradient(
-        ${theme.colors.primary["500"]},
-        ${theme.colors.primary["500"]}
-      );
+    background-color: ${theme.colors.primary["500"]};
+    background-image: url(${props => props.photo});
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -44,22 +41,24 @@ const StyledArticle = styled.article`
   }
 `
 
-const Article = ({ article, className }) => {
+const Article = ({
+  article: {
+    fields: { photo, title, contributor },
+    sys
+  },
+  className
+}) => {
   return (
     <StyledArticle
       className={className}
-      photo={
-        article.fields.photo ? article.fields.photo.fields.file.url : "no-photo"
-      }
+      photo={photo ? photo.fields.file.url : "no-photo"}
     >
-      <Link to={`/articles/${article.sys.id}`}>
+      <Link to={`/articles/${sys.id}`}>
         <div className="article__image" />
       </Link>
-      <h4 className="article__title">{article.fields.title}</h4>
-      {article.fields.contributor && (
-        <p className="article__contributor">
-          {article.fields.contributor.fields.name}
-        </p>
+      <h4 className="article__title">{title}</h4>
+      {contributor && (
+        <p className="article__contributor">{contributor.fields.name}</p>
       )}
     </StyledArticle>
   )

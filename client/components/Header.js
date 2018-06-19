@@ -211,13 +211,8 @@ const DonateButton = () => (
   >
     <input type="hidden" name="cmd" defaultValue="_s-xclick" />
     <input type="hidden" name="hosted_button_id" defaultValue="7TN8BEBTJMZXQ" />
-    <Button
-      type="submit"
-      name="submit"
-      defaultValue="Donate."
-      className="primary donate"
-    >
-      Donate
+    <Button type="submit" className="primary donate">
+      Donate.
     </Button>
   </form>
 )
