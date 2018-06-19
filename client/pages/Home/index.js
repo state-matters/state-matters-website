@@ -31,6 +31,10 @@ const AboutUs = styled.section`
 `
 
 class Home extends React.Component {
+  handleDonate = e => {
+    e.preventDefault()
+    this.form.submit()
+  }
   render = _ => {
     return (
       <React.Fragment>
@@ -48,7 +52,26 @@ class Home extends React.Component {
                   Contact Us
                 </BlockLink>
                 <SubscriptionModal />
-                <BlockLink color={theme.colors.grey["700"]}>Donate</BlockLink>
+                <BlockLink
+                  color={theme.colors.grey["700"]}
+                  onClick={this.handleDonate}
+                >
+                  <span>Donate</span>
+                  <form
+                    ref={node => (this.form = node)}
+                    style={{ display: "none" }}
+                    action="https://www.paypal.com/cgi-bin/webscr"
+                    method="post"
+                    target="_top"
+                  >
+                    <input type="hidden" name="cmd" defaultValue="_s-xclick" />
+                    <input
+                      type="hidden"
+                      name="hosted_button_id"
+                      defaultValue="7TN8BEBTJMZXQ"
+                    />
+                  </form>
+                </BlockLink>
               </div>
             </Column>
           </Grid>
