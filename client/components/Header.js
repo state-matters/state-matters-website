@@ -222,45 +222,67 @@ const DonateButton = () => (
   </form>
 )
 
-const NavMenu = () => (
-  <div className="nav-menu">
-    <Grid container>
-      <Column sm={12}>
-        <h3>
-          <MenuLink to="/">StateMatters.org</MenuLink>
-        </h3>
-        <h4>Chicago, IL</h4>
-      </Column>
-      <Column sm={3}>
-        <ul className="nav-menu__list">
-          <li>
-            <MenuLink to="/about">About</MenuLink>
-          </li>
-          <li>
-            <MenuLink to="/lessons">Videos</MenuLink>
-          </li>
-          <li>
-            <MenuLink to="/articles">Articles</MenuLink>
-          </li>
-        </ul>
-      </Column>
-      <Column sm={5}>
-        <ul className="nav-menu__list">
-          <li>
-            <BlockLink className="block-link">Donate</BlockLink>
-          </li>
-          <li>
-            <BlockLink className="block-link">
-              Subscribe to Our Newsletter
-            </BlockLink>
-          </li>
-          <li>
-            <BlockLink className="block-link">Contact Us</BlockLink>
-          </li>
-        </ul>
-      </Column>
-    </Grid>
-  </div>
-)
+class NavMenu extends React.Component {
+  handleDonate = e => {
+    e.preventDefault()
+    this.form.submit()
+  }
+  render = () => (
+    <div className="nav-menu">
+      <Grid container>
+        <Column sm={12}>
+          <h3>
+            <MenuLink to="/">StateMatters.org</MenuLink>
+          </h3>
+          <h4>Chicago, IL</h4>
+        </Column>
+        <Column sm={3}>
+          <ul className="nav-menu__list">
+            <li>
+              <MenuLink to="/about">About</MenuLink>
+            </li>
+            <li>
+              <MenuLink to="/lessons">Videos</MenuLink>
+            </li>
+            <li>
+              <MenuLink to="/articles">Articles</MenuLink>
+            </li>
+          </ul>
+        </Column>
+        <Column sm={5}>
+          <ul className="nav-menu__list">
+            <li>
+              <BlockLink className="block-link" onClick={this.handleDonate}>
+                Donate
+              </BlockLink>
+              <form
+                ref={node => (this.form = node)}
+                style={{ display: "none" }}
+                action="https://www.paypal.com/cgi-bin/webscr"
+                method="post"
+                target="_top"
+              >
+                <input type="hidden" name="cmd" defaultValue="_s-xclick" />
+                <input
+                  type="hidden"
+                  name="hosted_button_id"
+                  defaultValue="7TN8BEBTJMZXQ"
+                />
+              </form>
+            </li>
+            <li>
+              <BlockLink className="block-link">
+                Subscribe to Our Newsletter
+              </BlockLink>
+            </li>
+            <li>
+              <BlockLink className="block-link">Contact Us</BlockLink>
+            </li>
+          </ul>
+        </Column>
+      </Grid>
+    </div>
+  )
+}
 
 export default withRouter(Header)

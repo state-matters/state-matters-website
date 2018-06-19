@@ -1,10 +1,8 @@
 import React from "react"
 import styled from "styled-components"
+import axios from "axios"
 import theme from "theme"
-import { BlockLink } from "components/TouchTarget"
-import { Link } from "components/TouchTarget"
-import { Button } from "components/TouchTarget"
-import Input from "components/Input"
+import { BlockLink, Link, Button } from "components/TouchTarget"
 
 const StyledFooter = styled.footer`
   display: grid;
@@ -40,7 +38,6 @@ const StyledFooter = styled.footer`
   @media (min-width: ${theme.breakPoints.md}) {
     grid-template-columns: 40% 1fr;
   }
-
 `
 
 const FooterLink = Link.extend`
@@ -51,83 +48,89 @@ const FooterLink = Link.extend`
   &:hover {
     color: ${theme.colors.primary["500"]};
   }
-`;
+`
 
-const DonateButton = Button.extend`
-border: none;
-text: none;
-
-`;
-
-// const FormLink = BlockLink.withComponent('form')
-//
-// const DonateLink = FormLink.extend`
-// input[type="submit"] {
-//   color: ${theme.colors.grey["700"]};
-//   font-family: "Martel", serif;
-//   font-size: 3rem;
-//   font-weight: 300;
-//   &:hover {
-//     color: ${theme.colors.primary["500"]};
+////
+//  Dumb but today I figured out no xhr library can handle redirects on the clientside. Damn.
+////
+// const handleSubmit = async e => {
+//   const event = e
+//   const form = new FormData()
+//   event.preventDefault()
+//   form.append("target", "_top")
+//   form.append("cmd", "_s-xclick")
+//   form.append("hosted_button_id", "7TN8BEBTJMZXQ")
+//   try {
+//     await axios({
+//       url: "https://www.paypal.com/cgi-bin/webscr",
+//       method: "POST",
+//       data: form,
+//       headers: {
+//         "Content-Type": "application/x-www-form-urlencoded"
+//       }
+//     })
+//   } catch (err) {
+//     console.log(err)
 //   }
 // }
-//
-// `;
 
-const DonateForm = props => (
-  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-    <input type="hidden" name="cmd" defaultValue="_s-xclick" />
-    <input type="hidden" name="hosted_button_id" defaultValue="7TN8BEBTJMZXQ" />
-    <DonateButton type="submit" name="submit" defaultValue="Donate." className="donate" ></DonateButton>
-  </form>
-)
+export default class Footer extends React.Component {
+  handleSubmit = e => {
+    e.preventDefault()
+    this.form.submit()
+  }
+  render = () => {
+    return (
+      <StyledFooter>
+        <div className="left">
+          <div className="content">
+            <FooterLink to="/">StateMatters.org</FooterLink>
 
-export default () => (
-  <StyledFooter>
-    <div className="left">
-      <div className="content">
-
-          <FooterLink to="/">StateMatters.org</FooterLink>
-
-        <h4>Chicago, IL</h4>
-        <ul>
-          <li>
-          <FooterLink to="/about">About</FooterLink>
-
-
-          </li>
-          {/*
-            <li>
-            <h3>Submit</h3>
-          </li>
-          <li>
-            <h3>Careers</h3>
-          </li>
-          */
-          }
-          <li>
-          <FooterLink to="/articles">Articles</FooterLink>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div className="right">
-      <div className="content">
-        <h2>Let’s work together</h2>
-        <h3>to understand state government</h3>
-        <ul>
-          <li>
-          <BlockLink><DonateForm />Donate</BlockLink>
-
-          </li>
-          <li>
-            <BlockLink to="/subscribe">Subscribe to Our Newsletter</BlockLink>
-          </li>
-          <li>
-            <BlockLink to="/about">Contact Us</BlockLink>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </StyledFooter>
-)
+            <h4>Chicago, IL</h4>
+            <ul>
+              <li>
+                <FooterLink to="/about">About</FooterLink>
+              </li>
+              <li>
+                <FooterLink to="/articles">Articles</FooterLink>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="right">
+          <div className="content">
+            <h2>Let’s work together</h2>
+            <h3>to understand state government</h3>
+            <ul>
+              <li>
+                <BlockLink onClick={this.handleSubmit}>Dontate</BlockLink>
+                <form
+                  ref={node => (this.form = node)}
+                  style={{ display: "none" }}
+                  action="https://www.paypal.com/cgi-bin/webscr"
+                  method="post"
+                  target="_top"
+                >
+                  <input type="hidden" name="cmd" defaultValue="_s-xclick" />
+                  <input
+                    type="hidden"
+                    name="hosted_button_id"
+                    defaultValue="7TN8BEBTJMZXQ"
+                  />
+                </form>
+              </li>
+              <li>
+                <BlockLink to="/subscribe">
+                  Subscribe to Our Newsletter
+                </BlockLink>
+              </li>
+              <li>
+                <BlockLink to="/about">Contact Us</BlockLink>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </StyledFooter>
+    )
+  }
+}
