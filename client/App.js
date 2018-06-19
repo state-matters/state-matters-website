@@ -5,6 +5,7 @@ import Header from "components/Header"
 import Footer from "components/Footer"
 import Home from "./pages/Home"
 import About from "./pages/About"
+import Team from "./pages/About/Team"
 import Bill from "./pages/Bills"
 import Articles from "./pages/Articles/index"
 import ArticleShow from "./pages/Articles/Show"
@@ -25,6 +26,7 @@ export default () => (
         <Route path="/lessons" component={LessonList} />
         <Route path="/bill-intro" component={Game} />
         <Route path="/about" component={About} />
+        <Route path="/team" component={Team} />
         <Route exact path="/" component={Home} />
         <Route component={NotFound} />
       </Switch>

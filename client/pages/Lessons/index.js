@@ -9,22 +9,28 @@ import Loader from "components/Loader"
 import theme from "theme"
 
 const StyledLesson = styled(Grid)`
-  margin-top: 10rem;
-  margin-bottom: 10rem;
-  padding: 1rem;
-  h1,
-  h2,
-  p {
-    margin-top: 2rem;
-  }
-  h2 {
-    color: ${theme.colors.grey["700"]};
-  }
-  img {
-    max-width: 100%;
+  padding: 10rem 1rem;
+  min-height: 100vh;
+  .lesson__body {
+    margin-bottom: 2rem;
+    h2,
+    h3,
+    h4 {
+      margin-top: 4rem;
+    }
+    p {
+      margin-top: 2rem;
+      line-height: 2;
+    }
+    img {
+      max-width: 100%;
+    }
   }
   .lesson__video {
     margin-top: 3rem;
+  }
+  @media (min-width: ${theme.breakPoints.sm}) {
+    padding: 10rem 0;
   }
 `
 
@@ -43,7 +49,7 @@ class Lesson extends React.Component {
     if (!loaded) return <Loader />
     return (
       <StyledLesson container>
-        <Column sm={8} smOffset={2}>
+        <Column sm={8} smOffset={1}>
           <h1>{lesson.fields.title}</h1>
           <Video
             playButton
@@ -52,7 +58,7 @@ class Lesson extends React.Component {
             poster={lesson.fields.poster.fields.file.url}
             className="lesson__video"
           />
-          <Markdown>{lesson.fields.body}</Markdown>
+          <Markdown className="lesson__body">{lesson.fields.body}</Markdown>
         </Column>
       </StyledLesson>
     )
