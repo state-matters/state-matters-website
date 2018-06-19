@@ -54,6 +54,12 @@ const LaunchBanner = styled.section`
     left: 0;
     width: 100%;
     max-width: 100%;
+    @media (max-width: 40rem) {
+      display:none;
+    }
+  }
+  @media (max-width: 40rem) {
+    margin-top:2rem;
   }
   
 `
