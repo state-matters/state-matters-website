@@ -33,7 +33,6 @@ const AboutUs = styled.section`
 const LaunchBanner = styled.section`
   margin-top:2rem;
   margin-bottom:2rem;
-  padding:3rem;
   .banner__text-body {
     margin:2rem;
     p,
@@ -42,11 +41,10 @@ const LaunchBanner = styled.section`
     }
   }
   .launch__grid {
-    padding:2rem;
     position:relative;
     background-color:${theme.colors.grey["300"]};
     box-shadow: 0 20px 40px 0 rgba(0,0,0,0.1);
-    height:350px;
+    height:321px;
   }
   .launch__photo-container {
     position: relative;
