@@ -3,6 +3,8 @@ import styled from "styled-components"
 import theme from "theme"
 import Modal from "components/Modal"
 import { Button, BlockLink } from "components/TouchTarget"
+import { connect } from "react-redux"
+import { handleSubscribe } from "ducks/subscriptions"
 
 const SubscribeModal = styled.div`
   .subscribe__form {
@@ -67,7 +69,7 @@ const SubscriptionBody = props => (
             className="subscribe__name-input"
           />
           <Button type="submit" className="subscribe__button">
-            subcribe
+            Subscribe
           </Button>
         </form>
       </Fragment>
@@ -114,4 +116,9 @@ class SubscriptionModal extends React.Component {
   }
 }
 
-export default SubscriptionModal
+export default connect(
+  state => ({ subscribed: state.subscriptions.subscribed }),
+  {
+    handleSubscribe
+  }
+)(SubscriptionModal)

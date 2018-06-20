@@ -53,13 +53,13 @@ const Article = ({
       className={className}
       photo={photo ? photo.fields.file.url : "no-photo"}
     >
-      <Link to={`/articles/${sys.id}`}>
+      <Link to={`/articles/${sys.id}`} style={{ textDecoration: 'none' }}>
         <div className="article__image" />
-      </Link>
+
       <h4 className="article__title">{title}</h4>
       {contributor && (
         <p className="article__contributor">{contributor.fields.name}</p>
-      )}
+      )}      </Link>
     </StyledArticle>
   )
 }

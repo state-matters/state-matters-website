@@ -103,7 +103,7 @@ export default class Footer extends React.Component {
             <h3>to understand state government</h3>
             <ul>
               <li>
-                <BlockLink onClick={this.handleSubmit}>Dontate</BlockLink>
+                <BlockLink onClick={this.handleSubmit}>Donate</BlockLink>
                 <form
                   ref={node => (this.form = node)}
                   style={{ display: "none" }}
