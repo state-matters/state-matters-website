@@ -143,7 +143,7 @@ export default () => (
             join forces.
           </p>
           <div className="team__links">
-            <BlockLink color="black">Contact us</BlockLink>
+            <BlockLink color="black"><a href="mailto:info@statematters.org">Contact Us</a></BlockLink>
             <BlockLink color="black">Meet the team</BlockLink>
           </div>
         </Column>
