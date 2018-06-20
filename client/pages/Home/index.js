@@ -24,6 +24,10 @@ const AboutUs = styled.section`
     margin: 2rem 0 0;
     padding: 0;
     justify-content: space-around;
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
     @media (min-width: ${theme.breakPoints.sm}) {
       flex-direction: row;
     }
@@ -48,8 +52,8 @@ class Home extends React.Component {
                 {"State government can be confusing. We've got you covered."}
               </h2>
               <div className="home__links">
-                <BlockLink color={theme.colors.grey["700"]} to="/about">
-                  Contact Us
+                <BlockLink color={theme.colors.grey["700"]}>
+                  <a href="mailto:info@statematters.org">Contact Us</a>
                 </BlockLink>
                 <SubscriptionModal />
                 <BlockLink
