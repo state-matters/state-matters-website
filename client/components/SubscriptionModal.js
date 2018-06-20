@@ -67,7 +67,7 @@ const SubscriptionBody = props => (
             className="subscribe__name-input"
           />
           <Button type="submit" className="subscribe__button">
-            subcribe
+            Subscribe
           </Button>
         </form>
       </Fragment>
