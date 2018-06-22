@@ -34,6 +34,41 @@ const AboutUs = styled.section`
   }
 `
 
+const LaunchBanner = styled.section`
+  margin-top:-10rem;
+  margin-bottom:2rem;
+  .banner__text-body {
+    margin:2rem;
+    p,
+    h3 {
+      padding: 2rem 0 0;
+    }
+  }
+  .launch__grid {
+    position:relative;
+    background-color:${theme.colors.grey["300"]};
+    box-shadow: 0 20px 40px 0 rgba(0,0,0,0.1);
+  }
+  .launch__photo-container {
+    position: relative;
+  }
+  .launch__photo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 100%;
+    @media (max-width: 40rem) {
+      display:none;
+    }
+  }
+  @media (max-width: 40rem) {
+    margin-top:2rem;
+  }
+  
+`
+
+
 class Home extends React.Component {
   handleDonate = e => {
     e.preventDefault()
@@ -43,6 +78,32 @@ class Home extends React.Component {
     return (
       <React.Fragment>
         <Hero />
+        <LaunchBanner>
+          <Grid container>
+            <Column mdOffset={1} md={10} className="launch__grid">
+              <Grid>
+                <Column md={9} className="banner__text-body">
+                  <p className="banner__title">Announcement</p>
+                  <h3 className="banner__header">
+                    State Matters is hosting a launch party on June 27th!
+                  </h3>
+                <BlockLink 
+                  color={theme.colors.grey["700"]} 
+                  href="https://sleeping-village.com/calendar/state-matters-launch-party/">
+                  RSVP
+                </BlockLink>
+                </Column>
+                <Column md={3} className="launch__photo-container">
+                  <img
+                    src="./assets/launch_party.jpg"
+                    alt="Launch Party"
+                    className="launch__photo"
+                  />
+                </Column>
+              </Grid>
+            </Column>
+          </Grid>
+        </LaunchBanner>
         <LessonList />
         {/* <BillList /> */}
         <AboutUs className="how-it-works">
