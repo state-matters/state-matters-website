@@ -125,8 +125,8 @@ class Home extends React.Component {
                   <form
                     ref={node => (this.form = node)}
                     style={{ display: "none" }}
-                    action="https://www.paypal.com/cgi-bin/webscr"
-                    method="post"
+                    action="https://state-matters.funraise.org"
+                    method="get"
                     target="_top"
                   >
                     <input type="hidden" name="cmd" defaultValue="_s-xclick" />
