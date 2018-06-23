@@ -65,7 +65,7 @@ const LaunchBanner = styled.section`
   @media (max-width: 40rem) {
     margin-top:2rem;
   }
-  
+
 `
 
 
@@ -87,8 +87,8 @@ class Home extends React.Component {
                   <h3 className="banner__header">
                     State Matters is hosting a launch party on June 27th!
                   </h3>
-                <BlockLink 
-                  color={theme.colors.grey["700"]} 
+                <BlockLink
+                  color={theme.colors.grey["700"]}
                   href="https://sleeping-village.com/calendar/state-matters-launch-party/">
                   RSVP
                 </BlockLink>
