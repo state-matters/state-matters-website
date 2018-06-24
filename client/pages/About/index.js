@@ -144,7 +144,7 @@ export default () => (
           </p>
           <div className="team__links">
             <BlockLink color="black"><a href="mailto:info@statematters.org">Contact Us</a></BlockLink>
-            <BlockLink color="black">Meet the team</BlockLink>
+            {/*<BlockLink color="black">Meet the team</BlockLink>*/}
           </div>
         </Column>
         <Column sm={6} className="team__photo-container">
