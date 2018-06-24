@@ -1,8 +1,7 @@
-import React from "react"
+import React, { Fragment } from "react"
 import styled from "styled-components"
 import { Link, withRouter } from "react-router-dom"
 import { CSSTransition } from "react-transition-group"
-import { Button } from "components/TouchTarget"
 import { Grid, Column } from "components/Grid"
 import { BlockLink } from "components/TouchTarget"
 import theme from "theme"
@@ -203,19 +202,40 @@ const HeaderBar = ({ open, toggleMenu }) => (
   </div>
 )
 
-const DonateButton = () => (
-  <form
-    action="https://www.paypal.com/cgi-bin/webscr"
-    method="post"
-    target="_top"
-  >
-    <input type="hidden" name="cmd" defaultValue="_s-xclick" />
-    <input type="hidden" name="hosted_button_id" defaultValue="7TN8BEBTJMZXQ" />
-    <Button type="submit" className="primary donate">
-      Donate.
-    </Button>
-  </form>
-)
+class DonateButton extends React.Component {
+  element = new Funraise({
+    id: "63aac56b-8b04-4fe9-aa94-b7a51e8bcd14:4345",
+    isPopup: true
+    // useDefaultButton: false
+  })
+  componentDidMount = () => {
+    this.element.init()
+  }
+  render = () => {
+    return (
+      <Fragment>
+        {/* <button data-toggle="modal" data-target="#donateModal-63aac56b4345">
+          Hello eold
+        </button> */}
+        <div id="fc-63aac56b4345" />
+      </Fragment>
+    )
+  }
+}
+
+// const DonateButton = () => (
+//   <form
+//     action="https://www.paypal.com/cgi-bin/webscr"
+//     method="post"
+//     target="_top"
+//   >
+//     <input type="hidden" name="cmd" defaultValue="_s-xclick" />
+//     <input type="hidden" name="hosted_button_id" defaultValue="7TN8BEBTJMZXQ" />
+//     <Button type="submit" className="primary donate">
+//       Donate.
+//     </Button>
+//   </form>
+// )
 
 class NavMenu extends React.Component {
   handleDonate = e => {
@@ -271,7 +291,9 @@ class NavMenu extends React.Component {
               </BlockLink>
             </li>
             <li>
-              <BlockLink className="block-link">Contact Us</BlockLink>
+              <BlockLink className="block-link">
+                <a href="mailto:info@statematters.org">Contact Us</a>
+              </BlockLink>
             </li>
           </ul>
         </Column>
