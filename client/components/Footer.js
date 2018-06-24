@@ -123,7 +123,9 @@ export default class Footer extends React.Component {
                 <SubcriptionModal color="white" />
               </li>
               <li>
-                <BlockLink to="/about"><a href="mailto:info@statematters.org">Contact Us</a></BlockLink>
+                <BlockLink href="mailto:info@statematters.org">
+                  Contact Us
+                </BlockLink>
               </li>
             </ul>
           </div>

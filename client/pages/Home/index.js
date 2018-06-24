@@ -35,19 +35,19 @@ const AboutUs = styled.section`
 `
 
 const LaunchBanner = styled.section`
-  margin-top:-10rem;
-  margin-bottom:2rem;
+  margin-top: -10rem;
+  margin-bottom: 2rem;
   .banner__text-body {
-    margin:2rem;
+    margin: 2rem;
     p,
     h3 {
       padding: 2rem 0 0;
     }
   }
   .launch__grid {
-    position:relative;
-    background-color:${theme.colors.grey["300"]};
-    box-shadow: 0 20px 40px 0 rgba(0,0,0,0.1);
+    position: relative;
+    background-color: ${theme.colors.grey["300"]};
+    box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.1);
   }
   .launch__photo-container {
     position: relative;
@@ -59,15 +59,13 @@ const LaunchBanner = styled.section`
     width: 100%;
     max-width: 100%;
     @media (max-width: 40rem) {
-      display:none;
+      display: none;
     }
   }
   @media (max-width: 40rem) {
-    margin-top:2rem;
+    margin-top: 2rem;
   }
-
 `
-
 
 class Home extends React.Component {
   handleDonate = e => {
@@ -87,11 +85,12 @@ class Home extends React.Component {
                   <h3 className="banner__header">
                     State Matters is hosting a launch party on June 27th!
                   </h3>
-                <BlockLink
-                  color={theme.colors.grey["700"]}
-                  href="https://sleeping-village.com/calendar/state-matters-launch-party/">
-                  RSVP
-                </BlockLink>
+                  <BlockLink
+                    color={theme.colors.grey["700"]}
+                    href="https://sleeping-village.com/calendar/state-matters-launch-party/"
+                  >
+                    RSVP
+                  </BlockLink>
                 </Column>
                 <Column md={3} className="launch__photo-container">
                   <img
@@ -113,8 +112,11 @@ class Home extends React.Component {
                 {"State government can be confusing. We've got you covered."}
               </h2>
               <div className="home__links">
-                <BlockLink color={theme.colors.grey["700"]}>
-                  <a href="mailto:info@statematters.org">Contact Us</a>
+                <BlockLink
+                  color={theme.colors.grey["700"]}
+                  href="mailto:info@statematters.org"
+                >
+                  Contact Us
                 </BlockLink>
                 <SubscriptionModal />
                 <BlockLink

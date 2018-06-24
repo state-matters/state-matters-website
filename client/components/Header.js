@@ -1,4 +1,4 @@
-import React from "react"
+import React, { Fragment } from "react"
 import styled from "styled-components"
 import { Link, withRouter } from "react-router-dom"
 import { CSSTransition } from "react-transition-group"
@@ -206,12 +206,20 @@ class DonateButton extends React.Component {
   element = new Funraise({
     id: "63aac56b-8b04-4fe9-aa94-b7a51e8bcd14:4345",
     isPopup: true
+    // useDefaultButton: false
   })
   componentDidMount = () => {
     this.element.init()
   }
   render = () => {
-    return <div id="fc-63aac56b4345" />
+    return (
+      <Fragment>
+        {/* <button data-toggle="modal" data-target="#donateModal-63aac56b4345">
+          Hello eold
+        </button> */}
+        <div id="fc-63aac56b4345" />
+      </Fragment>
+    )
   }
 }
 
