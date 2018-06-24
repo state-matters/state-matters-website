@@ -291,8 +291,11 @@ class NavMenu extends React.Component {
               </BlockLink>
             </li>
             <li>
-              <BlockLink className="block-link">
-                <a href="mailto:info@statematters.org">Contact Us</a>
+              <BlockLink
+                className="block-link"
+                href="mailto:info@statematters.org"
+              >
+                Contact Us
               </BlockLink>
             </li>
           </ul>
