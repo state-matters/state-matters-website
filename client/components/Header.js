@@ -1,8 +1,7 @@
-import React, { Fragment } from "react"
+import React from "react"
 import styled from "styled-components"
 import { Link, withRouter } from "react-router-dom"
 import { CSSTransition } from "react-transition-group"
-import { Button } from "components/TouchTarget"
 import { Grid, Column } from "components/Grid"
 import { BlockLink } from "components/TouchTarget"
 import theme from "theme"
@@ -210,14 +209,9 @@ class DonateButton extends React.Component {
   })
   componentDidMount = () => {
     this.element.init()
-    console.log("loaded")
   }
   render = () => {
-    return (
-      <Fragment>
-        <div id="fc-63aac56b4345" />
-      </Fragment>
-    )
+    return <div id="fc-63aac56b4345" />
   }
 }
 
