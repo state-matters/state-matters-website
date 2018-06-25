@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { connect } from "react-redux"
-
+import Donate from "components/Donate"
 import theme from "theme"
 import { handleSubscribe } from "ducks/subscriptions"
 import { Grid, Column } from "components/Grid"
@@ -119,26 +119,13 @@ class Home extends React.Component {
                   Contact Us
                 </BlockLink>
                 <SubscriptionModal />
-                <BlockLink
-                  color={theme.colors.grey["700"]}
-                  onClick={this.handleDonate}
-                >
-                  <span>Donate</span>
-                  <form
-                    ref={node => (this.form = node)}
-                    style={{ display: "none" }}
-                    action="https://www.paypal.com/cgi-bin/webscr"
-                    method="post"
-                    target="_top"
-                  >
-                    <input type="hidden" name="cmd" defaultValue="_s-xclick" />
-                    <input
-                      type="hidden"
-                      name="hosted_button_id"
-                      defaultValue="7TN8BEBTJMZXQ"
-                    />
-                  </form>
-                </BlockLink>
+                  <Donate>
+                    {props => (
+                      <BlockLink {...props} className="primary">
+                        Donate
+                      </BlockLink>
+                    )}
+                  </Donate>
               </div>
             </Column>
           </Grid>

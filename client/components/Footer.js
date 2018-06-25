@@ -3,6 +3,8 @@ import styled from "styled-components"
 import theme from "theme"
 import { BlockLink, Link } from "components/TouchTarget"
 import SubcriptionModal from "components/SubscriptionModal"
+import Donate from "components/Donate"
+
 
 const StyledFooter = styled.footer`
   display: grid;
@@ -103,21 +105,13 @@ export default class Footer extends React.Component {
             <h3>to understand state government</h3>
             <ul>
               <li>
-                <BlockLink onClick={this.handleSubmit}>Donate</BlockLink>
-                <form
-                  ref={node => (this.form = node)}
-                  style={{ display: "none" }}
-                  action="https://www.paypal.com/cgi-bin/webscr"
-                  method="post"
-                  target="_top"
-                >
-                  <input type="hidden" name="cmd" defaultValue="_s-xclick" />
-                  <input
-                    type="hidden"
-                    name="hosted_button_id"
-                    defaultValue="7TN8BEBTJMZXQ"
-                  />
-                </form>
+                <Donate>
+                  {props => (
+                    <BlockLink {...props} className="primary">
+                      Donate
+                    </BlockLink>
+                  )}
+                </Donate>
               </li>
               <li>
                 <SubcriptionModal color="white" />
