@@ -50,18 +50,22 @@ const LaunchBanner = styled.section`
     box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.1);
   }
   .launch__photo-container {
-    position: relative;
+     position: relative;
   }
+
   .launch__photo {
+    background-image: url(./assets/launch_party.jpg);
     position: absolute;
-    top: 0;
+    top:0;
     left: 0;
+    height:100%;
     width: 100%;
-    max-width: 100%;
+    background-size: cover;
     @media (max-width: 40rem) {
       display: none;
     }
   }
+  
   @media (max-width: 40rem) {
     margin-top: 2rem;
   }
@@ -93,11 +97,7 @@ class Home extends React.Component {
                   </BlockLink>
                 </Column>
                 <Column md={3} className="launch__photo-container">
-                  <img
-                    src="./assets/launch_party.jpg"
-                    alt="Launch Party"
-                    className="launch__photo"
-                  />
+                  <div className="launch__photo"></div>
                 </Column>
               </Grid>
             </Column>
