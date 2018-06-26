@@ -4,9 +4,13 @@ import theme from "theme"
 import Modal from "components/Modal"
 import { Button, BlockLink } from "components/TouchTarget"
 import { connect } from "react-redux"
-import { handleSubscribe } from "ducks/subscriptions"
+import { handleSubscribe, toggleSubscribed } from "ducks/subscriptions"
 
 const SubscribeModal = styled.div`
+  h2,
+  h3 {
+    margin-bottom: 2rem;
+  }
   .subscribe__form {
     display: flex;
     flex-wrap: wrap;
@@ -36,16 +40,32 @@ const SubscribeModal = styled.div`
   .subscribed {
     margin: 5rem 1rem;
   }
+  .error {
+    color: #ff7675;
+    font-weight: 700;
+    margin: 2rem 0;
+  }
 `
 
 const SubscriptionBody = props => (
   <SubscribeModal>
     {props.subscribed ? (
-      <h3 className="subscribed">Thanks for subscribing!</h3>
+      <Fragment>
+        <h3 className="subscribed">Thanks for subscribing {props.email}!</h3>
+        <BlockLink color="black" onClick={props.toggleSubscribed}>
+          Click here to subscribe another email.
+        </BlockLink>
+      </Fragment>
     ) : (
       <Fragment>
-        <h3>Stay in the know</h3>
+        <h2>Stay in the know</h2>
         <h3>We'll get you caught up</h3>
+        {props.duplicate && (
+          <p className="error">
+            Please subscribe with a different email, that one is already on our
+            list!
+          </p>
+        )}
         <form onSubmit={props.handleSubmit} className="subscribe__form">
           <input
             value={props.email}
@@ -101,6 +121,8 @@ class SubscriptionModal extends React.Component {
             subscribed={this.props.subscribed}
             handleSubmit={this.handleSubmit}
             onChange={this.onChange}
+            toggleSubscribed={this.props.toggleSubscribed}
+            duplicate={this.props.duplicate}
           />
         }
         render={toggle => (
@@ -117,8 +139,13 @@ class SubscriptionModal extends React.Component {
 }
 
 export default connect(
-  state => ({ subscribed: state.subscriptions.subscribed }),
+  ({ subscriptions: { subscribed, email, duplicate } }) => ({
+    subscribed,
+    email,
+    duplicate
+  }),
   {
-    handleSubscribe
+    handleSubscribe,
+    toggleSubscribed
   }
 )(SubscriptionModal)
