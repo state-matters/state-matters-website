@@ -24,7 +24,7 @@ export default class Donate extends React.Component {
         "data-toggle": "modal",
         "data-target": "#donateModal-63aac56b4345"
       })}
-      <div id="fc-63aac56b4345" style={{ display: "none" }} />
+      <div id="fc-63aac56b4345" style={{ display: "none !important" }} />
     </Fragment>
   )
 }
