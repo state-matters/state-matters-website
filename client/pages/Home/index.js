@@ -7,6 +7,7 @@ import { handleSubscribe } from "ducks/subscriptions"
 import { Grid, Column } from "components/Grid"
 import { BlockLink } from "components/TouchTarget"
 import SubscriptionModal from "components/SubscriptionModal"
+import ContactModal from "components/ContactModal"
 
 import Hero from "./Hero"
 // import BillList from "./BillList"
@@ -65,7 +66,7 @@ const LaunchBanner = styled.section`
       display: none;
     }
   }
-  
+
   @media (max-width: 40rem) {
     margin-top: 2rem;
   }
@@ -112,6 +113,7 @@ class Home extends React.Component {
                 {"State government can be confusing. We've got you covered."}
               </h2>
               <div className="home__links">
+                <ContactModal />
                 <BlockLink
                   color={theme.colors.grey["700"]}
                   href="mailto:info@statematters.org"
