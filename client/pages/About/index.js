@@ -14,6 +14,9 @@ const StyledAbout = styled.div`
   .about__hero {
     padding: 10rem 1rem 5rem;
     background-color: ${theme.colors.grey["300"]};
+     p {
+      margin-top: 2rem;
+    }
   }
   .about__what-we-do {
     padding: 10rem 1rem 5rem;
@@ -105,6 +108,17 @@ export default () => (
             We are an eclectic group of artists, designers, developers, policy
             wonks and writers.
           </h4>
+          <p>
+            We founded State Matters in 2017 to make Illinois government clear and unintimidating. 
+            We believe that civic knowledge is the bedrock of a thriving democracy. As a nonpartisan educational 
+            organization, our agenda is to engage, educate, and inspire &mdash; regardless of who you are or 
+            where you’re coming from.
+          </p>
+          <p>
+            At first, we were just looking for some basic answers about how the state worked (or didn’t work). 
+            But our state government is dense with bureaucracy and the existing online resources were either too biased, 
+            too superficial, or flew right over our heads. When we couldn’t find what we were looking for, we built it ourselves.
+          </p>
         </Column>
       </Grid>
     </section>
@@ -143,7 +157,7 @@ export default () => (
             join forces.
           </p>
           <div className="team__links">
-            <BlockLink color="black">Contact us</BlockLink>
+            <BlockLink color="black"><a href="mailto:info@statematters.org">Contact Us</a></BlockLink>
             {/*<BlockLink color="black">Meet the team</BlockLink>*/}
           </div>
         </Column>
@@ -167,6 +181,10 @@ export default () => (
             to people who want to be civically-engaged but might not have the
             time and energy to engage with in-depth journalism or unravel
             complicated legislative lingo.
+          </p>
+          <p>
+            We are currently in the process of becoming a 501c3 nonprofit, in the 
+            meantime we are fiscally sponsored by the fabulous folks over at GoodCity.
           </p>
         </Column>
       </Grid>

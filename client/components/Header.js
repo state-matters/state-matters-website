@@ -1,10 +1,10 @@
-import React from "react"
+import React, { Fragment } from "react"
 import styled from "styled-components"
 import { Link, withRouter } from "react-router-dom"
 import { CSSTransition } from "react-transition-group"
-import { Button } from "components/TouchTarget"
 import { Grid, Column } from "components/Grid"
-import { BlockLink } from "components/TouchTarget"
+import { BlockLink, Button } from "components/TouchTarget"
+import Donate from "components/Donate"
 import theme from "theme"
 
 const StyledHeader = styled.header`
@@ -193,7 +193,15 @@ const HeaderBar = ({ open, toggleMenu }) => (
       <Link to="/" className="logo-link">
         <img src="/assets/SM-logo.svg" alt="State Matters Logo" />
       </Link>
-      {!open && <DonateButton />}
+      {!open && (
+        <Donate>
+          {props => (
+            <Button {...props} className="primary">
+              Donate
+            </Button>
+          )}
+        </Donate>
+      )}
       <span className="nav-menu__button" onClick={toggleMenu}>
         <span />
         <span />
@@ -203,25 +211,7 @@ const HeaderBar = ({ open, toggleMenu }) => (
   </div>
 )
 
-const DonateButton = () => (
-  <form
-    action="https://www.paypal.com/cgi-bin/webscr"
-    method="post"
-    target="_top"
-  >
-    <input type="hidden" name="cmd" defaultValue="_s-xclick" />
-    <input type="hidden" name="hosted_button_id" defaultValue="7TN8BEBTJMZXQ" />
-    <Button type="submit" className="primary donate">
-      Donate.
-    </Button>
-  </form>
-)
-
 class NavMenu extends React.Component {
-  handleDonate = e => {
-    e.preventDefault()
-    this.form.submit()
-  }
   render = () => (
     <div className="nav-menu">
       <Grid container>
@@ -247,23 +237,13 @@ class NavMenu extends React.Component {
         <Column sm={5}>
           <ul className="nav-menu__list">
             <li>
-              <BlockLink className="block-link" onClick={this.handleDonate}>
-                Donate
-              </BlockLink>
-              <form
-                ref={node => (this.form = node)}
-                style={{ display: "none" }}
-                action="https://www.paypal.com/cgi-bin/webscr"
-                method="post"
-                target="_top"
-              >
-                <input type="hidden" name="cmd" defaultValue="_s-xclick" />
-                <input
-                  type="hidden"
-                  name="hosted_button_id"
-                  defaultValue="7TN8BEBTJMZXQ"
-                />
-              </form>
+              <Donate>
+                {props => (
+                  <BlockLink {...props} className="block-link">
+                    Donate
+                  </BlockLink>
+                )}
+              </Donate>
             </li>
             <li>
               <BlockLink className="block-link">
@@ -271,7 +251,12 @@ class NavMenu extends React.Component {
               </BlockLink>
             </li>
             <li>
-              <BlockLink className="block-link">Contact Us</BlockLink>
+              <BlockLink
+                className="block-link"
+                href="mailto:info@statematters.org"
+              >
+                Contact Us
+              </BlockLink>
             </li>
           </ul>
         </Column>
