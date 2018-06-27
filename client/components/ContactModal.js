@@ -68,7 +68,7 @@ const ContactBody = props => (
         <form
           onSubmit={props.handleSubmit}
           className="contact__form"
-          action="//formspree.io/info@staetmatters.org"
+          action="//formspree.io/info@statematters.org"
           method="POST">
 
           <input
@@ -77,6 +77,7 @@ const ContactBody = props => (
             type="text"
             placeholder="First Name"
             className="contact__name-input"
+            name="first_name"
           />
           <input
             value={props.last_name}
@@ -84,6 +85,7 @@ const ContactBody = props => (
             type="text"
             placeholder="Last Name"
             className="contact__name-input"
+            name="last_name"
           />
           <input
             value={props.email}
@@ -91,13 +93,15 @@ const ContactBody = props => (
             type="email"
             placeholder="Email"
             className="contact__email-input"
+            name="email"
           />
-        <textArea
+        <textarea
             value={props.message}
             onChange={e => props.onChange("message", e)}
             type="text"
             placeholder="What's up?"
             className="contact__message-input"
+            name="message"
           />
           <Button type="submit" className="contact__button">
             Send!
