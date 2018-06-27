@@ -29,6 +29,7 @@ const StyledArticle = styled.article`
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+
   }
   .article__title {
     margin-top: 2rem;
@@ -38,6 +39,13 @@ const StyledArticle = styled.article`
   }
   .article__link {
     margin-top: 1rem;
+  }
+  a {
+    color: ${theme.colors.grey["900"]};
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
   }
 `
 
@@ -53,7 +61,7 @@ const Article = ({
       className={className}
       photo={photo ? photo.fields.file.url : "no-photo"}
     >
-      <Link to={`/articles/${sys.id}`} style={{ textDecoration: 'none' }}>
+      <Link to={`/articles/${sys.id}`}>
         <div className="article__image" />
 
       <h4 className="article__title">{title}</h4>
