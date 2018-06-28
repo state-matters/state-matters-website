@@ -5,7 +5,6 @@ import { BlockLink, Link } from "components/TouchTarget"
 import SubcriptionModal from "components/SubscriptionModal"
 import Donate from "components/Donate"
 
-
 const StyledFooter = styled.footer`
   display: grid;
   grid-template-columns: 1fr;
@@ -37,6 +36,28 @@ const StyledFooter = styled.footer`
       margin-top: 2rem;
     }
   }
+  .social-icons {
+    display: flex;
+    margin-top: 2rem;
+    li:not(:last-of-type) {
+      margin-right: 2rem;
+    }
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      background-color: ${theme.colors.grey["900"]};
+    }
+    a {
+      color: ${theme.colors.grey["100"]};
+    }
+    .mdi {
+      font-size: 2rem;
+    }
+  }
   @media (min-width: ${theme.breakPoints.md}) {
     grid-template-columns: 40% 1fr;
   }
@@ -51,30 +72,6 @@ const FooterLink = Link.extend`
     color: ${theme.colors.primary["500"]};
   }
 `
-
-////
-//  Dumb but today I figured out no xhr library can handle redirects on the clientside. Damn.
-////
-// const handleSubmit = async e => {
-//   const event = e
-//   const form = new FormData()
-//   event.preventDefault()
-//   form.append("target", "_top")
-//   form.append("cmd", "_s-xclick")
-//   form.append("hosted_button_id", "7TN8BEBTJMZXQ")
-//   try {
-//     await axios({
-//       url: "https://www.paypal.com/cgi-bin/webscr",
-//       method: "POST",
-//       data: form,
-//       headers: {
-//         "Content-Type": "application/x-www-form-urlencoded"
-//       }
-//     })
-//   } catch (err) {
-//     console.log(err)
-//   }
-// }
 
 export default class Footer extends React.Component {
   handleSubmit = e => {
@@ -120,6 +117,28 @@ export default class Footer extends React.Component {
                 <BlockLink href="mailto:info@statematters.org">
                   Contact Us
                 </BlockLink>
+              </li>
+            </ul>
+            <ul className="social-icons">
+              <li className="icon">
+                <a href="https://twitter.com/state_matters">
+                  <span className="mdi mdi-twitter" />
+                </a>
+              </li>
+              <li className="icon">
+                <a href="https://www.instagram.com/statematters/">
+                  <span className="mdi mdi-instagram" />
+                </a>
+              </li>
+              <li className="icon">
+                <a href="https://www.facebook.com/statematters/">
+                  <span className="mdi mdi-facebook" />
+                </a>
+              </li>
+              <li className="icon">
+                <a href="https://www.youtube.com/channel/UCrYUXeENK2eSIVT1o7036Ig">
+                  <span className="mdi mdi-youtube" />
+                </a>
               </li>
             </ul>
           </div>

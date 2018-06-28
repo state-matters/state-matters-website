@@ -7,6 +7,7 @@ import { handleSubscribe } from "ducks/subscriptions"
 import { Grid, Column } from "components/Grid"
 import { BlockLink } from "components/TouchTarget"
 import SubscriptionModal from "components/SubscriptionModal"
+import ContactModal from "components/ContactModal"
 
 import Hero from "./Hero"
 // import BillList from "./BillList"
@@ -50,22 +51,22 @@ const LaunchBanner = styled.section`
     box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.1);
   }
   .launch__photo-container {
-     position: relative;
+    position: relative;
   }
 
   .launch__photo {
     background-image: url(./assets/launch_party.jpg);
     position: absolute;
-    top:0;
+    top: 0;
     left: 0;
-    height:100%;
+    height: 100%;
     width: 100%;
     background-size: cover;
     @media (max-width: 40rem) {
       display: none;
     }
   }
-  
+
   @media (max-width: 40rem) {
     margin-top: 2rem;
   }
@@ -97,7 +98,7 @@ class Home extends React.Component {
                   </BlockLink>
                 </Column>
                 <Column md={3} className="launch__photo-container">
-                  <div className="launch__photo"></div>
+                  <div className="launch__photo" />
                 </Column>
               </Grid>
             </Column>
@@ -108,24 +109,17 @@ class Home extends React.Component {
         <AboutUs className="how-it-works">
           <Grid container>
             <Column mdOffset={2} sm={8}>
-              <h2>
-                {"State government can be confusing. We've got you covered."}
-              </h2>
+              <h2>State government can be confusing. We've got you covered.</h2>
               <div className="home__links">
-                <BlockLink
-                  color={theme.colors.grey["700"]}
-                  href="mailto:info@statematters.org"
-                >
-                  Contact Us
-                </BlockLink>
+                <ContactModal />
                 <SubscriptionModal />
-                  <Donate>
-                    {props => (
-                      <BlockLink {...props} className="primary">
-                        Donate
-                      </BlockLink>
-                    )}
-                  </Donate>
+                <Donate>
+                  {props => (
+                    <BlockLink {...props} className="primary">
+                      Donate
+                    </BlockLink>
+                  )}
+                </Donate>
               </div>
             </Column>
           </Grid>

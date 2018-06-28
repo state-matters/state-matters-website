@@ -7,7 +7,7 @@ const logger = require("morgan")
 const helmet = require("helmet")
 
 const app = express()
-const index = require("./api/index")
+const api = require("./api")
 const port = process.env.PORT || 8080
 
 if (process.env.NODE_ENV !== "production") app.use(logger("dev"))
@@ -15,7 +15,7 @@ app.use(helmet())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(express.static(join(__dirname, "public")))
-app.use("/api", index)
+app.use("/api", api)
 
 if (process.env.NODE_ENV === "production") {
   app.get("*", (req, res) => {
