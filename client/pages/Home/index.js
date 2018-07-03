@@ -55,7 +55,7 @@ const LaunchBanner = styled.section`
   }
 
   .launch__photo {
-    background-image: url(./assets/launch_party.jpg);
+    background-image: url(./assets/artist_banner.jpg);
     position: absolute;
     top: 0;
     left: 0;
@@ -88,11 +88,13 @@ class Home extends React.Component {
                 <Column md={9} className="banner__text-body">
                   <p className="banner__title">Announcement</p>
                   <h3 className="banner__header">
-                    State Matters is hosting a launch party on June 27th!
+                    Are you an artist interested in working with State Matters
+                    to make a difference? Come to one of our Artist Q&Qs July
+                    8th - 14th!
                   </h3>
                   <BlockLink
                     color={theme.colors.grey["700"]}
-                    href="https://sleeping-village.com/calendar/state-matters-launch-party/"
+                    href="https://dime.io/events/creative-collective-meet-ups"
                   >
                     RSVP
                   </BlockLink>
