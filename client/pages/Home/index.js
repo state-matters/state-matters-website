@@ -36,7 +36,7 @@ const AboutUs = styled.section`
 `
 
 const LaunchBanner = styled.section`
-  margin-top: -10rem;
+  margin-top: 2rem;
   margin-bottom: 2rem;
   .banner__text-body {
     margin: 2rem;
@@ -71,7 +71,7 @@ const LaunchBanner = styled.section`
   }
 
   @media (min-width: ${theme.breakPoints.sm}) {
-    margin-top: 2rem;
+    margin-top: -10rem;
     .launch__grid {
       box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.1);
     }
