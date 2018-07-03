@@ -42,7 +42,10 @@ const LaunchBanner = styled.section`
     margin: 2rem;
     p,
     h3 {
-      padding: 2rem 0 0;
+      margin: 2rem 0 0;
+    }
+    h3 {
+      margin-bottom: 1rem;
     }
   }
   .launch__grid {
@@ -55,6 +58,7 @@ const LaunchBanner = styled.section`
   }
 
   .launch__photo {
+    display: none;
     background-image: url(./assets/artist_banner.jpg);
     position: absolute;
     top: 0;
@@ -62,12 +66,12 @@ const LaunchBanner = styled.section`
     height: 100%;
     width: 100%;
     background-size: cover;
-    @media (max-width: 40rem) {
-      display: none;
+    @media (min-width: 40rem) {
+      display: block;
     }
   }
 
-  @media (max-width: 40rem) {
+  @media (min-width: 40rem) {
     margin-top: 2rem;
   }
 `
@@ -85,7 +89,7 @@ class Home extends React.Component {
           <Grid container>
             <Column mdOffset={1} md={10} className="launch__grid">
               <Grid>
-                <Column md={9} className="banner__text-body">
+                <Column md={8} className="banner__text-body">
                   <p className="banner__title">Announcement</p>
                   <h3 className="banner__header">
                     Are you an artist interested in working with State Matters
@@ -99,7 +103,7 @@ class Home extends React.Component {
                     RSVP
                   </BlockLink>
                 </Column>
-                <Column md={3} className="launch__photo-container">
+                <Column md={4} className="launch__photo-container">
                   <div className="launch__photo" />
                 </Column>
               </Grid>
