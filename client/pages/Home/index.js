@@ -51,7 +51,6 @@ const LaunchBanner = styled.section`
   .launch__grid {
     position: relative;
     background-color: ${theme.colors.grey["300"]};
-    box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.1);
   }
   .launch__photo-container {
     position: relative;
@@ -66,13 +65,16 @@ const LaunchBanner = styled.section`
     height: 100%;
     width: 100%;
     background-size: cover;
-    @media (min-width: 40rem) {
+    @media (min-width: ${theme.breakPoints.sm}) {
       display: block;
     }
   }
 
-  @media (min-width: 40rem) {
+  @media (min-width: ${theme.breakPoints.sm}) {
     margin-top: 2rem;
+    .launch__grid {
+      box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.1);
+    }
   }
 `
 
