@@ -95,7 +95,7 @@ class Home extends React.Component {
                   <p className="banner__title">Announcement</p>
                   <h3 className="banner__header">
                     Are you an artist interested in working with State Matters
-                    to make a difference? Come to one of our Artist Q&Qs July
+                    to make a difference? Come to one of our Artist Q&As July
                     8th - 14th!
                   </h3>
                   <BlockLink
