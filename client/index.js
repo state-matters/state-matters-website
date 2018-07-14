@@ -1,3 +1,4 @@
+import "./baseStyles"
 import React from "react"
 import ReactDOM from "react-dom"
 import { BrowserRouter as Router, withRouter } from "react-router-dom"
@@ -5,7 +6,6 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux"
 import thunk from "redux-thunk"
 import { Provider } from "react-redux"
 import { bills, subscriptions, articles, lessons } from "./ducks"
-import baseStyles from "./baseStyles"
 
 import App from "./App"
 
