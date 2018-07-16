@@ -5,6 +5,7 @@ import { CSSTransition } from "react-transition-group"
 import { Grid, Column } from "components/Grid"
 import { BlockLink, Button } from "components/TouchTarget"
 import Donate from "components/Donate"
+import SubscriptionModal from "components/SubscriptionModal"
 import theme from "theme"
 
 const StyledHeader = styled.header`
@@ -246,9 +247,7 @@ class NavMenu extends React.Component {
               </Donate>
             </li>
             <li>
-              <BlockLink className="block-link">
-                Subscribe to Our Newsletter
-              </BlockLink>
+              <SubscriptionModal />
             </li>
             <li>
               <BlockLink
