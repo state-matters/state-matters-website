@@ -1,18 +1,6 @@
 const router = require("express").Router()
 const contentful = require("contentful")
-const { normalize, schema } = require("normalizr")
-
-const config =
-  process.env.NODE_ENV === "production"
-    ? {
-        space: "021ulla0m5co",
-        accessToken: process.env.PROD_API_KEY
-      }
-    : {
-        space: "021ulla0m5co",
-        accessToken: process.env.DEV_API_KEY,
-        host: "preview.contentful.com"
-      }
+const config = require("./config")
 
 const client = contentful.createClient(config)
 
@@ -41,7 +29,9 @@ router
     if (!req.params.bill_id)
       return res.status(400).json({ message: "No id present" })
     try {
-      const response = await client.getEntries({ "sys.id": req.params.bill_id })
+      const response = await client.getEntries({
+        "sys.id": req.params.bill_id
+      })
       const bill = response.items[0]
       return res.status(200).json(bill)
     } catch (error) {
