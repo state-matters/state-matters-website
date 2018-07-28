@@ -17,9 +17,15 @@ app.use(bodyParser.json())
 app.use(express.static(join(__dirname, "public")))
 app.use("/api", api)
 
+// Whenever we decide what we're doing with the ballot party site, we'll need to
+// redirect to it from here.
+// app.get("/ballotparty", ({ response }) => {
+//   response.redirect(301, "https://ballotparty.statematters.org")
+// })
+
 if (process.env.NODE_ENV === "production") {
-  app.get("*", (req, res) => {
-    res.sendFile(join(__dirname, "public/index.html"))
+  app.get("*", ({ response }) => {
+    response.sendFile(join(__dirname, "public/index.html"))
   })
 }
 
