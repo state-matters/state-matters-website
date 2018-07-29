@@ -1,13 +1,13 @@
-const router = require("express").Router()
-const contentful = require("contentful")
-const config = require("./config")
+import { Router } from "express"
+import { normalize, schema } from "normalizr"
+import { contentfulClient } from "../server"
 
-const client = contentful.createClient(config)
+const router = Router()
 
 router
   .get("/", async (req, res) => {
     try {
-      const { items } = await client.getEntries({
+      const { items } = await contentfulClient.getEntries({
         content_type: "bill",
         select:
           "sys.id,fields.title,fields.billNumber,fields.video,fields.poster,fields.status"
@@ -29,7 +29,7 @@ router
     if (!req.params.bill_id)
       return res.status(400).json({ message: "No id present" })
     try {
-      const response = await client.getEntries({
+      const response = await contentfulClient.getEntries({
         "sys.id": req.params.bill_id
       })
       const bill = response.items[0]

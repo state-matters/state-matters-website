@@ -1,5 +1,7 @@
-const router = require("express").Router()
-const axios = require("axios")
+import { Router } from "express"
+import axios from "axios"
+
+const router = Router()
 
 router.route("/").post(async (req, res) => {
   const { email, first_name, last_name } = req.body
@@ -28,4 +30,4 @@ router.route("/").post(async (req, res) => {
   }
 })
 
-module.exports = router
+export default router

@@ -1,14 +1,13 @@
-const router = require("express").Router()
-const { normalize, schema } = require("normalizr")
-const contentful = require("contentful")
-const config = require("./config")
+import { Router } from "express"
+import { normalize, schema } from "normalizr"
+import { contentfulClient } from "../server"
 
-const client = contentful.createClient(config)
+const router = Router()
 
 router
   .get("/", async (req, res) => {
     try {
-      const { items } = await client.getEntries({
+      const { items } = await contentfulClient.getEntries({
         content_type: "article",
         select: "sys.id,fields.title,fields.contributor,fields.photo"
       })
@@ -29,7 +28,7 @@ router
     if (!req.params.article_id)
       return res.status(400).json({ message: "no id attached" })
     try {
-      const { items } = await client.getEntries({
+      const { items } = await contentfulClient.getEntries({
         "sys.id": req.params.article_id
       })
       res.status(200).json(items[0])

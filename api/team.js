@@ -1,23 +1,13 @@
-const router = require("express").Router()
-const contentful = require("contentful")
+import { Router } from "express"
+import { contentfulClient } from "../server"
 
-const config =
-  process.env.NODE_ENV === "production"
-    ? {
-        space: "021ulla0m5co",
-        accessToken: process.env.PROD_API_KEY
-      }
-    : {
-        space: "021ulla0m5co",
-        accessToken: process.env.DEV_API_KEY,
-        host: "preview.contentful.com"
-      }
-
-const client = contentful.createClient(config)
+const router = Router()
 
 router.get("/", async (req, res) => {
   try {
-    const { items } = await client.getEntries({ content_type: "teamMember" })
+    const { items } = await contentfulClient.getEntries({
+      content_type: "teamMember"
+    })
     res
       .status(200)
       .json(items)
@@ -28,4 +18,4 @@ router.get("/", async (req, res) => {
   }
 })
 
-module.exports = router
+export default router
