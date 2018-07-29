@@ -10,12 +10,13 @@ import React, { Fragment } from "react"
 ////
 
 export default class Donate extends React.Component {
-  element = new Funraise({
-    id: "63aac56b-8b04-4fe9-aa94-b7a51e8bcd14:4345",
-    isPopup: true,
-    useDefaultButton: false
-  })
+  element = null
   componentDidMount = () => {
+    this.element = new Funraise({
+      id: "63aac56b-8b04-4fe9-aa94-b7a51e8bcd14:4345",
+      isPopup: true,
+      useDefaultButton: false
+    })
     this.element.init()
   }
   render = () => (

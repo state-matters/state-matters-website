@@ -32,17 +32,17 @@ const StyledModal = styled.div`
   }
 `
 
-const modalRoot = document.getElementById("modal-root")
-
 export default class Modal extends React.Component {
-  modalNode = document.createElement("aside")
+  modalNode = null
   state = { show: false }
   componentDidMount = _ => {
-    this.modalNode.style.width = "100%"
-    this.modalNode.style.position = "relative"
-    modalRoot.appendChild(this.modalNode)
+    if (window) {
+      this.modalNode = document.createElement("aside")
+      this.modalNode.setAttribute("style", "position: relative; width: 100%;")
+      document.body.appendChild(this.modalNode)
+    }
   }
-  componentWillUnmount = _ => modalRoot.removeChild(this.modalNode)
+  componentWillUnmount = _ => document.body.removeChild(this.modalNode)
   toggleModal = e => {
     e.stopPropagation()
     this.setState(state => {
@@ -51,19 +51,21 @@ export default class Modal extends React.Component {
       return { show: !state.show }
     })
   }
-  render = _ => (
-    <React.Fragment>
-      {this.state.show &&
-        createPortal(
-          <StyledModal onClick={this.toggleModal}>
-            <div className="body" onClick={e => e.stopPropagation()}>
-              <X className="close" onClick={this.toggleModal} />
-              {this.props.body}
-            </div>
-          </StyledModal>,
-          this.modalNode
-        )}
-      {this.props.render(this.toggleModal)}
-    </React.Fragment>
-  )
+  render = _ => {
+    return (
+      <React.Fragment>
+        {this.state.show &&
+          createPortal(
+            <StyledModal onClick={this.toggleModal}>
+              <div className="body" onClick={e => e.stopPropagation()}>
+                <X className="close" onClick={this.toggleModal} />
+                {this.props.body}
+              </div>
+            </StyledModal>,
+            this.modalNode
+          )}
+        {this.props.render(this.toggleModal)}
+      </React.Fragment>
+    )
+  }
 }

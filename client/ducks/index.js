@@ -1,4 +1,13 @@
-export { default as bills } from "./bills"
-export { default as subscriptions } from "./subscriptions"
-export { default as articles } from "./articles"
-export { default as lessons } from "./lessons"
+import { combineReducers } from "redux"
+
+import bills from "./bills"
+import subscriptions from "./subscriptions"
+import articles from "./articles"
+import lessons from "./lessons"
+
+export default combineReducers({
+  bills,
+  subscriptions,
+  articles,
+  lessons
+})

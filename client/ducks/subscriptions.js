@@ -6,7 +6,7 @@ const TOGGLE_SUBSCRIBED = "state_matters/subscriptions/TOGGLE_SUBSCRIBED"
 const SUBSCRIBE_EMAIL_FAIL = "state_matters/subscriptions/SUBSCRIBE_EMAIL_FAIL"
 
 const intialState = {
-  subscribed: localStorage.getItem("subscribed"),
+  subscribed: false,
   email: "",
   duplicate: false
 }
