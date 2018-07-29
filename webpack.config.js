@@ -1,5 +1,5 @@
 const path = require("path")
-const externals = require("webpack-node-externals")
+const nodeExternals = require("webpack-node-externals")
 
 const moduleRules = {
   rules: [
@@ -19,10 +19,15 @@ const resolve = {
   }
 }
 
+const externals = {
+  react: "React",
+  "react-dom": "ReactDOM"
+}
+
 const server = {
   entry: "./server.js",
   target: "node",
-  externals: externals(),
+  externals: nodeExternals(),
   output: {
     filename: "./server.js",
     path: path.resolve(__dirname, "dist"),
@@ -40,7 +45,8 @@ const client = {
     publicPath: "/"
   },
   module: moduleRules,
-  resolve
+  resolve,
+  externals
 }
 
 module.exports = [server, client]

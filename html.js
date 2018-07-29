@@ -14,9 +14,11 @@ export default ({ title, styles, body }) => `
     gtag('config', 'UA-112946294-1');
   </script>
   <title>${title}</title>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+  <script src="https://d2n4tvy2wsd0oo.cloudfront.net/widget/common/1.3/funraise.min.js"></script>
+  <script src="/bundle.js" defer></script>
   ${styles}
-  <script type="text/javascript" src="/bundle.js" defer></script>
-  <script type="text/javascript" src="https://d2n4tvy2wsd0oo.cloudfront.net/widget/common/1.3/funraise.min.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Martel:200,300|Poppins:300,400,500,700">
   <link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.4.85/css/materialdesignicons.min.css">
 </head>

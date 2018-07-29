@@ -10,7 +10,8 @@
     "start:dev": "concurrently \"npm run server\" \"npm run client\"",
     "server": "nodemon --ignore 'client/**' ./dist/server.js",
     "client": "webpack -w --mode development",
-    "postinstall": "webpack --mode production"
+    "build": "webpack --mode production",
+    "postinstall": "npm run build"
   },
   "engines": {
     "npm": "5.8.0"
