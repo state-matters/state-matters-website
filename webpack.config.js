@@ -1,53 +1,46 @@
 const path = require("path")
-const HtmlWebPackPlugin = require("html-webpack-plugin")
+const externals = require("webpack-node-externals")
 
-module.exports = {
-  devServer: {
-    contentBase: path.resolve(__dirname, "public"),
-    compress: true,
-    port: 3000,
-    historyApiFallback: true,
-    proxy: {
-      "/api": "http://localhost:8080"
+const moduleRules = {
+  rules: [
+    {
+      test: /\.(jsx?)$/,
+      loader: "babel-loader",
+      exclude: [/node_modules/]
     }
-  },
-  entry: "./client/index.js",
-  output: {
-    path: path.resolve(__dirname, "public"),
-    filename: "state_matters.bundle.js",
-    publicPath: "/"
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
-        }
-      },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: "html-loader",
-            options: { minimize: true }
-          }
-        ]
-      }
-    ]
-  },
-  plugins: [
-    new HtmlWebPackPlugin({
-      template: "./client/index.html",
-      filename: path.join(__dirname, "public/index.html")
-    })
-  ],
-  resolve: {
-    alias: {
-      theme$: path.resolve(__dirname, "client/theme.js"),
-      ducks: path.resolve(__dirname, "client/ducks/"),
-      components: path.resolve(__dirname, "client/components/")
-    }
+  ]
+}
+
+const resolve = {
+  alias: {
+    theme$: path.resolve(__dirname, "client/theme.js"),
+    ducks: path.resolve(__dirname, "client/ducks/"),
+    components: path.resolve(__dirname, "client/components/")
   }
 }
+
+const server = {
+  entry: "./server.js",
+  target: "node",
+  externals: externals(),
+  output: {
+    filename: "./server.js",
+    path: path.resolve(__dirname, "dist"),
+    publicPath: "/"
+  },
+  module: moduleRules,
+  resolve
+}
+
+const client = {
+  entry: "./client/index.js",
+  output: {
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "public"),
+    publicPath: "/"
+  },
+  module: moduleRules,
+  resolve
+}
+
+module.exports = [server, client]

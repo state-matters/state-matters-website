@@ -1,10 +1,11 @@
-const router = require("express").Router()
+import { Router } from "express"
+import bills from "./bills"
+import subscriptions from "./subscriptions"
+import articles from "./articles"
+import lessons from "./lessons"
+import team from "./team"
 
-const bills = require("./bills")
-const subscriptions = require("./subscriptions")
-const articles = require("./articles")
-const lessons = require("./lessons")
-const team = require("./team")
+const router = Router()
 
 router.use("/bills", bills)
 router.use("/articles", articles)
@@ -12,4 +13,4 @@ router.use("/subscriptions", subscriptions)
 router.use("/lessons", lessons)
 router.use("/team", team)
 
-module.exports = router
+export default router

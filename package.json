@@ -2,20 +2,21 @@
   "name": "state_matters",
   "version": "1.0.0",
   "description": "",
-  "engines": {
-    "node": "8.11.1",
-    "npm": "5.7.1"
-  },
   "private": true,
-  "main": "server.js",
+  "main": "./dist/server.js",
   "scripts": {
     "test": "exit 0",
-    "start": "node server.js",
+    "start": "node ./dist/server.js",
     "start:dev": "concurrently \"npm run server\" \"npm run client\"",
-    "build": "webpack --mode production",
-    "server": "nodemon --ignore 'client/**' server.js",
-    "client": "webpack-dev-server --mode development --open",
-    "postinstall": "npm run build"
+    "server": "nodemon --ignore 'client/**' ./dist/server.js",
+    "client": "webpack -w --mode development",
+    "postinstall": "webpack --mode production"
+  },
+  "engines": {
+    "npm": "5.8.0"
+  },
+  "nodemonConfig": {
+    "delay": "500"
   },
   "keywords": [],
   "author": "Patrick Krawczykowski <patrick@dreadful.design>",
@@ -30,7 +31,6 @@
     "helmet": "^3.12.1",
     "lodash.debounce": "^4.0.8",
     "markdown-to-jsx": "^6.6.6",
-    "morgan": "^1.9.0",
     "normalizr": "^3.2.4",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -52,13 +52,10 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "concurrently": "^3.5.1",
-    "file-loader": "^1.1.11",
-    "html-loader": "^0.5.5",
-    "html-webpack-plugin": "^3.0.6",
     "nodemon": "^1.17.5",
     "prop-types": "^15.6.1",
     "webpack": "^4.1.1",
-    "webpack-cli": "^2.0.12",
-    "webpack-dev-server": "^3.1.4"
+    "webpack-cli": "^3.1.0",
+    "webpack-node-externals": "^1.7.2"
   }
 }

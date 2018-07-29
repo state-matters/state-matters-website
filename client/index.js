@@ -1,37 +1,20 @@
 import "./baseStyles"
 import React from "react"
-import ReactDOM from "react-dom"
-import { BrowserRouter as Router, withRouter } from "react-router-dom"
-import { createStore, combineReducers, applyMiddleware, compose } from "redux"
+import { hydrate } from "react-dom"
+import { BrowserRouter as Router } from "react-router-dom"
+import { createStore, applyMiddleware, compose } from "redux"
 import thunk from "redux-thunk"
 import { Provider } from "react-redux"
-import { bills, subscriptions, articles, lessons } from "./ducks"
 
+import reducer from "ducks"
+import ScrollToTop from "components/ScrollToTop"
 import App from "./App"
-
-const reducers = combineReducers({
-  bills,
-  subscriptions,
-  articles,
-  lessons
-})
 
 const enhancedCompose = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-const store = createStore(reducers, enhancedCompose(applyMiddleware(thunk)))
+const store = createStore(reducer, enhancedCompose(applyMiddleware(thunk)))
 
-const ScrollToTop = withRouter(
-  class extends React.Component {
-    componentDidUpdate = prevProps => {
-      if (this.props.location !== prevProps.location) {
-        window.scroll(0, 0)
-      }
-    }
-    render = _ => this.props.children
-  }
-)
-
-ReactDOM.render(
+hydrate(
   <Provider store={store}>
     <Router>
       <ScrollToTop>
