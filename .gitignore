@@ -2,17 +2,17 @@
 
 # VS Code
 .vs
+.vscode
 
 # dependencies
-/node_modules
+node_modules
 
 # testing
-/coverage
+coverage
 
 # production
-/public/bundle.js
-/public/state_matters.bundle.js
-/public/index.html
+public/bundle.js
+dist
 
 
 # misc
