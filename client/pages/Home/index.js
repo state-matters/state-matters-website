@@ -14,34 +14,6 @@ import Hero from "./Hero"
 import ArticleList from "./ArticleList"
 import LessonList from "./LessonList"
 
-{
-  /* <LaunchBanner>
-<Grid container>
-  <Column mdOffset={1} md={10} className="launch__grid">
-    <Grid>
-      <Column md={8} className="banner__text-body">
-        <p className="banner__title">Announcement</p>
-        <h3 className="banner__header">
-          Are you an artist interested in working with State Matters
-          to make a difference? Come to one of our Artist Q&As July
-          8th - 14th!
-        </h3>
-        <BlockLink
-          color={theme.colors.grey["700"]}
-          href="https://dime.io/events/creative-collective-meet-ups"
-        >
-          RSVP
-        </BlockLink>
-      </Column>
-      <Column md={4} className="launch__photo-container">
-        <div className="launch__photo" />
-      </Column>
-    </Grid>
-  </Column>
-</Grid>
-</LaunchBanner> */
-}
-
 const AboutUs = styled.section`
   margin-top: 10rem;
   margin-bottom: 10rem;
@@ -63,48 +35,40 @@ const AboutUs = styled.section`
   }
 `
 
-// const LaunchBanner = styled.section`
-//   margin-top: 2rem;
-//   margin-bottom: 2rem;
-//   .banner__text-body {
-//     margin: 2rem;
-//     p,
-//     h3 {
-//       margin: 2rem 0 0;
-//     }
-//     h3 {
-//       margin-bottom: 1rem;
-//     }
-//   }
-//   .launch__grid {
-//     position: relative;
-//     background-color: ${theme.colors.grey["300"]};
-//   }
-//   .launch__photo-container {
-//     position: relative;
-//   }
+const BannerWrapper = styled.section`
+  position: relative;
+  display: flex;
+  margin: 1rem;
+  flex-direction: column-reverse;
+  background-color: ${theme.colors.grey["100"]};
+  z-index: 2;
+  .banner__text {
+    padding: 1rem;
+    align-self: center;
+  }
+  .banner__img {
+    display: block;
+    max-width: calc(100% - 2rem);
+  }
+  @media (min-width: 40rem) {
+    flex-direction: row;
+    margin: -10rem auto 0;
+    box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.12);
+    .banner__text {
+      padding: 4rem;
+    }
+    .banner__img {
+      max-height: 30rem;
+    }
+  }
+`
 
-//   .launch__photo {
-//     display: none;
-//     background-image: url(./assets/artist_banner.jpg);
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     height: 100%;
-//     width: 100%;
-//     background-size: cover;
-//     @media (min-width: ${theme.breakPoints.sm}) {
-//       display: block;
-//     }
-//   }
-
-//   @media (min-width: ${theme.breakPoints.sm}) {
-//     margin-top: -10rem;
-//     .launch__grid {
-//       box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.1);
-//     }
-//   }
-// `
+const Banner = props => (
+  <BannerWrapper className="container">
+    <div className="banner__text">{props.children}</div>
+    <img className="banner__img" src={props.img} />
+  </BannerWrapper>
+)
 
 class Home extends React.Component {
   handleDonate = e => {
@@ -115,6 +79,20 @@ class Home extends React.Component {
     return (
       <React.Fragment>
         <Hero />
+        <Banner img="https://user-images.githubusercontent.com/36746528/43587708-7738c570-9630-11e8-91c6-a17e8e1c6472.png">
+          <p className="banner__title">Announcement</p>
+          <h3 className="banner__header">
+            Ballot Parties for the midterms here in Illinois are LIVE! Find out
+            more, sign up to host, or sign up to attend!
+          </h3>
+          <BlockLink
+            style={{ marginTop: "2rem" }}
+            color={theme.colors.grey["700"]}
+            href="https://ballotpartyil.ballotready.org/"
+          >
+            Get ready to party!
+          </BlockLink>
+        </Banner>
         <LessonList />
         <AboutUs className="how-it-works">
           <Grid container>
