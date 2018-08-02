@@ -14,6 +14,17 @@ const StyledScroller = styled.section`
     display: flex;
     transition: transform 300ms;
   }
+  .outer-wrapper .arrows {
+    display: flex;
+    justify-content: flex-end;
+    .mdi {
+      font-size: 4rem;
+      cursor: pointer;
+      &:hover {
+        color: ${theme.colors.grey["500"]};
+      }
+    }
+  }
   .item {
     flex: 0 0 100%;
     min-width: 100vw;
@@ -78,6 +89,16 @@ export default class extends React.Component {
               {React.Children.map(children, child => (
                 <div className="item">{child}</div>
               ))}
+            </div>
+            <div className="arrows">
+              <span
+                className="mdi mdi-chevron-left"
+                onClick={e => this.handleSwipe(e, -1)}
+              />
+              <span
+                className="mdi mdi-chevron-right"
+                onClick={e => this.handleSwipe(e, 1)}
+              />
             </div>
           </div>
         </StyledScroller>
