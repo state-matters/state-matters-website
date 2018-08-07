@@ -2,6 +2,7 @@
 
 # VS Code
 .vs
+.vscode
 
 # dependencies
 /node_modules
@@ -10,9 +11,9 @@
 /coverage
 
 # production
-/public/bundle.js
-/public/state_matters.bundle.js
-/public/index.html
+public/state_matters.bundle.js
+public/index.html
+dist
 
 
 # misc

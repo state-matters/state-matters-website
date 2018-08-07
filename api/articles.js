@@ -1,18 +1,7 @@
 const router = require("express").Router()
-const contentful = require("contentful")
 const { normalize, schema } = require("normalizr")
-
-const config =
-  process.env.NODE_ENV === "production"
-    ? {
-        space: "021ulla0m5co",
-        accessToken: process.env.PROD_API_KEY
-      }
-    : {
-        space: "021ulla0m5co",
-        accessToken: process.env.DEV_API_KEY,
-        host: "preview.contentful.com"
-      }
+const contentful = require("contentful")
+const config = require("./config")
 
 const client = contentful.createClient(config)
 
