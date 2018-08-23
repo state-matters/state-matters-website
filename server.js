@@ -24,8 +24,8 @@ app.use("/api", api)
 // })
 
 if (process.env.NODE_ENV === "production") {
-  app.get("*", ({ response }) => {
-    response.sendFile(join(__dirname, "public/index.html"))
+  app.get("*", (req, res) => {
+    res.sendFile(join(__dirname, "public/index.html"))
   })
 }
 
