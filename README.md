@@ -1,5 +1,7 @@
 # State Matters
 
+[![Build Status](https://travis-ci.org/state-matters/state-matters-website.svg?branch=master)](https://travis-ci.org/state-matters/state-matters-website)
+
 _[Contentful CMS][2] + [Express][3] + [React][5] + [Styled Components][4]_
 
 ## About
