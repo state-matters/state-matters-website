@@ -41,7 +41,7 @@ const BannerWrapper = styled.section`
   margin: 1rem;
   flex-direction: column-reverse;
   background-color: ${theme.colors.grey["100"]};
-  z-index: 2;
+  z-index: 1;
   .banner__text {
     padding: 1rem;
     align-self: center;
