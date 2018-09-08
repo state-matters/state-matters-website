@@ -1,4 +1,5 @@
 import React from "react"
+import Helmet from "react-helmet"
 import { connect } from "react-redux"
 import Markdown from "markdown-to-jsx"
 import styled from "styled-components"
@@ -78,6 +79,10 @@ class Article extends React.Component {
           </BlockLink>
         </Column>
         <Column smOffset={1} sm={8}>
+          <Helmet>
+            <title>{title}</title>
+            <meta name="article-hero-image" content={photo.fields.file.url} />
+          </Helmet>
           <h1>{title}</h1>
           {photo && (
             <img
