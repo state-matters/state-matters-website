@@ -79,18 +79,28 @@ class Home extends React.Component {
     return (
       <React.Fragment>
         <Hero />
-        <Banner img="https://user-images.githubusercontent.com/36746528/43587708-7738c570-9630-11e8-91c6-a17e8e1c6472.png">
-          <p className="banner__title">Announcement</p>
+        <Banner img="https://user-images.githubusercontent.com/36746528/46442397-256b9d00-c72f-11e8-9e54-f2d08ac60003.png">
           <h3 className="banner__header">
-            Ballot Parties for the midterms here in Illinois are LIVE! Find out
-            more, sign up to host, or sign up to attend!
+We give you all the educational goodies, you host the party. Get your friends together and research your ballot before November 6th.
           </h3>
           <BlockLink
-            style={{ marginTop: "2rem" }}
+            style={{ marginTop: "1rem" }}
             color={theme.colors.grey["700"]}
             href="https://ballotpartyil.ballotready.org/"
           >
-            Get ready to party!
+            Sign up to host
+          </BlockLink>
+          <h3
+            style={{ marginTop: "2rem" }}
+            className="banner__header">
+          Join us for the Kick Off at Constellation Friday, October 5th!
+        </h3>
+          <BlockLink
+            style={{ marginTop: "1rem" }}
+            color={theme.colors.grey["700"]}
+            href=" https://www.constellation-chicago.com/event/1769148-state-matters-ballot-party-chicago/"
+          >
+            Reserve your tickets
           </BlockLink>
         </Banner>
         <LessonList />
