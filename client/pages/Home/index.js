@@ -87,6 +87,7 @@ We give you all the educational goodies, you host the party. Get your friends to
             style={{ marginTop: "1rem" }}
             color={theme.colors.grey["700"]}
             href="https://ballotpartyil.ballotready.org/"
+            target="_blank"
           >
             Sign up to host
           </BlockLink>
@@ -99,6 +100,7 @@ We give you all the educational goodies, you host the party. Get your friends to
             style={{ marginTop: "1rem" }}
             color={theme.colors.grey["700"]}
             href=" https://www.constellation-chicago.com/event/1769148-state-matters-ballot-party-chicago/"
+            target="_blank"
           >
             Reserve your tickets
           </BlockLink>
