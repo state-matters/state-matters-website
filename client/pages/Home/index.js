@@ -94,15 +94,15 @@ We give you all the educational goodies, you host the party. Get your friends to
           <h3
             style={{ marginTop: "2rem" }}
             className="banner__header">
-          Join us for the Kick Off at Constellation Friday, October 5th!
+          Learn more at Chicago Ideas Week Thursday,  Oct 18!
         </h3>
           <BlockLink
             style={{ marginTop: "1rem" }}
             color={theme.colors.grey["700"]}
-            href=" https://www.constellation-chicago.com/event/1769148-state-matters-ballot-party-chicago/"
+            href=" https://www.chicagoideas.com/events/tools-for-turnout"
             target="_blank"
           >
-            Reserve your tickets
+            Join us
           </BlockLink>
         </Banner>
         <LessonList />
