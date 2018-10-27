@@ -3,6 +3,7 @@ import styled from "styled-components"
 import PropTypes from "prop-types"
 import { Play } from "react-feather"
 import Modal from "./Modal"
+import YouTube from 'react-youtube'
 
 const StyledVideo = styled.figure`
   position: relative;
@@ -31,7 +32,8 @@ const VideoModal = styled.video`
 export default class Video extends React.Component {
   static propsTypes = {
     poster: PropTypes.string,
-    url: PropTypes.string
+    url: PropTypes.string,
+    youTubeId: PropTypes.string
   }
   video = null
   state = {
@@ -51,16 +53,9 @@ export default class Video extends React.Component {
         }
         render={toggle => (
           <StyledVideo {...props} background={this.props.poster}>
-            <div className="video__inner">
-              {this.props.playButton && (
-                <Play
-                  className="video__play-btn"
-                  size={48}
-                  onClick={toggle}
-                  color="white"
-                />
-              )}
-            </div>
+            <YouTube
+              videoId="2g811Eo7K8U"
+            />
           </StyledVideo>
         )}
       />

@@ -7,6 +7,7 @@ import { Grid, Column } from "components/Grid"
 import Video from "components/Video"
 import Loader from "components/Loader"
 import theme from "theme"
+import YouTube from 'react-youtube'
 
 const StyledLesson = styled(Grid)`
   padding: 10rem 1rem;
@@ -51,6 +52,9 @@ class Lesson extends React.Component {
       <StyledLesson container>
         <Column sm={8} smOffset={1}>
           <h1>{lesson.fields.title}</h1>
+            <YouTube
+              videoId="E0ZAZVoRp38"
+              />
           <Video
             playButton
             ratio={66.66}
