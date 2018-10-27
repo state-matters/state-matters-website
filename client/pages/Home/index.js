@@ -91,17 +91,14 @@ We give you all the educational goodies, you host the party. Get your friends to
           >
             Sign up to host
           </BlockLink>
-          <h3
-            style={{ marginTop: "2rem" }}
-            className="banner__header">
-          Learn more at Chicago Ideas Week Thursday,  Oct 18!
-        </h3>
-          <BlockLink
-            style={{ marginTop: "1rem" }}
-            color={theme.colors.grey["700"]}
-            href=" https://www.chicagoideas.com/events/tools-for-turnout"
-            target="_blank"
-          >
+          <h3 style={{
+              marginTop: "2rem"
+            }} className="banner__header">
+            Join us at the Museum of Contemporary Art in Chicago for a live election results party on November 6th!
+          </h3>
+          <BlockLink style={{
+              marginTop: "1rem"
+            }} color={theme.colors.grey["700"]} href="https://www.eventbrite.com/e/live-election-results-viewing-with-state-matters-tickets-51656258259" target="_blank">
             Join us
           </BlockLink>
         </Banner>
