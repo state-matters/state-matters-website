@@ -22,12 +22,14 @@ const StyledModal = styled.div`
     padding: 1rem;
     border-radius: 4px;
     width: 100%;
+    height: 400px;
     max-width: 60rem;
     .close {
       position: absolute;
-      z-index: 3;
+      z-index: 5;
       top: 1rem;
       right: 1rem;
+      color:white;
     }
   }
 `
