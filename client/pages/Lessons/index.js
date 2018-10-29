@@ -35,7 +35,30 @@ const StyledLesson = styled(Grid)`
   }
 `
 
+
 class Lesson extends React.Component {
+
+  pickVideo() {
+    const { lesson } = this.props
+    if(lesson.fields.youTubeId) {
+      return(
+        <YouTube
+          videoId={lesson.fields.youTubeId}
+          />
+      )
+
+    } else {
+    return (
+      <Video
+        playButton
+        ratio={66.66}
+        url={lesson.fields.video.fields.file.url}
+        poster={lesson.fields.poster.fields.file.url}
+        className="lesson__video"
+      />
+  )
+  }
+}
   state = {
     loaded: false
   }
@@ -52,16 +75,8 @@ class Lesson extends React.Component {
       <StyledLesson container>
         <Column sm={8} smOffset={1}>
           <h1>{lesson.fields.title}</h1>
-            <YouTube
-              videoId="E0ZAZVoRp38"
-              />
-          <Video
-            playButton
-            ratio={66.66}
-            url={lesson.fields.video.fields.file.url}
-            poster={lesson.fields.poster.fields.file.url}
-            className="lesson__video"
-          />
+          {this.pickVideo()}
+
           <Markdown className="lesson__body">{lesson.fields.body}</Markdown>
         </Column>
       </StyledLesson>

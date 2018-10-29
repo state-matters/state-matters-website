@@ -32,8 +32,7 @@ const VideoModal = styled.video`
 export default class Video extends React.Component {
   static propsTypes = {
     poster: PropTypes.string,
-    url: PropTypes.string,
-    youTubeId: PropTypes.string
+    url: PropTypes.string
   }
   video = null
   state = {
@@ -41,24 +40,73 @@ export default class Video extends React.Component {
   }
   render = _ => {
     const { poster, url, ...props } = this.props
-    return (
-      <Modal
-        body={
-          <VideoModal
-            controls
-            src={this.props.url}
-            poster={this.props.poster}
-            ref={node => (this.video = node)}
-          />
+    if(this.props.youTubeId){
+      const opts = {
+        width: '100%',
+        playerVars: { // https://developers.google.com/youtube/player_parameters
+          autoplay: 0,
+          controls: 0,
+          modestbranding: 1,
+          widget_referrer: 'wwww.statematters.org'
         }
-        render={toggle => (
-          <StyledVideo {...props} background={this.props.poster}>
+      }
+      return(
+        <Modal
+          body={
             <YouTube
-              videoId="2g811Eo7K8U"
+                opts={opts}
+                videoId={this.props.youTubeId}
+              />
+          }
+          render={toggle => (
+            <StyledVideo {...props} background={this.props.poster}>
+              <div className="video__inner">
+                {this.props.playButton && (
+                  <div>
+                    <Play
+                      className="video__play-btn"
+                      size={48}
+                      onClick={toggle}
+                      color="white"
+                    />
+
+                  </div>
+
+                )}
+              </div>
+            </StyledVideo>
+          )}
+        />
+
+      )
+    }
+    else {
+      return (
+        <Modal
+          body={
+            <VideoModal
+              controls
+              src={this.props.url}
+              poster={this.props.poster}
+              ref={node => (this.video = node)}
             />
-          </StyledVideo>
-        )}
-      />
-    )
+          }
+          render={toggle => (
+            <StyledVideo {...props} background={this.props.poster}>
+              <div className="video__inner">
+                {this.props.playButton && (
+                  <Play
+                    className="video__play-btn"
+                    size={48}
+                    onClick={toggle}
+                    color="white"
+                  />
+                )}
+              </div>
+            </StyledVideo>
+          )}
+        />
+      )
+    }
   }
 }

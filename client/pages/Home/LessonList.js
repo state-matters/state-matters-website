@@ -41,6 +41,7 @@ const StyledLessonList = styled.section`
 class LessonList extends React.Component {
   state = { selected: 0, translate: 0 }
   componentDidMount = _ => this.props.getLessons()
+
   render = _ => {
     const { lessons, loaded } = this.props
     if (!loaded) return <Loader />
@@ -60,6 +61,7 @@ class LessonList extends React.Component {
                 playButton
                 url={fields.video.fields.file.url}
                 poster={fields.poster.fields.file.url}
+                youTubeId={fields.youTubeId}
               />
             </div>
           ))}
