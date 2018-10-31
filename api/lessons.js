@@ -10,7 +10,7 @@ router
     try {
       const { items } = await client.getEntries({
         content_type: "lesson",
-        select: "sys.id,fields.title,fields.video,fields.poster"
+        select: "sys.id,fields.title,fields.video,fields.poster,fields.youTubeId"
       })
       const lessonSchema = new schema.Entity("lessons", undefined, {
         idAttribute: v => v.sys.id
