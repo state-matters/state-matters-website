@@ -79,6 +79,15 @@ class Home extends React.Component {
     return (
       <React.Fragment>
         <Hero />
+        <Banner img="/assets/banner_01302019.png">
+          <h3>Chicago has an election February 26th.</h3>
+          <p>
+            We know, we know, there was JUST an election. And there’s really another one coming up?!
+            Yes. But have no fear, we have a workshop Saturday, February 2nd, 10:30 AM at the MCA to
+            get you ready for it. It’s completely free, just pretty please reserve your ticket with
+            Eventbrite ;)
+          </p>
+        </Banner>
         <LessonList />
         <AboutUs className="how-it-works">
           <Grid container>
