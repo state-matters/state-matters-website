@@ -30,7 +30,7 @@
     "helmet": "^3.12.1",
     "lodash.debounce": "^4.0.8",
     "markdown-to-jsx": "^6.6.6",
-    "morgan": "^1.9.0",
+    "morgan": "^1.9.1",
     "normalizr": "^3.2.4",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -59,7 +59,7 @@
     "nodemon": "^1.17.5",
     "prop-types": "^15.6.1",
     "webpack": "^4.1.1",
-    "webpack-cli": "^2.0.12",
-    "webpack-dev-server": "^3.1.4"
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14"
   }
 }
