@@ -41,7 +41,7 @@ const BannerWrapper = styled.section`
   margin: 1rem;
   flex-direction: column-reverse;
   background-color: ${theme.colors.grey["100"]};
-  z-index: 2;
+  z-index: 1;
   .banner__text {
     padding: 1rem;
     align-self: center;
@@ -79,28 +79,14 @@ class Home extends React.Component {
     return (
       <React.Fragment>
         <Hero />
-        <Banner img="https://user-images.githubusercontent.com/36746528/46442397-256b9d00-c72f-11e8-9e54-f2d08ac60003.png">
-          <h3 className="banner__header">
-We give you all the educational goodies, you host the party. Get your friends together and research your ballot before November 6th.
-          </h3>
-          <BlockLink
-            style={{ marginTop: "1rem" }}
-            color={theme.colors.grey["700"]}
-            href="https://ballotpartyil.ballotready.org/"
-            target="_blank"
-          >
-            Sign up to host
-          </BlockLink>
-          <h3 style={{
-              marginTop: "2rem"
-            }} className="banner__header">
-            Join us at the Museum of Contemporary Art in Chicago for a live election results party on November 6th!
-          </h3>
-          <BlockLink style={{
-              marginTop: "1rem"
-            }} color={theme.colors.grey["700"]} href="https://www.eventbrite.com/e/live-election-results-viewing-with-state-matters-tickets-51656258259" target="_blank">
-            Join us
-          </BlockLink>
+        <Banner img="/assets/banner_01302019.png">
+          <h3>Chicago has an election February 26th.</h3>
+          <p>
+            We know, we know, there was JUST an election. And there’s really another one coming up?!
+            Yes. But have no fear, we have a workshop Saturday, February 2nd, 10:30 AM at the MCA to
+            get you ready for it. It’s completely free, just pretty please reserve your ticket with
+            Eventbrite ;)
+          </p>
         </Banner>
         <LessonList />
         <AboutUs className="how-it-works">
