@@ -86,6 +86,9 @@ class Home extends React.Component {
             Yes. But have no fear, we have a workshop Saturday, February 2nd, 10:30 AM at the MCA to
             get you ready for it. It’s completely free, just pretty please reserve your ticket with
             Eventbrite ;)
+            <BlockLink href="https://www.eventbrite.com/e/what-you-need-to-know-for-chicagos-election-tickets-55134387437?aff=efbeventtix">
+              Reserve your ticket.
+            </BlockLink>
           </p>
         </Banner>
         <LessonList />
