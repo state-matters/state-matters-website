@@ -74,6 +74,15 @@ export default class extends React.Component {
         <h2>Learn about the candidates</h2>
         <div className="link-box">
           <h4>
+            <a href="https://illinoissunshine.org">Illinois Sunshine</a>
+          </h4>
+          <p>
+            Wondering where the candidates' money is coming from? Illinois Sunshine is a great tool
+            to find out!
+          </p>
+        </div>
+        <div className="link-box">
+          <h4>
             <a href="https://www.documenters.org/">Find a forum</a>
           </h4>
           <p>
