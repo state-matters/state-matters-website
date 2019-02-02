@@ -13,7 +13,7 @@ const InputWrapper = styled.label`
     border: none;
     border-radius: 2px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.24);
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-family: "Poppins", sans-serif;
     outline: none;
     transition: 200ms ease-in-out;
@@ -43,11 +43,7 @@ export default class Input extends React.Component {
     const { props } = this
     return (
       <InputWrapper>
-        <input
-          onChange={this.handleChange}
-          value={this.state.value}
-          {...props}
-        />
+        <input onChange={this.handleChange} value={this.state.value} {...props} />
       </InputWrapper>
     )
   }
