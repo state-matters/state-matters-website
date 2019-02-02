@@ -86,8 +86,12 @@ h4,
 }
 
 .btn:hover {
-  background-color: ${theme.colors.grey["900"]}};
-  color: ${theme.colors.grey["100"]}};
+  background-color: ${theme.colors.grey["900"]};
+  color: ${theme.colors.grey["100"]};
+}
+
+a {
+  color: ${theme.colors.primary["500"]}
 }
 
 @media (min-width: ${theme.breakPoints.sm}) {
