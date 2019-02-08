@@ -85,10 +85,8 @@ class Home extends React.Component {
             So, the Chicago election is February 26th, and you want to research the candidates, but
             you're having trouble finding the right resources. We gathered up the best of the best
             to aid you in your quest.
-            <BlockLink
-              color="#000"
-              href="https://www.eventbrite.com/e/what-you-need-to-know-for-chicagos-election-tickets-55134387437?aff=efbeventtix">
-              Reserve your ticket.
+            <BlockLink color="#000" to="/chicago">
+              Go to the resource roundup.
             </BlockLink>
           </p>
         </Banner>
