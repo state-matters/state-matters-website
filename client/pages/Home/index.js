@@ -82,11 +82,12 @@ class Home extends React.Component {
         <Banner img="/assets/banner_01302019.png">
           <h3>Chicago has an election February 26th.</h3>
           <p>
-            We know, we know, there was JUST an election. And there’s really another one coming up?!
-            Yes. But have no fear, we have a workshop Saturday, February 2nd, 10:30 AM at the MCA to
-            get you ready for it. It’s completely free, just pretty please reserve your ticket with
-            Eventbrite ;)
-            <BlockLink href="https://www.eventbrite.com/e/what-you-need-to-know-for-chicagos-election-tickets-55134387437?aff=efbeventtix">
+            So, the Chicago election is February 26th, and you want to research the candidates, but
+            you're having trouble finding the right resources. We gathered up the best of the best
+            to aid you in your quest.
+            <BlockLink
+              color="#000"
+              href="https://www.eventbrite.com/e/what-you-need-to-know-for-chicagos-election-tickets-55134387437?aff=efbeventtix">
               Reserve your ticket.
             </BlockLink>
           </p>
