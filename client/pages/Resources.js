@@ -1,13 +1,14 @@
 import React from "react"
 import styled from "styled-components"
 import theme from "theme"
-import { Button } from "components/TouchTarget"
+
+const links = [{ url: "", title: "", description: "" }]
 
 export default class extends React.Component {
   render() {
     return (
       <StyledResources>
-        <h1>Municipal Resources.</h1>
+        <h1>Municipal Resources!</h1>
         <h4>
           The Chicago municipal election is on February 26th! Early voting city-wide starts February
           11th, and the “super site” downtown is already open. There are so many awesome
@@ -34,14 +35,31 @@ export default class extends React.Component {
           className="resources__questions"
           method="POST">
           <input type="email" placeholder="Enter your email" name="_replyto" />
-          <textarea placeholder="What's your deal?" rows="8" name="message" />
+          <textarea
+            placeholder="Ask us a question and we'll get back with ya!"
+            rows="4"
+            name="message"
+          />
           <button type="submit">Ask us anything.</button>
         </form>
         <h2>What’s on the ballot:</h2>
         <p>Download our beautiful poster walkthrough of the ballot</p>
         <div className="link-box">
           <h4>
-            <a href="https://ballotready.org">
+            <a
+              href="https://drive.google.com/open?id=16W0IDZY3scHR7C_x3zyvPxHChkvATYxg"
+              target="_blank">
+              Our Voter Education Toolkit
+            </a>
+          </h4>
+          <p>
+            Do you want to help get your friends ready to vote? Check out our toolkit for hosting
+            your very own Voter Education Workshop!
+          </p>
+        </div>
+        <div className="link-box">
+          <h4>
+            <a target="_blank" href="https://www.ballotready.org/">
               BallotReady -See an example of your ballot That’s right, a full example!
             </a>
           </h4>
@@ -52,7 +70,7 @@ export default class extends React.Component {
         </div>
         <div className="link-box">
           <h4>
-            <a href="https://www.statematters.org/lessons/1KrEOmlEUkWSa4kO4qAOIg">
+            <a target="_blank" href="https://www.statematters.org/lessons/1KrEOmlEUkWSa4kO4qAOIg">
               What are ballot measures?
             </a>
           </h4>
@@ -63,7 +81,9 @@ export default class extends React.Component {
         </div>
         <div className="link-box">
           <h4>
-            <a href="https://chi.vote/">chi.vote</a>
+            <a target="_blank" href="https://chi.vote/">
+              chi.vote
+            </a>
           </h4>
           <p>
             A collective of media groups got together to build this great resource to get you
@@ -74,7 +94,9 @@ export default class extends React.Component {
         <h2>Learn about the candidates</h2>
         <div className="link-box">
           <h4>
-            <a href="https://illinoissunshine.org">Illinois Sunshine</a>
+            <a target="_blank" href="https://illinoissunshine.org">
+              Illinois Sunshine
+            </a>
           </h4>
           <p>
             Wondering where the candidates' money is coming from? Illinois Sunshine is a great tool
@@ -83,7 +105,9 @@ export default class extends React.Component {
         </div>
         <div className="link-box">
           <h4>
-            <a href="https://www.documenters.org/">Find a forum</a>
+            <a target="_blank" href="https://www.documenters.org/">
+              Find a forum
+            </a>
           </h4>
           <p>
             City Bureau gathered info for ALL of the forums happening with candidates (along with a
@@ -93,7 +117,9 @@ export default class extends React.Component {
         </div>
         <div className="link-box">
           <h4>
-            <a href="https://www.chicagotribune.com/news/politics/elections/ct-candidates-for-chicago-mayor-20190126-storygallery.html">
+            <a
+              target="_blank"
+              href="https://www.chicagotribune.com/news/politics/elections/ct-candidates-for-chicago-mayor-20190126-storygallery.html">
               Chicago Tribune’s About the Candidates
             </a>
           </h4>
@@ -104,7 +130,7 @@ export default class extends React.Component {
         </div>
         <div className="link-box">
           <h4>
-            <a href="https://interactive.wbez.org/2019/mayoral-questionnaire/">
+            <a target="_blank" href="https://interactive.wbez.org/2019/mayoral-questionnaire/">
               20 Yes or No Questions
             </a>
           </h4>
@@ -115,7 +141,9 @@ export default class extends React.Component {
         </div>
         <div className="link-box">
           <h4>
-            <a href="https://abc7chicago.com/politics/chicago-mayoral-election-2019-meet-the-candidates-in-the-race/5106733/">
+            <a
+              target="_blank"
+              href="https://abc7chicago.com/politics/chicago-mayoral-election-2019-meet-the-candidates-in-the-race/5106733/">
               ABC Chicago Voter Guide
             </a>
           </h4>
@@ -126,7 +154,9 @@ export default class extends React.Component {
         </div>
         <div className="link-box">
           <h4>
-            <a href="https://elections.suntimes.com/voting-guide/">Chicago Sun Times Voter Guide</a>
+            <a target="_blank" href="https://elections.suntimes.com/voting-guide/">
+              Chicago Sun Times Voter Guide
+            </a>
           </h4>
           <p>
             If you want to take a deep dive, Chicago Sun Times delivers the most extensive profile
@@ -136,7 +166,7 @@ export default class extends React.Component {
         <h2>FOR THAT ACTUAL VOTING PART </h2>
         <div className="link-box">
           <h4>
-            <a href="https://chicagoelections.com/en/your-voter-information.html">
+            <a target="_blank" href="https://chicagoelections.com/en/your-voter-information.html">
               Find your polling place
             </a>
           </h4>
@@ -144,7 +174,9 @@ export default class extends React.Component {
         </div>
         <div className="link-box">
           <h4>
-            <a href="https://www.chicago.gov/city/en/depts/mayor/iframe/lookup_ward_and_alderman.html">
+            <a
+              target="_blank"
+              href="https://www.chicago.gov/city/en/depts/mayor/iframe/lookup_ward_and_alderman.html">
               What Ward do I Live In?
             </a>
           </h4>
@@ -155,13 +187,17 @@ export default class extends React.Component {
         </div>
         <div className="link-box">
           <h4>
-            <a href="https://ova.elections.il.gov/">Check your Voter Registration</a>
+            <a target="_blank" href="https://ova.elections.il.gov/">
+              Check your Voter Registration
+            </a>
           </h4>
           <p>Not sure if you’re registered? Check it out here.</p>
         </div>
         <div className="link-box">
           <h4>
-            <a href="https://medium.com/state-matters/know-your-voting-rights-7f7f5a81938a">
+            <a
+              target="_blank"
+              href="https://medium.com/state-matters/know-your-voting-rights-7f7f5a81938a">
               Know your Voting Rights
             </a>
           </h4>
@@ -171,19 +207,23 @@ export default class extends React.Component {
         </div>
         <div className="link-box">
           <h4>
-            <a href="https://medium.com/state-matters/election-myth-busting-b4c1224bd382">
+            <a
+              target="_blank"
+              href="https://medium.com/state-matters/election-myth-busting-b4c1224bd382">
               Election Myth Busting
             </a>
           </h4>
           <p>
             Voting myths tend to pop up around election time. Make sure you’re not falling into a
-            myth trap this election season.{" "}
+            myth trap this election season.
           </p>
         </div>
         <h2>OTHER STUFF WE DIG... </h2>
         <div className="link-box">
           <h4>
-            <a href="https://www.chicagoreader.com/chicago/ArticleArchives?category=67005500">
+            <a
+              target="_blank"
+              href="https://www.chicagoreader.com/chicago/ArticleArchives?category=67005500">
               Back Room Deal
             </a>
           </h4>
@@ -191,8 +231,10 @@ export default class extends React.Component {
         </div>
         <div className="link-box">
           <h4>
-            <a href="http://www.chicagomag.com/city-life/January-2019/Why-Chicago-Has-a-Nonpartisan-Mayoral-Election-Runoff/">
-              Why Chicago Has Nonpartisan Elections
+            <a
+              target="_blank"
+              href="https://www.wbez.org/shows/curious-city/no-conspiracy-required-the-true-origins-of-chicagos-february-elections/7bc0c663-79a9-4273-afbe-ea53df07215b">
+              Why Chicago's election is in February
             </a>
           </h4>
           <p>
