@@ -35,7 +35,11 @@ export default class extends React.Component {
           className="resources__questions"
           method="POST">
           <input type="email" placeholder="Enter your email" name="_replyto" />
-          <textarea placeholder="What's your deal?" rows="4" name="message" />
+          <textarea
+            placeholder="Ask us a question and we'll get back with ya!"
+            rows="4"
+            name="message"
+          />
           <button type="submit">Ask us anything.</button>
         </form>
         <h2>What’s on the ballot:</h2>
