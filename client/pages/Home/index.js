@@ -79,7 +79,7 @@ class Home extends React.Component {
     return (
       <React.Fragment>
         <Hero />
-        <Banner img="/assets/banner_01302019.png">
+        <Banner img="/assets/resource_roundup_2019.png">
           <h3>Chicago has an election February 26th.</h3>
           <p>
             So, the Chicago election is February 26th, and you want to research the candidates, but
