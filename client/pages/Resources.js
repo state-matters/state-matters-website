@@ -43,7 +43,9 @@ export default class extends React.Component {
           <button type="submit">Ask us anything.</button>
         </form>
         <h2>What’s on the ballot:</h2>
-        <p>Download our beautiful poster walkthrough of the ballot</p>
+        <a href="https://drive.google.com/file/d/1x0LKGjjdP9e0eZ_y8eEf7N37IZz2iV-d/view?usp=drivesdk">
+          Download our beautiful poster walkthrough of the ballot
+        </a>
         <div className="link-box">
           <h4>
             <a
