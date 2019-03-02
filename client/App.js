@@ -13,6 +13,7 @@ import Lesson from "./pages/Lessons"
 import LessonList from "./pages/Home/LessonList"
 import Game from "./pages/BillIntro"
 import Resources from "./pages/Resources"
+import Podcast from "./pages/Podcast"
 import NotFound from "components/NotFound"
 
 export default () => (
@@ -27,6 +28,7 @@ export default () => (
         <Route path="/lessons" component={LessonList} />
         <Route path="/bill-intro" component={Game} />
         <Route path="/chicago" component={Resources} />
+        <Route path="/ilinformed" component={Podcast} />
         <Route path="/about" component={About} />
         <Route path="/team" component={Team} />
         <Route exact path="/" component={Home} />
