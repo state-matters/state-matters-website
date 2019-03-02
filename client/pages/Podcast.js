@@ -6,23 +6,19 @@ import theme from "theme"
 export default props => {
   return (
     <Fragment>
+      <HeaderImg src="/assets/podcast/header.jpg" alt="header img alt text" />
       <Main container>
-        <Column sm={12}>
-          <HeaderImg src={null} alt="header img alt text" />
-        </Column>
-        <Column sm={12}>
-          <Title>Ilinformed</Title>
+        <BannerImg src="/assets/podcast/banner_left.jpg" sm={0} md={2} />
+        <AnchorWrapper sm={12} md={8}>
+          <Title>IL informed</Title>
           <Description>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi reprehenderit minus
             mollitia ut fugiat libero fugit eveniet rerum deserunt beatae laborum, non voluptates,
             quas, est cumque sunt assumenda! Molestias, pariatur?
           </Description>
-        </Column>
-        <BannerImg src={null} sm={0} md={2} />
-        <AnchorWrapper sm={12} md={8}>
-          <h2>AnchorFM wrapper</h2>
+          <iframe src="https://anchor.fm/il-informed/embed" frameborder="0" scrolling="no" />
         </AnchorWrapper>
-        <BannerImg src={null} sm={0} md={2} />
+        <BannerImg src="/assets/podcast/banner_right.jpg" sm={0} md={2} />
       </Main>
       <Links>
         <Grid container>
@@ -65,15 +61,17 @@ export default props => {
 }
 
 const Main = styled(Grid)`
-  min-height: calc(100vh - 8rem);
-  margin-top: 8rem;
-  padding: 2rem;
+  padding: 6rem 2rem;
 `
 
 const HeaderImg = styled.img`
   display: block;
-  min-height: 30rem;
+  height: 30rem;
+  width: 100%;
+  object-fit: cover;
+  margin-top: 7.5rem;
   background: ${theme.colors.grey["300"]};
+  border-bottom: 4px solid ${theme.colors.primary["500"]};
 `
 
 const Title = styled.h1``
@@ -81,10 +79,18 @@ const Title = styled.h1``
 const Description = styled.p``
 
 const BannerImg = styled(Column)`
-  background: ${theme.colors.grey["300"]};
+  background-image: url(${({ src }) => src});
+  background-position: center;
+  background-size: cover;
+  border: 4px solid ${theme.colors.primary["500"]};
 `
 
-const AnchorWrapper = styled(Column)``
+const AnchorWrapper = styled(Column)`
+  iframe {
+    margin-top: 4rem;
+    width: 100%;
+  }
+`
 
 const Links = styled.section`
   padding: 4rem 0 8rem;
