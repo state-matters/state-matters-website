@@ -10,11 +10,13 @@ export default props => {
       <Main container>
         <BannerImg src="/assets/podcast/banner_left.jpg" sm={0} md={2} />
         <AnchorWrapper sm={12} md={8}>
-          <Title>IL informed</Title>
+          <Title>IL Informed</Title>
           <Description>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi reprehenderit minus
-            mollitia ut fugiat libero fugit eveniet rerum deserunt beatae laborum, non voluptates,
-            quas, est cumque sunt assumenda! Molestias, pariatur?
+            Poet, activist and researcher Glenance Green and failed gubernatorial candidate/former
+            state legislator Daniel Biss, come together to talk Illinois politics, government and
+            how the heck it all works (or doesn’t) in Springfield. From the games that are played
+            just to get bills passed, the role of lobbyists, private plane pension payments and more
+            — Glenance and Daniel will be pulling back the curtain and shining some light.
           </Description>
           <iframe src="https://anchor.fm/il-informed/embed" frameborder="0" scrolling="no" />
         </AnchorWrapper>
@@ -26,13 +28,22 @@ export default props => {
             <h2>Listen</h2>
             <LinksList>
               <Item>
-                <a href="">Apple Music</a>
-              </Item>
-              <Item>
-                <a href="">Google Play</a>
+                <a href="">Apple Podcasts</a>
               </Item>
               <Item>
                 <a href="">Spotify</a>
+              </Item>
+              <Item>
+                <a href="">Google Podcasts</a>
+              </Item>
+              <Item>
+                <a href="">Stitcher</a>
+              </Item>
+              <Item>
+                <a href="">Breaker</a>
+              </Item>
+              <Item>
+                <a href="">Castbox</a>
               </Item>
               <Item>
                 <a href="">Overcast</a>
@@ -41,17 +52,9 @@ export default props => {
                 <a href="">Pocket Casts</a>
               </Item>
               <Item>
-                <a href="">Stitcher</a>
-              </Item>
-              <Item>
                 <a href="">RadioPublic</a>
               </Item>
-              <Item>
-                <a href="">Anchor</a>
-              </Item>
-              <Item>
-                <a href="">RSS Feed</a>
-              </Item>
+              <Item>Basically anywhere...</Item>
             </LinksList>
           </Column>
         </Grid>
