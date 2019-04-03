@@ -1,24 +1,75 @@
-import React, { Fragment } from "react"
-import styled from "styled-components"
-import { Grid, Column } from "components/Grid"
-import theme from "theme"
+import React, { Fragment } from "react";
+import Helmet from "react-helmet";
+import styled from "styled-components";
+import { Grid, Column } from "components/Grid";
+import theme from "theme";
 
 export default props => {
   return (
     <Fragment>
+      <Helmet>
+        {/*Primary Meta Tags */}
+        <title>IL Informed | A new podcast from State Matters</title>
+        <meta
+          name="title"
+          content="IL Informed | A new podcast from State Matters"
+        />
+        <meta
+          name="description"
+          content="Listen & Learn about Illinois politics, government and how the heck it all works (or doesn’t) in Springfield. From the games that are played just to get bills passed, the role of lobbyists, private plane pension payments and more — Glenance and Daniel will be pulling back the curtain and shining some light."
+        />
+
+        {/*Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://www.statematters.org/ILInformed"
+        />
+        <meta
+          property="og:title"
+          content="IL Informed | A new podcast from State Matters"
+        />
+        <meta
+          property="og:description"
+          content="Listen & Learn about Illinois politics, government and how the heck it all works (or doesn’t) in Springfield. From the games that are played just to get bills passed, the role of lobbyists, private plane pension payments and more — Glenance and Daniel will be pulling back the curtain and shining some light."
+        />
+        <meta property="og:image" content="" />
+
+        {/*Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta
+          property="twitter:url"
+          content="https://www.statematters.org/ILInformed"
+        />
+        <meta
+          property="twitter:title"
+          content="IL Informed | A new podcast from State Matters"
+        />
+        <meta
+          property="twitter:description"
+          content="Listen & Learn about Illinois politics, government and how the heck it all works (or doesn’t) in Springfield. From the games that are played just to get bills passed, the role of lobbyists, private plane pension payments and more — Glenance and Daniel will be pulling back the curtain and shining some light."
+        />
+        <meta property="twitter:image" content="" />
+      </Helmet>
       <HeaderImg src="/assets/podcast/header.jpg" alt="header img alt text" />
       <Main container>
         <BannerImg src="/assets/podcast/banner_left.jpg" sm={0} md={2} />
         <AnchorWrapper sm={12} md={8}>
           <Title>IL Informed</Title>
           <Description>
-            Poet, activist and researcher Glenance Green and failed gubernatorial candidate/former
-            state legislator Daniel Biss, come together to talk Illinois politics, government and
-            how the heck it all works (or doesn’t) in Springfield. From the games that are played
-            just to get bills passed, the role of lobbyists, private plane pension payments and more
-            — Glenance and Daniel will be pulling back the curtain and shining some light.
+            Poet, activist and researcher Glenance Green and failed
+            gubernatorial candidate/former state legislator Daniel Biss, come
+            together to talk Illinois politics, government and how the heck it
+            all works (or doesn’t) in Springfield. From the games that are
+            played just to get bills passed, the role of lobbyists, private
+            plane pension payments and more — Glenance and Daniel will be
+            pulling back the curtain and shining some light.
           </Description>
-          <iframe src="https://anchor.fm/il-informed/embed" frameborder="0" scrolling="no" />
+          <iframe
+            src="https://anchor.fm/il-informed/embed"
+            frameborder="0"
+            scrolling="no"
+          />
         </AnchorWrapper>
         <BannerImg src="/assets/podcast/banner_right.jpg" sm={0} md={2} />
       </Main>
@@ -60,12 +111,12 @@ export default props => {
         </Grid>
       </Links>
     </Fragment>
-  )
-}
+  );
+};
 
 const Main = styled(Grid)`
   padding: 6rem 2rem;
-`
+`;
 
 const HeaderImg = styled.img`
   display: block;
@@ -75,25 +126,25 @@ const HeaderImg = styled.img`
   margin-top: 7.5rem;
   background: ${theme.colors.grey["300"]};
   border-bottom: 4px solid ${theme.colors.primary["500"]};
-`
+`;
 
-const Title = styled.h1``
+const Title = styled.h1``;
 
-const Description = styled.p``
+const Description = styled.p``;
 
 const BannerImg = styled(Column)`
   background-image: url(${({ src }) => src});
   background-position: center;
   background-size: cover;
   border: 4px solid ${theme.colors.primary["500"]};
-`
+`;
 
 const AnchorWrapper = styled(Column)`
   iframe {
     margin-top: 4rem;
     width: 100%;
   }
-`
+`;
 
 const Links = styled.section`
   padding: 4rem 0 8rem;
@@ -101,7 +152,7 @@ const Links = styled.section`
   h2 {
     margin-bottom: 2rem;
   }
-`
+`;
 
 const LinksList = styled.ul`
   display: flex;
@@ -110,10 +161,10 @@ const LinksList = styled.ul`
   padding: 0;
   color: ${theme.colors.grey["100"]};
   list-style: none;
-`
+`;
 
 const Item = styled.li`
   &:not(:last-of-type) {
     margin-right: 2rem;
   }
-`
+`;
