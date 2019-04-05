@@ -2,6 +2,10 @@
 
 [![Build Status](https://travis-ci.org/state-matters/state-matters-website.svg?branch=master)](https://travis-ci.org/state-matters/state-matters-website)
 
+```diff
+- This repository is deprecated. This repository will be closed to the public on April 30 2019
+```
+
 _[Contentful CMS][2] + [Express][3] + [React][5] + [Styled Components][4]_
 
 ## About
